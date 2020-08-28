@@ -1,0 +1,9 @@
+
+DROP TABLE IF EXISTS messages CASCADE;
+CREATE TABLE messages (
+  id SERIAL PRIMARY KEY NOT NULL,
+  sender_id INTEGER REFERENCES users(u_id) ON DELETE CASCADE,
+  receiver_id INTEGER REFERENCES users(u_id) ON DELETE CASCADE,
+  content TEXT,
+  sent_date TIMESTAMP WITHOUT TIME ZONE
+);
