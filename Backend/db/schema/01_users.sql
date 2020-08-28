@@ -11,5 +11,5 @@ CREATE TABLE users (
   city VARCHAR(255) NOT NULL,
   province VARCHAR(255) NOT NULL,
   post_code VARCHAR(255) NOT NULL,
-  Profile_picture_Url VARCHAR(255) NOT NULL
+  profile_picture_Url VARCHAR(255) NOT NULL
 );

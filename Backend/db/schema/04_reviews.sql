@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS reviews CASCADE;
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY NOT NULL,
   reviewer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  reviewed_id INTEGER REFERENCES tutor(id) ON DELETE CASCADE,
+  reviewed_id INTEGER REFERENCES tutors(id) ON DELETE CASCADE,
   comment TEXT,
   rating INTEGER,
-  date DATE WITHOUT TIME ZONE
+  date DATE
 );
