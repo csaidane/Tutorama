@@ -6,8 +6,6 @@ import {
   CssBaseline,
   Button,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Box,
@@ -33,7 +31,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(20),
+    marginTop: theme.spacing(10),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -58,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpStudent() {
+export default function SignUpTutor() {
   const classes = useStyles();
 
   return (
@@ -72,7 +70,7 @@ export default function SignUpStudent() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Student Sign up
+              Tutor Sign up
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
@@ -123,13 +121,58 @@ export default function SignUpStudent() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="education"
+                    label="Education"
+                    type="text"
+                    helperText="Please provide the name of the institution where you studied"
+                    id="education"
                   />
                 </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="subject"
+                    label="Subject taught"
+                    type="text"
+                    helperText="Please provide the name of the subject you are teaching"
+                    id="subject"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="rate"
+                    label="$/hour"
+                    type="number"
+                    helperText="Please provide your tutoring rate to charge per hour"
+                    id="rate"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    rows={7}
+                    required
+                    fullWidth
+                    multiline
+                    name="bio"
+                    label="Bio"
+                    type="text"
+                    helperText="A brief background about yourself: your interests, passions, why you provide tutoring services, your experience and teaching style, etc. Provide any specific information, or limitations on your services, that prospective students should be aware of."
+                    id="bio"
+                  />
+                </Grid>
+
+                <Grid item xs={12}></Grid>
               </Grid>
               <Button
                 type="submit"
@@ -155,9 +198,8 @@ export default function SignUpStudent() {
         </Grid>
 
         {/* Right side */}
-        <Grid item sm={6} xs={12} className={classes.image}>
-          <Box component="span"></Box>
-        </Grid>
+
+        <Grid item sm={6} xs={12} className={classes.image}></Grid>
       </Grid>
     </Container>
   );

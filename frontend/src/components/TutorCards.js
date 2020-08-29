@@ -13,6 +13,10 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    large: {
+      width: theme.spacing(170),
+      height: theme.spacing(170),
+    },
   },
   media: {
     height: 0,
@@ -31,7 +35,7 @@ export default function TutorCards() {
       <Card className={classes.root}>
         <CardHeader
           avatar={
-            <Avatar>
+            <Avatar className={classes.large}>
               <img
                 className="avatar_pic"
                 src="https://images.unsplash.com/photo-1557722808-868d2424c292?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
