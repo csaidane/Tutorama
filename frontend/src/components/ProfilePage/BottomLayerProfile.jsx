@@ -23,14 +23,12 @@ function SimplePaper() {
 
   return (
     <div className={classes.view}>
-      {/* <Paper elevation={0} /> */}
       <Paper />
-      {/* <Paper elevation={0} /> */}
     </div>
   );
 }
 
-export default function CenteredTabs() {
+export default function BottomLayerProfile() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
