@@ -74,10 +74,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function NavBar(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+
+  const { open, setOpen } = props;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -96,6 +97,18 @@ export default function PersistentDrawerLeft() {
       return <SchoolIcon />;
     } else {
       return <InboxIcon />;
+    }
+  };
+
+  const linkPath = (index) => {
+    if (index === 0) {
+      return "/profile";
+    } else if (index === 1) {
+      return "/messages";
+    } else if (index === 2) {
+      return "/mytutor";
+    } else {
+      return "/profile";
     }
   };
 
@@ -156,7 +169,7 @@ export default function PersistentDrawerLeft() {
             "Drafts?",
             "Still-thinking",
           ].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} component={Link} to={linkPath(index)}>
               <ListItemIcon>{iconDisplay(index)}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -165,7 +178,12 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           {["Edit Profile", "Logout"].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem
+              button
+              key={text}
+              component={Link}
+              to={index % 2 === 0 ? "/editprofile" : "/signout"}
+            >
               <ListItemIcon>
                 {index % 2 === 0 ? <EditIcon /> : <ExitToAppIcon />}
               </ListItemIcon>

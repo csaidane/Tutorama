@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     height: "calc(100% - 35px)",
-    position: "absolute",
-    left: "0",
+    // position: "absolute",
+    // left: "0",
     width: "300px",
     boxShadow: "0px 0px 2px black",
   },

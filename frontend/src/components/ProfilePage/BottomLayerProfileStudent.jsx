@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
+import { AppBar, Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -62,9 +62,12 @@ const useStyles = makeStyles((theme) => ({
     width: "40%",
     height: "40%",
   },
+  padding: {
+    padding: "5%",
+  },
 }));
 
-export default function NavTabs() {
+export default function BottomLayerProfileStudent() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -81,38 +84,46 @@ export default function NavTabs() {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Bio" href="/drafts" {...a11yProps(0)} />
-          <LinkTab label="Info" href="/trash" {...a11yProps(1)} />
-          <LinkTab label="Address" href="/spam" {...a11yProps(2)} />
+          <LinkTab label="Personal details" href="/trash" {...a11yProps(0)} />
+          <LinkTab label="Address" href="/spam" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
+
       <TabPanel value={value} index={0}>
-        <Paper className={classes.box}>
-          <Typography>
-            Your BIO Page Onenfa,jbffad,mn
-            adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnbda,mfdnaba,mfdnab,mnab,mfnb
-            Page Onenfa,jbffad,mn
-            adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnbda,mfdnaba,mfdnab,mnab,mfnb
-            Page Onenfa,jbffad,mn
-            adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnbda,mfdnaba,mfdnab,mnab,mfnb
-            Page Onenfa,jbffad,mn
-            adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnbda,mfdnaba,mfdnab,mnab,mfnb
-            Page Onenfa,jbffad,mn
-            adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnbda,mfdnaba,mfdnab,mnab,mfnb
-            Page Onenfa,jbffad,mn
-            adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnbda,mfdnaba,mfdnab,mnab,mfnb
-            Page Onenfa,jbffad,mn
-            adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnbda,mfdnaba,mfdnab,mnab,mfnb
-            Page Onenfa,jbffad,mn
-            adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnbda,mfdnaba,mfdnab,mnab,mfnb
-          </Typography>
-        </Paper>
+        <Grid container direction="column" justify="center" alignItems="center">
+          <Paper className={classes.box}>
+            <Typography className={classes.padding} align="left">
+              Full name:
+            </Typography>
+            <Typography className={classes.padding} align="left">
+              Email:
+            </Typography>
+            <Typography className={classes.padding} align="left">
+              Phone number:
+            </Typography>
+          </Paper>
+        </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Page Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Page Three
+        <Grid container direction="column" justify="center" alignItems="center">
+          <Paper className={classes.box}>
+            <Typography className={classes.padding} align="left">
+              Country:
+            </Typography>
+            <Typography className={classes.padding} align="left">
+              Province:
+            </Typography>
+            <Typography className={classes.padding} align="left">
+              City:
+            </Typography>
+            <Typography className={classes.padding} align="left">
+              Street:
+            </Typography>
+            <Typography className={classes.padding} align="left">
+              Post code:
+            </Typography>
+          </Paper>
+        </Grid>
       </TabPanel>
     </div>
   );

@@ -67,6 +67,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FilterBar() {
   const classes = useStyles();
+  // sortby states
+  const [conditionState, setConditionState] = React.useState({
+    sortBy: "",
+  });
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    setConditionState({
+      ...conditionState,
+      [name]: event.target.value,
+    });
+  };
+
+  // price range states
+  const [rateState, setRateState] = React.useState({
+    rate: "",
+  });
+
+  const handleRateChange = (event) => {
+    const name = event.target.name;
+    setRateState({
+      ...conditionState,
+      [name]: event.target.value,
+    });
+  };
 
   return (
     <Grid item xs={12}>
@@ -92,8 +117,55 @@ export default function FilterBar() {
           </div>
           {/* Sort by  */}
 
+          <FormControl variant="standard" className={classes.formControl}>
+            <InputLabel htmlFor="outlined-age-native-simple">
+              Sort by
+            </InputLabel>
+            <Select
+              native
+              value={conditionState.sortBy}
+              onChange={handleChange}
+              // label="Sort By"
+              inputProps={{
+                name: "sortBy",
+              }}
+            >
+              <option aria-label="None" value="" />
+              <option value={10}>Price: lowest to highest</option>
+              <option value={20}>Price: highest to lowest</option>
+              <option value={30}>Reviews</option>
+              <option value={40}>Rating</option>
+            </Select>
+          </FormControl>
+
+          {/* Price range */}
+          <FormControl variant="standard" className={classes.formControl}>
+            <InputLabel htmlFor="outlined-age-native-simple">
+              Hourly rate
+            </InputLabel>
+            <Select
+              native
+              value={rateState.rate}
+              onChange={handleRateChange}
+              // label="Sort By"
+              inputProps={{
+                name: "rate",
+              }}
+            >
+              <option aria-label="None" value="" />
+              <option value={1}>$10-$20</option>
+              <option value={2}>$20-$30</option>
+              <option value={3}>$30-$40</option>
+              <option value={4}>$40-$50</option>
+              <option value={5}>$50-$60</option>
+              <option value={6}>$60-$70</option>
+              <option value={7}>$70-$80</option>
+            </Select>
+          </FormControl>
+
           {/* City selector  */}
           <Autocomplete
+            variant="standard"
             id="selectCity"
             style={{ width: 300 }}
             options={cities}
@@ -117,6 +189,7 @@ export default function FilterBar() {
               />
             )}
           />
+
           <Button
             variant="contained"
             color="secondary"

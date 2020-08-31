@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./SignUpPage.scss";
 import {
   Avatar,
@@ -7,7 +9,6 @@ import {
   FormControlLabel,
   FormLabel,
   FormControl,
-  Link,
   Grid,
   Box,
   Typography,
@@ -49,7 +50,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpPage() {
   const classes = useStyles();
+  const [userType, setUserType] = useState("something");
 
+  const handleChange = (event) => {
+    if (userType === "/signup/student") {
+      setUserType(event.target.value);
+    } else {
+      setUserType(event.target.value);
+    }
+  };
   return (
     <Container component="main">
       <Grid container spacing={1}>
@@ -71,21 +80,25 @@ export default function SignUpPage() {
                 aria-label="position"
                 name="position"
                 defaultValue="top"
+                value={userType}
+                onChange={handleChange}
               >
                 <FormControlLabel
-                  value="student"
+                  value="/signup/student"
                   control={<Radio color="primary" />}
                   label="Student"
                 />
                 <FormControlLabel
-                  value="tutor"
+                  value="/signup/tutor"
                   control={<Radio color="primary" />}
                   label="Tutor"
                 />
               </RadioGroup>
-              <Button variant="contained" color="secondary">
-                Next
-              </Button>
+              <Link to={userType}>
+                <Button variant="contained" color="secondary">
+                  Next
+                </Button>
+              </Link>
             </FormControl>
           </form>
           <Box mt={5}></Box>

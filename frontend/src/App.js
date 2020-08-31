@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import clsx from "clsx";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Drawer } from "@material-ui/core";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
+import NavBar from "./components/Navbar.jsx";
 import TutorCards from "./components/TutorCards.jsx";
 import Signin from "./components/SignIn/SignIn";
 import SignUpStudent from "./components/SignUp/SignUpStudent";
@@ -10,40 +14,82 @@ import SearchField from "./components/HomePage/SearchField";
 import HowWorks from "./components/HomePage/HowWorks";
 import FindSubjects from "./components/FindSubjects.jsx";
 import TopLayerProfile from "./components/ProfilePage/TopLayerProfile";
-import BottomLayerProfile from "./components/ProfilePage/BottomLayerProfile";
+import BottomLayerProfileTutor from "./components/ProfilePage/BottomLayerProfileTutor";
+import BottomLayerProfileStudent from "./components/ProfilePage/BottomLayerProfileStudent";
 import RateDialog from "./components/RatingAndComment/RateDialog";
 import ProfileBoxItem from "./components/SearchResults/ProfileBoxItem.jsx";
 import FilterBar from "./components/SearchResults/FilterBar.jsx";
 import MessagePage from "./components/DirectMessages/MessagePage";
+import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  drawerHeader: {
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end",
+  },
+  contentShift: {
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
   return (
     <Router>
       <div>
-        <Navbar />
-        <Switch>
-          <Route path="/signin" component={Signin} />
-          <Route path="/signup" component={SignUpPage} />
-          <Route path="/signup/student" component={SignUpStudent} />
-          <Route path="/signup/tutor" component={SignUpTutor} />
-        </Switch>
-
-        {/* <Signin /> */}
-        {/* <ProfileBoxItem /> */}
-        {/* <FilterBar /> */}
-        {/* <ProfileBoxItem /> */}
-        {/* <MessagePage /> */}
-        {/* <RateDialog /> */}
-        {/* <SearchField /> */}
-        {/* <HowWorks /> */}
-        {/* <FindSubjects /> */}
-        {/* <SignUpPage /> */}
-        {/* <SignUpTutor /> */}
-        {/* <StarRating /> */}
-        {/* <SignUpStudent /> */}
-        {/* <TutorCards /> */}
-        {/* <TopLayerProfile />
-      <BottomLayerProfile /> */}
+        <NavBar open={open} setOpen={setOpen} />
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <Switch>
+            <Route path="/signin" exact component={Signin} />
+            <Route path="/signup" exact component={SignUpPage} />
+            <Route path="/signup/student" exact component={SignUpStudent} />
+            <Route path="/signup/tutor" exact component={SignUpTutor} />
+            <Route path="/messages" exact component={MessagePage} />
+          </Switch>
+          {/* <Signin /> */}
+          {/* <EditProfile /> */}
+          {/* <ProfileBoxItem /> */}
+          {/* <FilterBar /> */}
+          {/* <ProfileBoxItem /> */}
+          {/* <MessagePage /> */}
+          {/* <RateDialog /> */}
+          {/* <SearchField /> */}
+          {/* <HowWorks /> */}
+          {/* <FindSubjects /> */}
+          {/* <SignUpPage /> */}
+          {/* <SignUpTutor /> */}
+          {/* <StarRating /> */}
+          {/* <SignUpStudent /> */}
+          {/* <TutorCards /> */}
+          {/* <TopLayerProfile /> */}
+          {/* <BottomLayerProfileTutor /> */}
+          {/* <BottomLayerProfileStudent /> */}
+        </main>
       </div>
     </Router>
   );
