@@ -7,8 +7,12 @@ import {
   makeStyles,
   Box,
   Button,
+  TextField,
 } from "@material-ui/core/";
 import { flexbox } from "@material-ui/system";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import useAutocomplete from "@material-ui/lab/useAutocomplete";
+
 import { sizing } from "@material-ui/system";
 import SearchBar from "material-ui-search-bar";
 import { fade } from "@material-ui/core/styles";
@@ -45,12 +49,29 @@ export default function SearchField() {
               placeholder="Search for a subject ..."
               name="search"
             /> */}
-            <SearchBar
+            {/* <SearchBar
               placeholder="Search for a subject..."
               // value={this.state.value}
               // onChange={(newValue) => this.setState({ value: newValue })}
               // onRequestSearch={() => doSomethingWith(this.state.value)}
-            />
+            /> */}
+            <div style={{ width: 300 }}>
+              <Autocomplete
+                freeSolo
+                id="subjectList"
+                disableClearable
+                options={subjectList.map((option) => option.title)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Search for a subject"
+                    margin="normal"
+                    variant="outlined"
+                    InputProps={{ ...params.InputProps, type: "search" }}
+                  />
+                )}
+              />
+            </div>
 
             <Button
               variant="contained"
@@ -66,3 +87,47 @@ export default function SearchField() {
     </div>
   );
 }
+
+const subjectList = [
+  { title: "Algebra" },
+  { title: "Accounting" },
+  { title: "Art" },
+  { title: "Astronomy" },
+  { title: "Biology" },
+  { title: "Botany" },
+  { title: "Calculus" },
+  { title: "Chemistry" },
+  { title: "Creative Writing" },
+  { title: "Design" },
+  { title: "Drawing" },
+  { title: "Economics" },
+  { title: "English" },
+  { title: "Ethics" },
+  { title: "French" },
+  { title: "Geography" },
+  { title: "Geometry" },
+  { title: "German" },
+  { title: "History" },
+  { title: "Humanities" },
+  { title: "Italian" },
+  { title: "Japanese" },
+  { title: "Latin" },
+  { title: "Law" },
+  { title: "Literature" },
+  { title: "Math" },
+  { title: "Nutrition" },
+  { title: "Painting" },
+  { title: "Philosophy" },
+  { title: "Physics" },
+  { title: "Poetry" },
+  { title: "Polish" },
+  { title: "Psychology" },
+  { title: "Science" },
+  { title: "Social Studies" },
+  { title: "Sociology" },
+  { title: "Spanish" },
+  { title: "Statistics" },
+  { title: "Social Sciences" },
+  { title: "Trigonometry" },
+  { title: "Web Designing" },
+];

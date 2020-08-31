@@ -19,7 +19,10 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import EditIcon from "@material-ui/icons/Edit";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import SchoolIcon from "@material-ui/icons/School";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 
@@ -83,6 +86,18 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+  const iconDisplay = (index) => {
+    if (index === 0) {
+      return <AccountBoxIcon />;
+    } else if (index === 1) {
+      return <MailIcon />;
+    } else if (index === 2) {
+      return <SchoolIcon />;
+    } else {
+      return <InboxIcon />;
+    }
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -132,19 +147,27 @@ export default function PersistentDrawerLeft() {
           {[
             "Profile",
             "Messages",
-            " My Tutors",
+            "My Tutors",
             "Drafts?",
             "Still-thinking",
           ].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+              <ListItemIcon>{iconDisplay(index)}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
+        <List>
+          {["Edit Profile", "Logout"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <EditIcon /> : <ExitToAppIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
     </div>
   );

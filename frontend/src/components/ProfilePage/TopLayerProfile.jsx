@@ -6,6 +6,7 @@ import EditIcon from "@material-ui/icons/Edit";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    justifyContent: "center",
     flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(1),
@@ -20,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   large: {
-    width: theme.spacing(25),
-    height: theme.spacing(25),
+    width: theme.spacing(20),
+    height: theme.spacing(20),
   },
 }));
 
@@ -44,13 +45,18 @@ export default function TopLayerProfile() {
 
   return (
     <div className={classes.root}>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Paper />
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
         <ImageAvatars />
-        <Fab color="secondary" aria-label="edit">
+
+        <Typography variant="h6"> Student Name</Typography>
+        {/* <Fab color="secondary" aria-label="edit">
           <EditIcon />
-        </Fab>
-        <Typography> Student Name</Typography>
+        </Fab> */}
       </Box>
     </div>
   );

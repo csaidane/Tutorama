@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core/";
 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 
 function Copyright() {
@@ -33,7 +34,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(20),
+    marginTop: theme.spacing(10),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(5),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -63,42 +64,31 @@ export default function SignUpStudent() {
 
   return (
     <Container component="main">
-      <Grid container spacing={10}>
-        {/* Left part Sign Up */}
-        <Grid item sm={6} xs={12}>
-          <CssBaseline />
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Student Sign up
-            </Typography>
-            <form className={classes.form} noValidate>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="fname"
-                    name="firstName"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="First Name"
-                    autoFocus
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
+      <form className={classes.form} noValidate>
+        <Grid container spacing={10}>
+          {/* Left part Sign Up */}
+          <Grid item sm={6} xs={12}>
+            <CssBaseline />
+            <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Student Sign up
+              </Typography>
+              <Grid container spacing={5}>
+                <Grid item xs={12}>
                   <TextField
                     variant="outlined"
                     required
                     fullWidth
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
-                    autoComplete="lname"
+                    name="name"
+                    label="Full name"
+                    type="text"
+                    id="name"
                   />
                 </Grid>
+
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
@@ -123,23 +113,94 @@ export default function SignUpStudent() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="phone"
+                    label="Phone number"
+                    name="phoneNumber"
+                    autoComplete=""
                   />
                 </Grid>
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign Up
-              </Button>
+
+              {/* </form> */}
+            </div>
+          </Grid>
+
+          {/* Right side */}
+
+          <Grid item sm={6} xs={12}>
+            <CssBaseline />
+            <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <HomeOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Contact details
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="country"
+                    label="Country"
+                    name="country"
+                    autoComplete="country"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="province"
+                    label="Province"
+                    name="province"
+                    autoComplete="province"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="city"
+                    label="City"
+                    name="city"
+                    autoComplete="city"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="address"
+                    label="Address line"
+                    name="address"
+                    autoComplete="address"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="zip"
+                    label="ZIP/Postal code"
+                    name="zip"
+                    autoComplete="zip"
+                  />
+                </Grid>
+                <Grid item xs={12}></Grid>
+              </Grid>
+            </div>
+            <Box mt={5}>
               <Grid container justify="flex-end">
                 <Grid item>
                   <Link href="#" variant="body2">
@@ -147,18 +208,23 @@ export default function SignUpStudent() {
                   </Link>
                 </Grid>
               </Grid>
-            </form>
-          </div>
-          <Box mt={5}>
-            <Copyright />
-          </Box>
+            </Box>
+          </Grid>
         </Grid>
-
-        {/* Right side */}
-        <Grid item sm={6} xs={12} className={classes.image}>
-          <Box component="span"></Box>
+        <Grid container justify="center">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
         </Grid>
-      </Grid>
+      </form>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
     </Container>
   );
 }
