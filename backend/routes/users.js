@@ -21,7 +21,6 @@ module.exports = (db) => {
       city: req.body.city,
       province: req.body.province,
       post_code: req.body.post_code,
-      profile_picture_url: req.body.profile_picture_url
     };
     addUser(user)
     .then(user => {
@@ -31,8 +30,9 @@ module.exports = (db) => {
       }
       req.session.user_id = user.id;
       req.session.user_name = user.name;
-      let templateVars = {user: user, registration: "success"};
-      res.json(templateVars);
+      let outputVars = {user: user, registration: "success"};
+      console.log(outputVars)
+      res.json(outputVars);
     })
     .catch(e => res.send(e));
   });
@@ -50,7 +50,7 @@ module.exports = (db) => {
         }
         req.session.user_id = user.id;
         req.session.user_name = user.name;
-        let templateVars = {user: {name: user.name, id: user.u_id}};
+        let templateVars = {user: {name: user.name, id: user.id}};
         res.json(templateVars);
       })
       .catch(e => res.send(e));

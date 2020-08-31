@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const[state, setState] = useState({user:null})
+  const updateUser = function(user){
+    setState({...state , user})
+  }
 
   return (
     <Router>
@@ -67,7 +71,7 @@ function App() {
           <Switch>
             <Route path="/signin" exact component={Signin} />
             <Route path="/signup" exact component={SignUpPage} />
-            <Route path="/signup/student" exact component={SignUpStudent} />
+            <Route path="/signup/student" exact render={(props)=> <SignUpStudent {...props} updateUser={updateUser}/>} />
             <Route path="/signup/tutor" exact component={SignUpTutor} />
             <Route path="/messages" exact component={MessagePage} />
           </Switch>

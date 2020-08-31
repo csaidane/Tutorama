@@ -1,5 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import "./SignUpPage.scss";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
+
 
 import {
   Avatar,
@@ -59,12 +62,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpStudent() {
+
+
+export default function SignUpStudent(props) {
   const classes = useStyles();
+
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [country, setCountry] = useState("") 
+  const [province, setProvince] = useState("")
+  const [city, setCity] = useState("")
+  const [address, setAddress] = useState("")
+  const [zip, setZip] = useState("")
+
+  const APISubmit = function(event){
+    event.preventDefault();
+    let user = {name, email, password, street:address, city, province, post_code:zip}
+    axios({url: '/api/users/register' , data:user, method: 'POST'})
+    .then((result)=> {
+      props.updateUser(result.data.user)
+      
+    })
+  }
 
   return (
     <Container component="main">
-      <form className={classes.form} noValidate>
+      <form className={classes.form} noValidate onSubmit={APISubmit}>
         <Grid container spacing={10}>
           {/* Left part Sign Up */}
           <Grid item sm={6} xs={12}>
@@ -86,6 +111,8 @@ export default function SignUpStudent() {
                     label="Full name"
                     type="text"
                     id="name"
+                    value = {name}
+                    onChange = {(e) => setName(e.target.value)}
                   />
                 </Grid>
 
@@ -98,6 +125,8 @@ export default function SignUpStudent() {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    value = {email}
+                    onChange = {(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -110,6 +139,8 @@ export default function SignUpStudent() {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    value = {password}
+                    onChange = {(e) => setPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -121,6 +152,8 @@ export default function SignUpStudent() {
                     label="Phone number"
                     name="phoneNumber"
                     autoComplete=""
+                    value = {phoneNumber}
+                    onChange = {(e) => setPhoneNumber(e.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -150,6 +183,8 @@ export default function SignUpStudent() {
                     label="Country"
                     name="country"
                     autoComplete="country"
+                    value = {country}
+                    onChange = {(e) => setCountry(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -161,6 +196,8 @@ export default function SignUpStudent() {
                     label="Province"
                     name="province"
                     autoComplete="province"
+                    value = {province}
+                    onChange = {(e) => setProvince(e.target.value)}
                   />
                 </Grid>
 
@@ -173,6 +210,8 @@ export default function SignUpStudent() {
                     label="City"
                     name="city"
                     autoComplete="city"
+                    value = {city}
+                    onChange = {(e) => setCity(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -184,6 +223,8 @@ export default function SignUpStudent() {
                     label="Address line"
                     name="address"
                     autoComplete="address"
+                    value = {address}
+                    onChange = {(e) => setAddress(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -195,6 +236,8 @@ export default function SignUpStudent() {
                     label="ZIP/Postal code"
                     name="zip"
                     autoComplete="zip"
+                    value = {zip}
+                    onChange = {(e) => setZip(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}></Grid>

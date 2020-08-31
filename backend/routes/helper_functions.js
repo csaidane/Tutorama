@@ -11,10 +11,10 @@ const pool = new Pool({
 const addUser =  function(user) {
   return pool.query(`
   INSERT INTO users (
-    name, email, password, street, city, province, post_code, profile_picture_url
-  ) VALUES ($1, $2, $3 , $4, $5, $6, $7, $8, $9)
+    name, email, password, street, city, province, post_code
+  ) VALUES ($1, $2, $3 , $4, $5, $6, $7)
   RETURNING *
-  `, [user.name, user.email, user.password, user.street, user.city, user.province, user.post_code, user.profile_picture_url])
+  `, [user.name, user.email, user.password, user.street, user.city, user.province, user.post_code])
   .then(res => res.rows[0]);
 }
 exports.addUser = addUser;
