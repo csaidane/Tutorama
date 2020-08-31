@@ -1,7 +1,9 @@
 -- Drop and recreate Users table (Example)
 
-DROP TABLE IF EXISTS users CASCADE;
-CREATE TABLE users (
+DROP TABLE IF EXISTS users
+CASCADE;
+CREATE TABLE users
+(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
@@ -11,5 +13,5 @@ CREATE TABLE users (
   city VARCHAR(255) NOT NULL,
   province VARCHAR(255) NOT NULL,
   post_code VARCHAR(255) NOT NULL,
-  profile_picture_Url VARCHAR(255) NOT NULL
+  profile_picture_url VARCHAR(255) DEFAULT 'https://picsum.photos/200/300'
 );
