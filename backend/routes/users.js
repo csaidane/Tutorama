@@ -4,8 +4,7 @@ const router  = express.Router();
 let cookieSession = require('cookie-session');
 router.use(cookieSession({name: 'session',
   keys: ['key1', 'key2']}));
-const {addUser} = require('./helper_functions');
-const {login} = require('./helper_functions');
+const {addUser, getTutorWithId, login} = require('./helper_functions');
 
 
 module.exports = (db) => {
@@ -13,7 +12,7 @@ module.exports = (db) => {
 
 
   router.post('/register', (req, res) => {
-    const user = {
+     const user = {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
@@ -40,6 +39,7 @@ module.exports = (db) => {
 
   router.post('/login', (req, res) => {
     const {email, password} = req.body;
+    let outputVars = {};
     login(email, password)
       .then(users => {
         //Fetches first because user comes in an array
@@ -50,10 +50,24 @@ module.exports = (db) => {
         }
         req.session.user_id = user.id;
         req.session.user_name = user.name;
-        let templateVars = {user: {name: user.name, id: user.id}};
-        res.json(templateVars);
+        outputVars['user'] =user;
+        return getTutorWithId(user.id)
       })
-      .catch(e => res.send(e));
+      .then((tutors)=>{
+        if(!tutors){
+          outputVars['tutor'] =null;
+          res.json(outputVars);
+        } else{
+          let tutor = tutors[0]
+          outputVars['tutor'] =tutor;
+          res.json(outputVars);
+        }
+      })
+      .catch(e => {
+        console.log("login error: " , e)
+        res.status(500)
+        res.send(e)
+      });
   });
 
 

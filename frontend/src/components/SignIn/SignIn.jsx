@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+
 import {
   Avatar,
   Button,
@@ -65,8 +69,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
+  let history = useHistory()
+
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const APILogin = function (event) {
+    event.preventDefault();
+    let login = { email, password }
+    axios({ url: '/api/users/login', data: login, method: 'POST' })
+      .then((result) => {
+        console.log(result.data)
+        props.updateUser(result.data.user)
+        props.updateTutor(result.data.tutor)
+        //history.push("/signup")
+      })
+  };
 
   return (
     <Container component="main" alignItems="center">
@@ -85,7 +106,7 @@ export default function SignIn() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={APILogin}>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -96,6 +117,8 @@ export default function SignIn() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 variant="outlined"
@@ -107,6 +130,8 @@ export default function SignIn() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

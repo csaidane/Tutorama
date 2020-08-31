@@ -186,28 +186,6 @@ export default function SignUpTutor() {
                     variant="outlined"
                     required
                     fullWidth
-                    id="phone"
-                    label="Phone number"
-                    name="phoneNumber"
-                    autoComplete=""
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="country"
-                    label="Country"
-                    name="country"
-                    autoComplete="country"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
                     id="province"
                     label="Province"
                     name="province"
