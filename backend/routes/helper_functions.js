@@ -95,4 +95,13 @@ const getTutorWithId = function(id) {
 }
 exports.getTutorWithId = getTutorWithId;
 
+const searchTutors = function(keyword) {
+  return pool.query(`
+  SELECT tutor_id, u.name, t.education, s.name FROM subjects as s
+  JOIN tutors as t on t.id = s.tutor_id
+  JOIN users as u on u.id = t.id
+  WHERE s.name LIKE '%$1%';
+  `, [keyword])
+}
+exports.searchTutors = searchTutors;
 
