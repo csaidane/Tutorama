@@ -1,10 +1,3 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
 const router  = express.Router();
 let cookieSession = require('cookie-session');
@@ -37,7 +30,7 @@ module.exports = (db) => {
       }
       req.session.user_id = user.id;
       req.session.user_name = user.name;
-      let templateVars = {user: user};
+      let templateVars = {user: user, registration: "success"};
       res.json(templateVars);
     })
     .catch(e => res.send(e));
@@ -60,6 +53,13 @@ module.exports = (db) => {
         res.json(templateVars);
       })
       .catch(e => res.send(e));
+  });
+
+
+  router.post('/logout', (req, res) => {
+    req.session = null;
+    let templateVars = {user:null, logout: "success"}
+    res.json(templateVars);
   });
 
 
