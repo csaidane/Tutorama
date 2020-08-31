@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import TutorCards from "./components/TutorCards.jsx";
 import Signin from "./components/SignIn/SignIn";
@@ -17,25 +18,34 @@ import MessagePage from "./components/DirectMessages/MessagePage";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      {/* <ProfileBoxItem /> */}
-      {/* <FilterBar /> */}
-      {/* <ProfileBoxItem /> */}
-      {/* <MessagePage /> */}
-      {/* <Signin /> */}
-      {/* <RateDialog /> */}
-      {/* <SearchField /> */}
-      {/* <HowWorks /> */}
-      {/* <FindSubjects /> */}
-      {/* <SignUpPage /> */}
-      {/* <SignUpTutor /> */}
-      {/* <StarRating /> */}
-      {/* <SignUpStudent /> */}
-      {/* <TutorCards /> */}
-      {/* <TopLayerProfile />
+    <Router>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route path="/signin" component={Signin} />
+          <Route path="/signup" component={SignUpPage} />
+          <Route path="/signup/student" component={SignUpStudent} />
+          <Route path="/signup/tutor" component={SignUpTutor} />
+        </Switch>
+
+        {/* <Signin /> */}
+        {/* <ProfileBoxItem /> */}
+        {/* <FilterBar /> */}
+        {/* <ProfileBoxItem /> */}
+        {/* <MessagePage /> */}
+        {/* <RateDialog /> */}
+        {/* <SearchField /> */}
+        {/* <HowWorks /> */}
+        {/* <FindSubjects /> */}
+        {/* <SignUpPage /> */}
+        {/* <SignUpTutor /> */}
+        {/* <StarRating /> */}
+        {/* <SignUpStudent /> */}
+        {/* <TutorCards /> */}
+        {/* <TopLayerProfile />
       <BottomLayerProfile /> */}
-    </div>
+      </div>
+    </Router>
   );
 }
 

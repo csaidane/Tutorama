@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
@@ -120,8 +121,12 @@ export default function PersistentDrawerLeft() {
           <Typography variant="h6" noWrap className={classes.title}>
             tutorama
           </Typography>
-          <Button color="inherit">Sign up</Button>
-          <Button color="inherit">Log in</Button>
+          <Link to="/signup">
+            <Button color="inherit">Sign up</Button>
+          </Link>
+          <Link to="/signin">
+            <Button color="inherit">Log in</Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
