@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router  = express.Router();
 let cookieSession = require('cookie-session');
@@ -60,6 +61,7 @@ module.exports = (db) => {
     req.session = null;
     let templateVars = {user:null, logout: "success"}
     res.json(templateVars);
+
   });
 
 
