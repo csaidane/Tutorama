@@ -26,13 +26,14 @@ module.exports = (db) => {
       subject: req.body.subject
     };
     addUser(user)
-
     .then((returned_user) => {
       if (!returned_user) {
         res.send({error: "error: user"});
         return;
       }
       outputVars['user'] = returned_user
+      user['id'] = returned_user.id
+      console.log(user)
       return addTutor(user)
     })
     .then(returned_tutor => {
@@ -41,18 +42,16 @@ module.exports = (db) => {
         return;
       }
       outputVars['tutor'] = returned_tutor
-      let objInput = {id:returned_tutor.id, subject: user.subject}
-      return addTutorSubject(objInput)
+      return addTutorSubject(user)
     })
     .then((subject)=>{
       if(!subject){
         res.send({error: "error: subject"});
         return;
       }else {
-        req.session.user_id = subject.tutor_id;
+        req.session.user_id = user.id;
         req.session.user_name = user.name;
         outputVars['registration'] = "success"
-        console.log(outputVars)
         res.json(outputVars);
       }
     })

@@ -54,16 +54,12 @@ exports.login = login;
 
 
 const addTutor =  function(user) {
-  return addUser(user)
-  .then( (back_user) => {
-    return pool.query(`
-    INSERT INTO tutors (id, education, bio, rate_per_hour)
-    VALUES ($1, $2, $3, $4)
-    RETURNING *
-    `, [back_user.id , user.education, user.bio, user.rate_per_hour])
-  })
-  .then(res => res.rows[0]);
-
+  return pool.query(`
+  INSERT INTO tutors (id, education, bio, rate_per_hour)
+  VALUES ($1, $2, $3, $4)
+  RETURNING *
+  `, [user.id , user.education, user.bio, user.rate_per_hour])
+  .then(res => res.rows[0]);S
 }
 exports.addTutor = addTutor;
 
