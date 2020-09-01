@@ -3,7 +3,6 @@ import "./SignUpPage.scss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-
 import {
   Avatar,
   CssBaseline,
@@ -62,12 +61,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function SignUpStudent(props) {
   const classes = useStyles();
 
-  let history = useHistory()
+  let history = useHistory();
 
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -84,9 +81,10 @@ export default function SignUpStudent(props) {
       .then((result) => {
         console.log(result.data)
         props.updateUser(result.data.user)
-        //history.push("/signin")
+        //history.push("/homepage");
       })
   }
+
 
   return (
     <Container component="main">
@@ -144,7 +142,6 @@ export default function SignUpStudent(props) {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
-
               </Grid>
 
               {/* </form> */}
@@ -163,7 +160,6 @@ export default function SignUpStudent(props) {
                 Contact details
               </Typography>
               <Grid container spacing={2}>
-
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"

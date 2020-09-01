@@ -62,16 +62,18 @@ export default function MessageView() {
       <div className={classes.chatHeader}>
         Your conversation with Tutor Name
       </div>
-      <main className={classes.content}>
-        {<div className={classes.userSent}>Message From user1</div>}
-        {<div className={classes.tutorSent}>Message From User2</div>}
-        {<div className={classes.userSent}>Message From user1</div>}
-        {<div className={classes.tutorSent}>Message From User2</div>}
-        {<div className={classes.userSent}>Message From user1</div>}
-        {<div className={classes.tutorSent}>Message From User2</div>}
-        {<div className={classes.userSent}>Message From user1</div>}
-        {<div className={classes.tutorSent}>Message From User2</div>}
-      </main>
+      <article className={"msg-list-container"}>
+        <ul class="msg-list">
+          {<li className={classes.userSent}>Message From user1</li>}
+          {<li className={classes.tutorSent}>Message From User2</li>}
+          {<li className={classes.userSent}>Message From user1</li>}
+          {<li className={classes.tutorSent}>Message From User2</li>}
+          {<li className={classes.userSent}>Message From user1</li>}
+          {<li className={classes.tutorSent}>Message From User2</li>}
+          {<li className={classes.userSent}>Message From user1</li>}
+          {<li className={classes.tutorSent}>Message From User2</li>}
+        </ul>
+      </article>
     </div>
   );
 }
