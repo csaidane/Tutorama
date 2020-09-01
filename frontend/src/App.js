@@ -70,7 +70,7 @@ function App() {
   return (
     <Router>
       <Fragment>
-        <NavBar open={open} setOpen={setOpen} />
+        <NavBar open={open} setOpen={setOpen} state={state} />
         <main
           className={{
             "menu-open": open,

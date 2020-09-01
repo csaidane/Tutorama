@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -112,6 +112,9 @@ export default function NavBar(props) {
     }
   };
 
+  const isLoggedIn = props.state.user;
+  console.log(isLoggedIn, "isLoggedIn");
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -134,12 +137,21 @@ export default function NavBar(props) {
           <Typography variant="h6" noWrap className={classes.title}>
             tutorama
           </Typography>
-          <Link to="/signup">
-            <Button color="inherit">Sign up</Button>
-          </Link>
-          <Link to="/signin">
-            <Button color="inherit">Log in</Button>
-          </Link>
+
+          {isLoggedIn ? (
+            <Link to="/signout">
+              <Button color="inherit">Log out</Button>
+            </Link>
+          ) : (
+            <Fragment>
+              <Link to="/signup">
+                <Button color="inherit">Sign up</Button>
+              </Link>
+              <Link to="/signin">
+                <Button color="inherit">Log in</Button>
+              </Link>
+            </Fragment>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer

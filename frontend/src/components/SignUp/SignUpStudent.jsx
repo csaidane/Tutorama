@@ -3,7 +3,6 @@ import "./SignUpPage.scss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-
 import {
   Avatar,
   CssBaseline,
@@ -62,32 +61,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function SignUpStudent(props) {
   const classes = useStyles();
 
-  let history = useHistory()
+  let history = useHistory();
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
-  const [country, setCountry] = useState("")
-  const [province, setProvince] = useState("")
-  const [city, setCity] = useState("")
-  const [address, setAddress] = useState("")
-  const [zip, setZip] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [country, setCountry] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
 
   const APISubmit = function (event) {
     event.preventDefault();
-    let user = { name, email, password, street: address, city, province, post_code: zip }
-    axios({ url: '/api/users/register', data: user, method: 'POST' })
-      .then((result) => {
-        props.updateUser(result.data.user)
-        history.push("/signin")
-      })
-  }
+    let user = {
+      name,
+      email,
+      password,
+      street: address,
+      city,
+      province,
+      post_code: zip,
+    };
+    axios({ url: "/api/users/register", data: user, method: "POST" }).then(
+      (result) => {
+        props.updateUser(result.data.user);
+        history.push("/signin");
+      }
+    );
+  };
 
   return (
     <Container component="main">
@@ -145,7 +151,6 @@ export default function SignUpStudent(props) {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
-
               </Grid>
 
               {/* </form> */}
@@ -164,7 +169,6 @@ export default function SignUpStudent(props) {
                 Contact details
               </Typography>
               <Grid container spacing={2}>
-
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
