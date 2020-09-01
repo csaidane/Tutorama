@@ -1,22 +1,8 @@
 import React from "react";
 import "./SearchField.scss";
 
-import {
-  Container,
-  InputBase,
-  makeStyles,
-  Box,
-  Button,
-  TextField,
-} from "@material-ui/core/";
-import { flexbox } from "@material-ui/system";
+import { makeStyles, Box, Button, TextField } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import useAutocomplete from "@material-ui/lab/useAutocomplete";
-
-import { sizing } from "@material-ui/system";
-import SearchBar from "material-ui-search-bar";
-import { fade } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   image: {

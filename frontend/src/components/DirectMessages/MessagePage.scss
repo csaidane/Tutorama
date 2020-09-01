@@ -1,23 +1,21 @@
-// body {
-//   width: 100%;
-//   height: 100%;
-// }
 .main {
   width: 100%;
   height: 100%;
   display: flex;
+  padding-left: 210px;
+  margin-top: 42px;
 }
 
-// div {
-//   background: yellow;
-//   width: auto;
-// }
 .list {
   width: 300px;
-  background: lightblue;
 }
-.text {
+.text-message-box {
   height: 100px;
+  position: fixed;
+  bottom: 15px;
+  width: calc(50% - 70px);
+  padding-right: 50px;
+  // width: 100%;
 }
 
 .msg {

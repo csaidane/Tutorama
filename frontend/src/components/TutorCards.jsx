@@ -16,7 +16,7 @@ import {
 const useStyles = makeStyles({
   card: {
     margin: "1%",
-    marginTop: "15%",
+    marginTop: "3%",
     display: "flex",
     width: "250px",
     height: "450px",
@@ -28,6 +28,11 @@ const useStyles = makeStyles({
     // borderRadius: "60%"
   },
   box: { display: "flex", flexDirection: "row" },
+  heading: { marginTop: "6%", marginBottom: "0" },
+  img: {
+    width: "400px",
+    height: "600px",
+  },
 });
 
 export default function TutorCards() {
@@ -35,6 +40,16 @@ export default function TutorCards() {
 
   return (
     <Container component="main">
+      <Grid
+        container
+        direction="column"
+        // justify="center"
+        alignItems="center"
+        className={classes.heading}
+      >
+        <Typography variant="h2">Hire the right tutor today!</Typography>
+      </Grid>
+
       <Box className={classes.box}>
         {/* Card 1  */}
         <Card className={classes.card}>
@@ -154,6 +169,13 @@ export default function TutorCards() {
             </div>
           </Grid>
         </Card>
+        <Grid>
+          <img
+            className={classes.img}
+            alt=""
+            src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/socialStudies.png?raw=true"
+          ></img>
+        </Grid>
       </Box>
     </Container>
   );
