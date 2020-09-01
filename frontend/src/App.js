@@ -29,12 +29,13 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+    height: "100vh",
+    padding: "24px 24px 0 24px",
   },
   drawerHeader: {
     display: "flex",
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    marginLeft: "0",
   },
 }));
 
@@ -62,17 +63,23 @@ function App() {
   const [state, setState] = useState({ user: null, tutor: null });
 
   const updateUser = function (user) {
-    setState(prev => ({ ...prev, user }));
+    setState((prev) => ({ ...prev, user }));
   };
 
   const updateTutor = function (user, tutor) {
-    setState(prev => ({ ...prev, user, tutor }));
+    setState((prev) => ({ ...prev, user, tutor }));
   };
 
   return (
     <Router>
       <Fragment>
-        <NavBar open={open} setOpen={setOpen} state={state} updateUser={updateUser} updateTutor={updateTutor} />
+        <NavBar
+          open={open}
+          setOpen={setOpen}
+          state={state}
+          updateUser={updateUser}
+          updateTutor={updateTutor}
+        />
         <main
           className={clsx(classes.content, {
             [classes.contentShift]: open,
@@ -113,7 +120,7 @@ function App() {
             <Route path="/messages" exact component={MessagePage} />
             <Route path="/profile" exact component={TutorProfilePage} />
           </Switch>
-          <RateDialog />
+          {/* <RateDialog /> */}
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
           {/* <EditProfile /> */}

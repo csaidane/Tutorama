@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   chatHeader: {
-    width: "calc(100% - 301px)",
+    width: "calc(100% - 293px)",
+    transition: "none",
     height: "50px",
     backgroundColor: "#344195",
     position: "fixed",
