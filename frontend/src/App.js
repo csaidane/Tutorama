@@ -60,18 +60,19 @@ function App() {
 
   // For passing in props
   const [state, setState] = useState({ user: null, tutor: null });
+
   const updateUser = function (user) {
-    setState({ ...state, user });
+    setState(prev => ({ ...prev, user }));
   };
 
-  const updateTutor = function (tutor) {
-    setState({ ...state, tutor });
+  const updateTutor = function (user, tutor) {
+    setState(prev => ({ ...prev, user, tutor }));
   };
 
   return (
     <Router>
       <Fragment>
-        <NavBar open={open} setOpen={setOpen} state={state} />
+        <NavBar open={open} setOpen={setOpen} state={state} updateUser={updateUser} updateTutor={updateTutor} />
         <main
           className={{
             "menu-open": open,

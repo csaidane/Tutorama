@@ -1,4 +1,8 @@
 import React, { Fragment } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -77,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar(props) {
   const classes = useStyles();
   const theme = useTheme();
+  let history = useHistory();
 
   const { open, setOpen } = props;
 
@@ -111,9 +116,19 @@ export default function NavBar(props) {
       return "/profile";
     }
   };
+  
+  
+  let isLoggedIn = props.state.user;
+  
+  const APILogout = function(event){
+    event.preventDefault();
+    axios({ url: '/api/users/logout', method: 'POST' })
+    .then((result) => {
+      props.updateTutor(null,null)
+      history.push("/homepage");
+    })
 
-  const isLoggedIn = props.state.user;
-  console.log(isLoggedIn, "isLoggedIn");
+  }
 
   return (
     <div className={classes.root}>
@@ -140,7 +155,7 @@ export default function NavBar(props) {
 
           {isLoggedIn ? (
             <Link to="/signout">
-              <Button color="inherit">Log out</Button>
+              <Button onClick={APILogout} color="inherit">Log out</Button>
             </Link>
           ) : (
             <Fragment>

@@ -33,7 +33,6 @@ module.exports = (db) => {
       }
       outputVars['user'] = returned_user
       user['id'] = returned_user.id
-      console.log(user)
       return addTutor(user)
     })
     .then(returned_tutor => {

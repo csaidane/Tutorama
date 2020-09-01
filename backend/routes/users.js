@@ -30,7 +30,6 @@ module.exports = (db) => {
       req.session.user_id = user.id;
       req.session.user_name = user.name;
       let outputVars = {user: user, registration: "success"};
-      console.log(outputVars)
       res.json(outputVars);
     })
     .catch(e => res.send(e));

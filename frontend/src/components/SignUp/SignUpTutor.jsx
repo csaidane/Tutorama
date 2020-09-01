@@ -84,10 +84,8 @@ export default function SignUpTutor(props) {
     let user = { name, email, password, street: address, city, province, post_code: zip, education, rate, bio, subject}
     axios({ url: '/api/tutors/register', data: user, method: 'POST' })
       .then((result) => {
-        console.log(result.data)
-        //props.updateUser(result.data.user)
-        //update Tutor
-        //history.push("/signin")
+        props.updateTutor(result.data.user, result.data.tutor)
+        history.push("/homepage");
       })
   }
 
