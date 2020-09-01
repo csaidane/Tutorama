@@ -3,7 +3,7 @@ const router  = express.Router();
 let cookieSession = require('cookie-session');
 router.use(cookieSession({name: 'session',
   keys: ['key1', 'key2']}));
-const {addTutor, searchTutors} = require('./helper_functions');
+const {addTutor, searchTutors, addUser, addTutorSubject} = require('./helper_functions');
 
 
 
@@ -11,6 +11,7 @@ module.exports = (db) => {
 
 
   router.post('/register', (req, res) => {
+    let outputVars = {};
     const user = {
       name: req.body.name,
       email: req.body.email,
@@ -19,24 +20,49 @@ module.exports = (db) => {
       city: req.body.city,
       province: req.body.province,
       post_code: req.body.post_code,
-      profile_picture_url: req.body.profile_picture_url,
-      education: education,
+      education: req.body.education,
       bio: req.body.bio,
-      rate_per_hour: req.body.rate_per_hour
+      rate_per_hour: req.body.rate,
+      subject: req.body.subject
     };
-    addTutor(user)
-    .then(user => {
-      if (!user) {
-        res.send({error: "error"});
+    addUser(user)
+    .then((returned_user) => {
+      if (!returned_user) {
+        res.send({error: "error: user"});
         return;
       }
-      req.session.user_id = user.id;
-      req.session.user_name = user.name;
-      let templateVars = {user: user, registration: "success"};
-      res.json(templateVars);
+      outputVars['user'] = returned_user
+      user['id'] = returned_user.id
+      console.log(user)
+      return addTutor(user)
     })
-    .catch(e => res.send(e));
+    .then(returned_tutor => {
+      if (!returned_tutor) {
+        res.send({error: "error: tutor"});
+        return;
+      }
+      outputVars['tutor'] = returned_tutor
+      return addTutorSubject(user)
+    })
+    .then((subject)=>{
+      if(!subject){
+        res.send({error: "error: subject"});
+        return;
+      }else {
+        req.session.user_id = user.id;
+        req.session.user_name = user.name;
+        outputVars['registration'] = "success"
+        res.json(outputVars);
+      }
+    })
+    .catch(e => {
+      console.log("login error: " , e)
+      res.status(500)
+      res.send(e)
+    });
   });
+
+
 
   router.get('/search/:key', (req,res) => {
     const search_keywords = req.params.key

@@ -59,7 +59,7 @@ module.exports = (db) => {
           res.json(outputVars);
         } else{
           let tutor = tutors[0]
-          outputVars['tutor'] =tutor;
+          outputVars['tutor']= tutor;
           res.json(outputVars);
         }
       })
