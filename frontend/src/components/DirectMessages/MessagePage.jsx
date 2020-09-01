@@ -21,7 +21,7 @@ export default function MessagePage() {
       </div>
       <div className="msg">
         <MessageView />
-        <div className="text">
+        <div className="text-message-box">
           <MessageTextBox />
         </div>
       </div>

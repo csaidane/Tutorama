@@ -73,9 +73,9 @@ function App() {
       <Fragment>
         <NavBar open={open} setOpen={setOpen} state={state} />
         <main
-          className={{
-            "menu-open": open,
-          }}
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
         >
           <Switch>
             <Route
@@ -110,9 +110,10 @@ function App() {
               )}
             />
             <Route path="/messages" exact component={MessagePage} />
-            <Route path="/profile" exact component={StudentProfilePage} />
+            <Route path="/profile" exact component={TutorProfilePage} />
           </Switch>
-          <WrongEmailPassword />
+          <RateDialog />
+          {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
           {/* <EditProfile /> */}
           {/* <ProfileBoxItem /> */}
@@ -120,10 +121,9 @@ function App() {
           {/* <FilterBar /> */}
           {/* <ProfileBoxItem /> */}
           {/* <MessagePage /> */}
-          {/* <RateDialog /> */}
-          {/* <SearchField /> */}
-          {/* <HowWorks /> */}
-          {/* <FindSubjects /> */}
+          {/* <SearchField />
+          <HowWorks />
+          <FindSubjects /> */}
           {/* <SignUpPage /> */}
           {/* <SignUpTutor /> */}
           {/* <StarRating /> */}

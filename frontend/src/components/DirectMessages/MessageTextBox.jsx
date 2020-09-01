@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   chatTextBox: {
-    width: "calc(100% - 25px)",
+    width: "90%",
+    marginLeft: "25px",
+    marginRight: "-30px",
   },
 }));
 
@@ -30,7 +32,7 @@ export default function MessageTextBox() {
   const classes = useStyles();
 
   return (
-    <div className={classes.chatTextBoxContainer}>
+    <div>
       <TextField
         placeholder="Type your message.."
         id="chattextbox"

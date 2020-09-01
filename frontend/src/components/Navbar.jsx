@@ -134,7 +134,13 @@ export default function NavBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap className={classes.title}>
+          <Typography
+            component={Link}
+            to="/homepage"
+            variant="h6"
+            noWrap
+            className={classes.title}
+          >
             tutorama
           </Typography>
 

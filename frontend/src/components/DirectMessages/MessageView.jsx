@@ -63,7 +63,7 @@ export default function MessageView() {
         Your conversation with Tutor Name
       </div>
       <article className={"msg-list-container"}>
-        <ul class="msg-list">
+        <ul className="msg-list">
           {<li className={classes.userSent}>Message From user1</li>}
           {<li className={classes.tutorSent}>Message From User2</li>}
           {<li className={classes.userSent}>Message From user1</li>}
