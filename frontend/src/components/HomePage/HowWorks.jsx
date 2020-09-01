@@ -1,32 +1,11 @@
 import React from "react";
 import "./HowWorks.scss";
 
-import {
-  Container,
-  InputBase,
-  makeStyles,
-  Avatar,
-  Box,
-  Grid,
-  spacing,
-  Button,
-  CardContent,
-  Typography,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardActions,
-} from "@material-ui/core/";
-import ArrowForwardRoundedIcon from "@material-ui/icons/ArrowForwardRounded";
+import { makeStyles, Avatar, Box, Grid, Typography } from "@material-ui/core/";
 import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
 import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
 import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
 import DoneOutlineOutlinedIcon from "@material-ui/icons/DoneOutlineOutlined";
-import { flexbox } from "@material-ui/system";
-import { sizing } from "@material-ui/system";
-import SearchBar from "material-ui-search-bar";
-import { fade } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -78,7 +57,10 @@ export default function HowWorks() {
         >
           <Grid item xs={12} md={3}>
             <div className="stepImage">
-              <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/login.png?raw=true"></img>
+              <img
+                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/login.png?raw=true"
+                alt="login"
+              ></img>
               <Typography variant="h4">Login or Sign Up </Typography>
               <Avatar className={classes.avatar}>
                 <ArrowForwardOutlinedIcon />
@@ -87,7 +69,10 @@ export default function HowWorks() {
           </Grid>
           <Grid item xs={12} md={3}>
             <div className="stepImage">
-              <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/search.png?raw=true"></img>
+              <img
+                alt="stepImage"
+                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/search.png?raw=true"
+              ></img>
               <Typography variant="h4">Search for a tutor</Typography>
               <Avatar className={classes.avatar}>
                 <ArrowForwardOutlinedIcon />
@@ -97,7 +82,10 @@ export default function HowWorks() {
 
           <Grid item xs={12} md={3}>
             <div className="stepImage">
-              <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/profile.png?raw=true"></img>
+              <img
+                alt="stepImage"
+                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/profile.png?raw=true"
+              ></img>
               <Typography variant="h4">Review profiles</Typography>
               <Avatar className={classes.avatar}>
                 <ArrowForwardOutlinedIcon />
@@ -107,7 +95,10 @@ export default function HowWorks() {
 
           <Grid item xs={12} md={3}>
             <div className="stepImage">
-              <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/message.png?raw=true"></img>
+              <img
+                alt="stepImage"
+                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/message.png?raw=true"
+              ></img>
               <Typography variant="h4">Sent a message to the tutor </Typography>
               <Avatar className={classes.avatar}>
                 <ArrowDownwardOutlinedIcon />
@@ -122,7 +113,10 @@ export default function HowWorks() {
           >
             <Grid item xs={12} md={3}>
               <div className="stepImage">
-                <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/lesson.png?raw=true"></img>
+                <img
+                  alt="stepImage"
+                  src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/lesson.png?raw=true"
+                ></img>
                 <Typography variant="h4">Get one-on-one class</Typography>
                 <Avatar className={classes.avatar}>
                   <ArrowBackOutlinedIcon />
@@ -132,7 +126,10 @@ export default function HowWorks() {
 
             <Grid item xs={12} md={3}>
               <div className="stepImage">
-                <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/pay.png?raw=true"></img>
+                <img
+                  alt="stepImage"
+                  src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/pay.png?raw=true"
+                ></img>
                 <Typography variant="h4">Pay for the service</Typography>
                 <Avatar className={classes.avatar}>
                   <ArrowBackOutlinedIcon />
@@ -140,7 +137,7 @@ export default function HowWorks() {
               </div>
             </Grid>
             <Grid item xs={12} md={3}>
-              <div className="stepImage">
+              <div alt="stepImage" className="stepImage">
                 <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/rate.png?raw=true"></img>
                 <Typography variant="h4">Rate your tutor</Typography>
                 <Avatar className={classes.avatar}>

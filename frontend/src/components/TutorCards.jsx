@@ -1,59 +1,160 @@
 import React from "react";
-import "../index.scss";
-import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import {
-  Card,
-  CardHeader,
-  CardContent,
-  Avatar,
   Typography,
+  makeStyles,
+  Grid,
+  Card,
+  CardActionArea,
+  Box,
+  Divider,
+  CardContent,
+  CardMedia,
   Container,
-} from "@material-ui/core";
+} from "@material-ui/core/";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-    large: {
-      width: theme.spacing(170),
-      height: theme.spacing(170),
-    },
+const useStyles = makeStyles({
+  card: {
+    margin: "1%",
+    marginTop: "15%",
+    display: "flex",
+    width: "250px",
+    height: "450px",
   },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
+
+  cardMedia: {
+    width: "200px",
+    height: "150px",
+    // borderRadius: "60%"
   },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
-}));
+  box: { display: "flex", flexDirection: "row" },
+});
 
 export default function TutorCards() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Card className={classes.root}>
-        <CardHeader
-          avatar={
-            <Avatar className={classes.large}>
-              <img
-                className="avatar_pic"
-                src="https://images.unsplash.com/photo-1557722808-868d2424c292?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-              />
-            </Avatar>
-          }
-          title="Bella Sangwan"
-          subheader="Math teacher"
-        />
-        <CardContent>
-          <strong>Details:</strong>
-          <Typography variant="body2" color="textSecondary" component="p">
-            This impressive Teacher is a perfect blah to blah and teach Lorem
-            <li>i hope no one reads this cause i can t think </li>
-            <li>of anything to write as a placeholder hahahaha wagwan yo!</li>
-          </Typography>
-        </CardContent>
-      </Card>
+    <Container component="main">
+      <Box className={classes.box}>
+        {/* Card 1  */}
+        <Card className={classes.card}>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <CardMedia
+              className={classes.cardMedia}
+              image="https://images.unsplash.com/photo-1551989745-347c28b620e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+              title="has 10 reviews"
+            />
+            <div>
+              <CardContent>
+                <Grid direction="column" justify="center" alignItems="center">
+                  <Typography component="h2" variant="h10">
+                    Martha Bosnia
+                  </Typography>
+                  <Typography variant="h6">History tutor</Typography>
+                </Grid>
+                <Grid>
+                  <Divider variant="middle" />
+
+                  <Typography variant="subtitle1" paragraph>
+                    An experienced tutor with over 5 years of experience ipsum
+                    sdkjd jdhsdn h dhnsj aute...
+                  </Typography>
+                </Grid>
+                <Typography variant="subtitle1" color="primary">
+                  Rating: ⭐⭐⭐⭐⭐
+                </Typography>
+                <Typography variant="subtitle1" color="primary">
+                  2 reviews
+                </Typography>
+              </CardContent>
+            </div>
+          </Grid>
+        </Card>
+        {/* Card 2 */}
+        <Card className={classes.card}>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <CardMedia
+              className={classes.cardMedia}
+              image="https://images.unsplash.com/photo-1555436169-20e93ea9a7ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+              title="has 10 reviews"
+            />
+            <div>
+              <CardContent>
+                <Grid direction="column" justify="center" alignItems="center">
+                  <Typography component="h2" variant="h10">
+                    Martha Bosnia
+                  </Typography>
+                  <Typography variant="h6">History tutor</Typography>
+                </Grid>
+                <Grid>
+                  <Divider variant="middle" />
+
+                  <Typography variant="subtitle1" paragraph>
+                    An experienced tutor with over 5 years of experience ipsum
+                    sdkjd jdhsdn h dhnsj aute...
+                  </Typography>
+                </Grid>
+                <Typography variant="subtitle1" color="primary">
+                  Rating: ⭐⭐⭐⭐⭐
+                </Typography>
+                <Typography variant="subtitle1" color="primary">
+                  6 reviews
+                </Typography>
+              </CardContent>
+            </div>
+          </Grid>
+        </Card>
+
+        {/* Card 3*/}
+        <Card className={classes.card}>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <CardMedia
+              className={classes.cardMedia}
+              image="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+              title="has 10 reviews"
+            />
+            <div>
+              <CardContent>
+                <Grid direction="column" justify="center" alignItems="center">
+                  <Typography component="h2" variant="h10">
+                    Martha Bosnia
+                  </Typography>
+                  <Typography variant="h6">History tutor</Typography>
+                </Grid>
+                <Grid>
+                  <Divider variant="middle" />
+
+                  <Typography variant="subtitle1" paragraph>
+                    An experienced tutor with over 5 years of experience ipsum
+                    sdkjd jdhsdn h dhnsj aute...
+                  </Typography>
+                </Grid>
+                <Typography variant="subtitle1" color="primary">
+                  Rating: ⭐⭐⭐⭐⭐
+                </Typography>
+                <Typography variant="subtitle1" color="primary">
+                  11 reviews
+                </Typography>
+              </CardContent>
+            </div>
+          </Grid>
+        </Card>
+      </Box>
     </Container>
   );
 }

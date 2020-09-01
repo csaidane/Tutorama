@@ -1,5 +1,4 @@
 import React from "react";
-import "./FindSubjects.scss";
 
 import {
   Container,

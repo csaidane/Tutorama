@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-
 import {
   Avatar,
   Button,
@@ -71,22 +70,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
   const classes = useStyles();
-  let history = useHistory()
+  let history = useHistory();
 
-
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const APILogin = function (event) {
     event.preventDefault();
-    let login = { email, password }
-    axios({ url: '/api/users/login', data: login, method: 'POST' })
-      .then((result) => {
-        console.log(result.data)
-        props.updateUser(result.data.user)
-        props.updateTutor(result.data.tutor)
-        //history.push("/signup")
-      })
+    let login = { email, password };
+    axios({ url: "/api/users/login", data: login, method: "POST" }).then(
+      (result) => {
+        console.log(result.data);
+        props.updateUser(result.data.user);
+        props.updateTutor(result.data.tutor);
+        history.push("/messages");
+      }
+    );
   };
 
   return (

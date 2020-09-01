@@ -1,26 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Typography,
   makeStyles,
   Grid,
   Paper,
-  Box,
-  Card,
-  Containerfrom,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Container,
   Button,
   InputLabel,
-  MenuItem,
   FormControl,
   BootstrapInput,
   Select,
   TextField,
-  FormHelperText,
-  Slider,
 } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { flexbox } from "@material-ui/system";
