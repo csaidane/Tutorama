@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import WrongEmailPassword from "./WrongEmailPassword";
 
 import {
   Avatar,
@@ -83,7 +84,7 @@ export default function SignIn(props) {
         console.log(result.data);
         props.updateUser(result.data.user);
         props.updateTutor(result.data.tutor);
-        history.push("/messages");
+        history.push("/homepage");
       }
     );
   };
@@ -99,6 +100,8 @@ export default function SignIn(props) {
         <CssBaseline />
         <Grid item xs={12} component={Paper} elevation={6} square>
           <div className={classes.paper}>
+            {/* <WrongEmailPassword /> */}
+
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>

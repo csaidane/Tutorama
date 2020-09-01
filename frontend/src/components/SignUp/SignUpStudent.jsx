@@ -90,7 +90,7 @@ export default function SignUpStudent(props) {
     axios({ url: "/api/users/register", data: user, method: "POST" }).then(
       (result) => {
         props.updateUser(result.data.user);
-        history.push("/signin");
+        history.push("/homepage");
       }
     );
   };

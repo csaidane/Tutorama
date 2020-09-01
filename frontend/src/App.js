@@ -5,17 +5,18 @@ import { Drawer } from "@material-ui/core";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/Navbar.jsx";
+import HomePage from "./components/HomePage/HomePage";
+import StudentProfilePage from "./components/ProfilePage/StudentProfilePage";
+import TutorProfilePage from "./components/ProfilePage/TutorProfilePage";
 import TutorCards from "./components/TutorCards.jsx";
 import Signin from "./components/SignIn/SignIn";
+import WrongEmailPassword from "./components/SignIn/WrongEmailPassword";
 import SignUpStudent from "./components/SignUp/SignUpStudent";
 import SignUpTutor from "./components/SignUp/SignUpTutor";
 import SignUpPage from "./components/SignUp/SignUpPage";
 import SearchField from "./components/HomePage/SearchField";
 import HowWorks from "./components/HomePage/HowWorks";
 import FindSubjects from "./components/HomePage/FindSubjects";
-import TopLayerProfile from "./components/ProfilePage/TopLayerProfile";
-import BottomLayerProfileTutor from "./components/ProfilePage/BottomLayerProfileTutor";
-import BottomLayerProfileStudent from "./components/ProfilePage/BottomLayerProfileStudent";
 import RateDialog from "./components/RatingAndComment/RateDialog";
 import ProfileBoxItem from "./components/SearchResults/ProfileBoxItem.jsx";
 import ReviewTutorProfile from "./components/SearchResults/ReviewTutorProfile.jsx";
@@ -89,6 +90,7 @@ function App() {
               )}
             />
             <Route path="/signup" exact component={SignUpPage} />
+            <Route path="/homepage" exact component={HomePage} />
             <Route
               path="/signup/student"
               exact
@@ -108,7 +110,9 @@ function App() {
               )}
             />
             <Route path="/messages" exact component={MessagePage} />
+            <Route path="/profile" exact component={StudentProfilePage} />
           </Switch>
+          <WrongEmailPassword />
           {/* <Signin /> */}
           {/* <EditProfile /> */}
           {/* <ProfileBoxItem /> */}
