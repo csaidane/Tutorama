@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SignUpPage.scss";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+
+
 
 import {
   Avatar,
@@ -58,12 +62,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpTutor() {
+export default function SignUpTutor(props) {
   const classes = useStyles();
+
+  let history = useHistory()
+
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [province, setProvince] = useState("")
+  const [city, setCity] = useState("")
+  const [address, setAddress] = useState("")
+  const [zip, setZip] = useState("")
+  const [education, setEducation] = useState("")
+  const [bio, setBio] = useState("")
+  const [rate, setRate] = useState("")
+  const [subject, setSubject] = useState("")
+
+  const APISubmit = function (event) {
+    event.preventDefault();
+    let user = { name, email, password, street: address, city, province, post_code: zip, education, rate, bio, subject}
+    axios({ url: '/api/tutors/register', data: user, method: 'POST' })
+      .then((result) => {
+        console.log(result)
+        console.log(result.data)
+        //props.updateUser(result.data.user)
+        //update Tutor
+        //history.push("/signin")
+      })
+  }
 
   return (
     <Container component="main">
-      <form className={classes.form} noValidate>
+      <form className={classes.form} noValidate onSubmit={APISubmit}>
         <Grid container spacing={10}>
           {/* Left part Sign Up */}
           <Grid item sm={6} xs={12}>
@@ -86,6 +117,8 @@ export default function SignUpTutor() {
                     label="Full name"
                     type="text"
                     id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </Grid>
 
@@ -98,6 +131,8 @@ export default function SignUpTutor() {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -110,6 +145,8 @@ export default function SignUpTutor() {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -122,6 +159,9 @@ export default function SignUpTutor() {
                     type="text"
                     helperText="Please provide the name of the institution where you studied"
                     id="education"
+                    value={education}
+                    onChange={(e) => setEducation(e.target.value)}
+                    
                   />
                 </Grid>
 
@@ -135,6 +175,8 @@ export default function SignUpTutor() {
                     type="text"
                     helperText="Please provide the name of the subject you are teaching"
                     id="subject"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -147,6 +189,8 @@ export default function SignUpTutor() {
                     type="number"
                     helperText="Please provide your tutoring rate to charge per hour"
                     id="rate"
+                    value={rate}
+                    onChange={(e) => setRate(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -161,6 +205,8 @@ export default function SignUpTutor() {
                     type="text"
                     helperText="A brief background about yourself: your interests, passions, why you provide tutoring services, your experience and teaching style, etc. Provide any specific information, or limitations on your services, that prospective students should be aware of."
                     id="bio"
+                    value={bio}
+                    onChange={(e) => setBio(e.target.value)}
                   />
                 </Grid>
 
@@ -190,6 +236,8 @@ export default function SignUpTutor() {
                     label="Province"
                     name="province"
                     autoComplete="province"
+                    value={province}
+                    onChange={(e) => setProvince(e.target.value)}
                   />
                 </Grid>
 
@@ -202,6 +250,8 @@ export default function SignUpTutor() {
                     label="City"
                     name="city"
                     autoComplete="city"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -213,6 +263,8 @@ export default function SignUpTutor() {
                     label="Address line"
                     name="address"
                     autoComplete="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -224,6 +276,8 @@ export default function SignUpTutor() {
                     label="ZIP/Postal code"
                     name="zip"
                     autoComplete="zip"
+                    value={zip}
+                    onChange={(e) => setZip(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}></Grid>

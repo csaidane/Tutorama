@@ -53,8 +53,6 @@ const login =  function(email, password) {
 exports.login = login;
 
 
-
-
 const addTutor =  function(user) {
   return addUser(user)
   .then( (back_user) => {
@@ -68,6 +66,7 @@ const addTutor =  function(user) {
 
 }
 exports.addTutor = addTutor;
+
 
 
 const getTutorWithEmail = function(email) {
@@ -84,13 +83,10 @@ exports.getTutorWithEmail = getTutorWithEmail;
 
 
 const getTutorWithId = function(id) {
-  return getUserWithId(id)
-  .then((user)=> {
-    return pool.query(`
-    SELECT * FROM tutors
-    WHERE id = $1;
-    `, [id])
-  })
+  return pool.query(`
+  SELECT * FROM tutors
+  WHERE id = $1;
+  `, [id])
   .then(res => res.rows);
 }
 exports.getTutorWithId = getTutorWithId;
@@ -104,4 +100,14 @@ const searchTutors = function(keyword) {
   `, [keyword])
 }
 exports.searchTutors = searchTutors;
+
+const addTutorSubject =  function(object) {
+  return pool.query(`
+  INSERT INTO subjects (tutor_id, name)
+  VALUES ($1, $2)
+  RETURNING *
+  `, [object.id, object.subject])
+  .then(res => res.rows[0]);
+}
+exports.addTutorSubject = addTutorSubject;
 

@@ -72,8 +72,6 @@ export default function SignUpStudent(props) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
-  const [country, setCountry] = useState("")
   const [province, setProvince] = useState("")
   const [city, setCity] = useState("")
   const [address, setAddress] = useState("")
