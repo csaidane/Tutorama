@@ -81,9 +81,7 @@ export default function SignIn(props) {
     let login = { email, password };
     axios({ url: "/api/users/login", data: login, method: "POST" }).then(
       (result) => {
-        console.log(result.data);
-        props.updateUser(result.data.user);
-        props.updateTutor(result.data.tutor);
+        props.updateTutor(result.data.user, result.data.tutor);
         history.push("/homepage");
       }
     );

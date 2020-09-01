@@ -79,9 +79,8 @@ export default function SignUpStudent(props) {
     let user = { name, email, password, street: address, city, province, post_code: zip }
     axios({ url: '/api/users/register', data: user, method: 'POST' })
       .then((result) => {
-        console.log(result.data)
         props.updateUser(result.data.user)
-        //history.push("/homepage");
+        history.push("/homepage");
       })
   }
 
