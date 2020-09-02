@@ -66,24 +66,32 @@ export default function SignUpStudent(props) {
 
   let history = useHistory();
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [province, setProvince] = useState("")
-  const [city, setCity] = useState("")
-  const [address, setAddress] = useState("")
-  const [zip, setZip] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
 
   const APISubmit = function (event) {
     event.preventDefault();
-    let user = { name, email, password, street: address, city, province, post_code: zip }
-    axios({ url: '/api/users/register', data: user, method: 'POST' })
-      .then((result) => {
-        props.updateUser(result.data.user)
-        history.push("/homepage");
-      })
-  }
-
+    let user = {
+      name,
+      email,
+      password,
+      street: address,
+      city,
+      province,
+      post_code: zip,
+    };
+    axios({ url: "/api/users/register", data: user, method: "POST" }).then(
+      (result) => {
+        props.updateUser(result.data.user);
+        history.push("/");
+      }
+    );
+  };
 
   return (
     <Container component="main">

@@ -67,7 +67,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BottomLayerProfileStudent() {
+export default function BottomLayerProfileStudent(props) {
+  const { name, email, post_code, province, city, street } = props.user.user;
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -93,10 +95,10 @@ export default function BottomLayerProfileStudent() {
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
             <Typography className={classes.padding} align="left">
-              Full name:
+              Full name: {name}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Email:
+              Email: {email}
             </Typography>
             <Typography className={classes.padding} align="left">
               Phone number:
@@ -111,16 +113,16 @@ export default function BottomLayerProfileStudent() {
               Country:
             </Typography>
             <Typography className={classes.padding} align="left">
-              Province:
+              Province: {province}
             </Typography>
             <Typography className={classes.padding} align="left">
-              City:
+              City: {city}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Street:
+              Street: {street}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Post code:
+              Post code: {post_code}
             </Typography>
           </Paper>
         </Grid>

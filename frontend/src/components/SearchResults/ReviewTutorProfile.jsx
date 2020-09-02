@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Paper,
@@ -6,14 +6,18 @@ import {
   Box,
   Typography,
   Container,
+  Link,
   Fab,
   Divider,
   Grid,
   CardMedia,
   CardContent,
+  Button,
   Card,
 } from "@material-ui/core/";
 import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
+import RateDialog from "../RatingAndComment/RateDialog.jsx";
+
 import RateReviewOutlinedIcon from "@material-ui/icons/RateReviewOutlined";
 
 const useStyles = makeStyles((theme) => ({
@@ -113,20 +117,20 @@ export default function ReviewTutorProfile() {
 
             <Grid xs={3}> </Grid>
             <Grid>
-              <Fab variant="extended" color="secondary">
-                <SendOutlinedIcon className={classes.extendedIcon} />
-                Send a message
-              </Fab>
+              <Link to="/messages">
+                <Fab variant="extended" color="secondary">
+                  <SendOutlinedIcon className={classes.extendedIcon} />
+                  Send a message
+                </Fab>
+              </Link>
             </Grid>
             <Grid xs={3}></Grid>
             <Grid xs={3}></Grid>
             <Grid xs={3}></Grid>
 
             <Grid>
-              <Fab variant="extended">
-                <RateReviewOutlinedIcon className={classes.extendedIcon} />
-                Leave a feedback
-              </Fab>
+              {/* {button leave feedback */}
+              <RateDialog />
             </Grid>
           </Grid>
         </Paper>

@@ -67,7 +67,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BottomLayerProfileTutor() {
+export default function BottomLayerProfileTutor(props) {
+  const { bio, education, rate_per_hour } = props.user.tutor;
+  const { name, email, post_code, province, city, street } = props.user.user;
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -93,8 +96,7 @@ export default function BottomLayerProfileTutor() {
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
             <Typography className={classes.padding} align="center">
-              Your BIO Page Onenfa,jbffad,mn
-              adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnb Page Onenfa,jbffad,mn
+              {bio}
             </Typography>
           </Paper>
         </Grid>
@@ -103,10 +105,10 @@ export default function BottomLayerProfileTutor() {
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
             <Typography className={classes.padding} align="left">
-              Full name:
+              Full name: {name}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Email:
+              Email: {email}
             </Typography>
             <Typography className={classes.padding} align="left">
               Phone number:
@@ -115,10 +117,10 @@ export default function BottomLayerProfileTutor() {
               Subject taught:
             </Typography>
             <Typography className={classes.padding} align="left">
-              Education:
+              Education: {education}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Rate per hour:
+              Rate per hour: CAD${rate_per_hour}
             </Typography>
           </Paper>
         </Grid>
@@ -130,16 +132,16 @@ export default function BottomLayerProfileTutor() {
               Country:
             </Typography>
             <Typography className={classes.padding} align="left">
-              Province:
+              Province: {province}
             </Typography>
             <Typography className={classes.padding} align="left">
-              City:
+              City: {city}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Street:
+              Street: {street}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Post code:
+              Post code: {post_code}
             </Typography>
           </Paper>
         </Grid>
