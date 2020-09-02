@@ -89,14 +89,37 @@ exports.getTutorWithId = getTutorWithId;
 
 const searchTutors = function(keyword) {
   temp = keyword.toLowerCase();
-  return pool.query(`
-  SELECT tutor_id, u.name, t.education, s.name, t.rate_per_hour, avg(r.rating), count(r.rating) FROM subjects as s
+  console.log("searching tutors" , temp, typeof temp)
+
+  const query = {
+    text: `SELECT tutor_id, u.name, t.education, s.name, t.rate_per_hour, avg(r.rating), count(r.rating) FROM subjects as s
   JOIN tutors as t on t.id = s.tutor_id
   JOIN users as u on u.id = t.id
   JOIN reviews as r on u.id = r.reviewed_id
-  WHERE s.name LIKE '%$1%'
-  GROUP BY tutor_id, u.name, t.education, s.name, t.rate_per_hour;
-  `, [temp])
+  WHERE s.name LIKE $1
+  GROUP BY tutor_id, u.name, t.education, s.name, t.rate_per_hour
+  LIMIT 25;`,
+    values: [`%${temp}%`]
+  }
+
+
+  // return pool.query(
+  //   `
+  //   SELECT * from users;
+  //   `
+  //   `
+  // SELECT tutor_id, u.name, t.education, s.name, t.rate_per_hour, avg(r.rating), count(r.rating) FROM subjects as s
+  // JOIN tutors as t on t.id = s.tutor_id
+  // JOIN users as u on u.id = t.id
+  // JOIN reviews as r on u.id = r.reviewed_id
+  // WHERE s.name LIKE '%$1%'
+  // GROUP BY tutor_id, u.name, t.education, s.name, t.rate_per_hour
+  // LIMIT 25;
+  // `
+  // , [temp])
+  return pool.query(query)
+  .then(res => {
+    return res.rows});
 }
 exports.searchTutors = searchTutors;
 

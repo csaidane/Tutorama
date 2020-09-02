@@ -23,6 +23,7 @@ import ProfileBoxItem from "./components/SearchResults/ProfileBoxItem.jsx";
 import ReviewTutorProfile from "./components/SearchResults/ReviewTutorProfile.jsx";
 import FilterBar from "./components/SearchResults/FilterBar.jsx";
 import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
+import SearchResultPage from "./components/SearchResults/SearchResultPage";
 
 const drawerWidth = 240;
 
@@ -60,7 +61,7 @@ function App() {
   const [open, setOpen] = useState(false);
 
   // For passing in props
-  const [state, setState] = useState({ user: null, tutor: null });
+  const [state, setState] = useState({ user: null, tutor: null, searchResult: null });
 
   const updateUser = function (user) {
     setState((prev) => ({ ...prev, user }));
@@ -69,6 +70,12 @@ function App() {
   const updateTutor = function (user, tutor) {
     setState((prev) => ({ ...prev, user, tutor }));
   };
+
+  const updateSearchResult = function(searchResult){
+    setState((prev) => ({ ...prev, searchResult }));
+
+
+  }
 
   return (
     <Router>
@@ -99,7 +106,9 @@ function App() {
             />
             <Route path="/signup" exact component={SignUpPage} />
             {state.user ? (
-              <Route path="/" exact component={HomePage} />
+              <Route path="/" exact render={(props) => (
+                <HomePage  {...props} updateSearchResult={updateSearchResult} />
+              )} />
             ) : (
               <Route path="/" exact component={IndexPage} />
             )}
@@ -138,6 +147,13 @@ function App() {
                 )}
               />
             )}
+            <Route
+                path="/searchresult"
+                exact
+                render={(props) => (
+                  <SearchResultPage  />
+                )}
+              />
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
