@@ -3,8 +3,6 @@ import "./SignUpPage.scss";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-
-
 import {
   Avatar,
   CssBaseline,
@@ -65,29 +63,42 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUpTutor(props) {
   const classes = useStyles();
 
-  let history = useHistory()
+  let history = useHistory();
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [province, setProvince] = useState("")
-  const [city, setCity] = useState("")
-  const [address, setAddress] = useState("")
-  const [zip, setZip] = useState("")
-  const [education, setEducation] = useState("")
-  const [bio, setBio] = useState("")
-  const [rate, setRate] = useState("")
-  const [subject, setSubject] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
+  const [education, setEducation] = useState("");
+  const [bio, setBio] = useState("");
+  const [rate, setRate] = useState("");
+  const [subject, setSubject] = useState("");
 
   const APISubmit = function (event) {
     event.preventDefault();
-    let user = { name, email, password, street: address, city, province, post_code: zip, education, rate, bio, subject}
-    axios({ url: '/api/tutors/register', data: user, method: 'POST' })
-      .then((result) => {
-        props.updateTutor(result.data.user, result.data.tutor)
-        history.push("/homepage");
-      })
-  }
+    let user = {
+      name,
+      email,
+      password,
+      street: address,
+      city,
+      province,
+      post_code: zip,
+      education,
+      rate,
+      bio,
+      subject,
+    };
+    axios({ url: "/api/tutors/register", data: user, method: "POST" }).then(
+      (result) => {
+        props.updateTutor(result.data.user, result.data.tutor);
+        history.push("/");
+      }
+    );
+  };
 
   return (
     <Container component="main">
@@ -158,7 +169,6 @@ export default function SignUpTutor(props) {
                     id="education"
                     value={education}
                     onChange={(e) => setEducation(e.target.value)}
-                    
                   />
                 </Grid>
 

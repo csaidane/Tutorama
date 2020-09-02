@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Container } from "react";
 
 import HowWorks from "./HowWorks";
 import SearchField from "./SearchField";

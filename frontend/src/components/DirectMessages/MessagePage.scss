@@ -14,11 +14,15 @@
   position: fixed;
   bottom: 15px;
   transition: all 300ms cubic-bezier(1, 0.2, 0, 0) 0ms;
-  // width: calc(50% - 70px);
   padding-right: 50px;
   width: calc(98% - 70px);
-  // width: 100%;
 }
+
+.makeStyles-contentShift-3 .msg {
+  transition: all 300ms cubic-bezier(1, 0.2, 0, 0) 0ms;
+  padding-right: 70px;
+}
+
 .makeStyles-contentShift-3 .text-message-box {
   width: calc(98% - 310px);
   transition: all 5ms cubic-bezier(1, 0.2, 0, 0) 0ms;

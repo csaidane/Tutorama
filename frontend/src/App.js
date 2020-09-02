@@ -1,27 +1,27 @@
 import React, { useState, Fragment } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Drawer } from "@material-ui/core";
+import { Drawer, Container } from "@material-ui/core";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/Navbar.jsx";
 import HomePage from "./components/HomePage/HomePage";
 import StudentProfilePage from "./components/ProfilePage/StudentProfilePage";
 import TutorProfilePage from "./components/ProfilePage/TutorProfilePage";
-import TutorCards from "./components/TutorCards.jsx";
+import IndexPage from "./components/IndexPage.jsx";
 import Signin from "./components/SignIn/SignIn";
-import WrongEmailPassword from "./components/SignIn/WrongEmailPassword";
 import SignUpStudent from "./components/SignUp/SignUpStudent";
 import SignUpTutor from "./components/SignUp/SignUpTutor";
+import MessagePage from "./components/DirectMessages/MessagePage";
 import SignUpPage from "./components/SignUp/SignUpPage";
 import SearchField from "./components/HomePage/SearchField";
+import WrongEmailPassword from "./components/SignIn/WrongEmailPassword";
 import HowWorks from "./components/HomePage/HowWorks";
 import FindSubjects from "./components/HomePage/FindSubjects";
 import RateDialog from "./components/RatingAndComment/RateDialog";
 import ProfileBoxItem from "./components/SearchResults/ProfileBoxItem.jsx";
 import ReviewTutorProfile from "./components/SearchResults/ReviewTutorProfile.jsx";
 import FilterBar from "./components/SearchResults/FilterBar.jsx";
-import MessagePage from "./components/DirectMessages/MessagePage";
 import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
 
 const drawerWidth = 240;
@@ -98,7 +98,12 @@ function App() {
               )}
             />
             <Route path="/signup" exact component={SignUpPage} />
-            <Route path="/homepage" exact component={HomePage} />
+            {state.user ? (
+              <Route path="/" exact component={HomePage} />
+            ) : (
+              <Route path="/" exact component={IndexPage} />
+            )}
+
             <Route
               path="/signup/student"
               exact
@@ -118,9 +123,22 @@ function App() {
               )}
             />
             <Route path="/messages" exact component={MessagePage} />
-            <Route path="/profile" exact component={TutorProfilePage} />
+            {state.tutor ? (
+              <Route
+                path="/profile"
+                exact
+                render={(props) => <TutorProfilePage {...props} user={state} />}
+              />
+            ) : (
+              <Route
+                path="/profile"
+                exact
+                render={(props) => (
+                  <StudentProfilePage {...props} user={state} />
+                )}
+              />
+            )}
           </Switch>
-          {/* <RateDialog /> */}
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
           {/* <EditProfile /> */}
@@ -136,10 +154,11 @@ function App() {
           {/* <SignUpTutor /> */}
           {/* <StarRating /> */}
           {/* <SignUpStudent /> */}
-          {/* <TutorCards /> */}
+          {/* <IndexPage /> */}
           {/* <TopLayerProfile /> */}
           {/* <BottomLayerProfileTutor /> */}
           {/* <BottomLayerProfileStudent /> */}
+          {/* <RateDialog /> */}
         </main>
       </Fragment>
     </Router>

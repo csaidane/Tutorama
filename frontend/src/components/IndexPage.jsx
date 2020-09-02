@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
   Typography,
@@ -20,12 +20,19 @@ const useStyles = makeStyles({
     display: "flex",
     width: "250px",
     height: "450px",
+    "&:hover": {
+      background: "#FEFC4C",
+      borderTop: "solid 1px #cccccc",
+    },
+    // "&:last-child": {
+    //   borderRight: "solid 1px #cccccc"
+    // }
   },
 
   cardMedia: {
     width: "200px",
     height: "150px",
-    // borderRadius: "60%"
+    borderRadius: "2%",
   },
   box: { display: "flex", flexDirection: "row" },
   heading: { marginTop: "6%", marginBottom: "0" },
@@ -35,11 +42,17 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TutorCards() {
+export default function IndexPage() {
   const classes = useStyles();
 
   return (
-    <Container component="main">
+    <Container
+      component="main"
+      style={{
+        backgroundImage: `url("https://cdn.pixabay.com/photo/2019/04/10/12/40/watercolour-4117017_1280.png")`,
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <Grid
         container
         direction="column"
@@ -68,7 +81,7 @@ export default function TutorCards() {
               <CardContent>
                 <Grid direction="column" justify="center" alignItems="center">
                   <Typography component="h2" variant="h10">
-                    Martha Bosnia
+                    Martha Bosnian
                   </Typography>
                   <Typography variant="h6">History tutor</Typography>
                 </Grid>
@@ -170,10 +183,15 @@ export default function TutorCards() {
           </Grid>
         </Card>
         <Grid>
+          {/* <img
+            className={classes.img}
+            alt=""
+            src="https://cdn.pixabay.com/photo/2013/07/12/14/07/student-147783_1280.png"
+          ></img> */}
           <img
             className={classes.img}
             alt=""
-            src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/socialStudies.png?raw=true"
+            src="https://cdn.pixabay.com/photo/2017/10/23/10/14/idea-2880595_1280.png"
           ></img>
         </Grid>
       </Box>

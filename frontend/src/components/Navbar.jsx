@@ -116,13 +116,13 @@ export default function NavBar(props) {
     }
   };
 
-  let isLoggedIn = props.state.user;
+  let isLoggedIn = props.state.user || props.state.tutor;
 
   const APILogout = function (event) {
     event.preventDefault();
     axios({ url: "/api/users/logout", method: "POST" }).then((result) => {
       props.updateTutor(null, null);
-      history.push("/homepage");
+      history.push("/");
     });
   };
 
@@ -136,18 +136,23 @@ export default function NavBar(props) {
         })}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
+          {isLoggedIn ? (
+            <Fragment>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Fragment>
+          ) : null}
+
           <Typography
             component={Link}
-            to="/homepage"
+            to="/"
             variant="h6"
             noWrap
             className={classes.title}
@@ -161,7 +166,7 @@ export default function NavBar(props) {
                 <p>Hello {props.state.user.name}</p>
               </span>
               <Link to="/signout">
-                <Button onClick={APILogout} color="inherit">
+                <Button onClick={APILogout} variant="contained">
                   Log out
                 </Button>
               </Link>
@@ -169,10 +174,10 @@ export default function NavBar(props) {
           ) : (
             <Fragment>
               <Link to="/signup">
-                <Button color="inherit">Sign up</Button>
+                <Button variant="contained">Sign up</Button>
               </Link>
               <Link to="/signin">
-                <Button color="inherit">Log in</Button>
+                <Button variant="contained">Log in</Button>
               </Link>
             </Fragment>
           )}
@@ -218,6 +223,7 @@ export default function NavBar(props) {
               button
               key={text}
               component={Link}
+              onClick={index % 2 === 0 ? null : APILogout}
               to={index % 2 === 0 ? "/editprofile" : "/signout"}
             >
               <ListItemIcon>

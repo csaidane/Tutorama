@@ -40,7 +40,9 @@ function ImageAvatars() {
   );
 }
 
-export default function TopLayerProfile() {
+export default function TopLayerProfile(props) {
+  const { name } = props.user.user;
+
   const classes = useStyles();
 
   return (
@@ -53,7 +55,7 @@ export default function TopLayerProfile() {
       >
         <ImageAvatars />
 
-        <Typography variant="h6"> Student Name</Typography>
+        <Typography variant="h6"> {name}</Typography>
         {/* <Fab color="secondary" aria-label="edit">
           <EditIcon />
         </Fab> */}
