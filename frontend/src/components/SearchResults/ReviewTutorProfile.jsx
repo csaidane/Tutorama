@@ -129,6 +129,7 @@ export default function ReviewTutorProfile() {
             <Grid xs={3}></Grid>
 
             <Grid>
+              {/* {button leave feedback */}
               <RateDialog />
             </Grid>
           </Grid>
