@@ -79,7 +79,12 @@ export default function IndexPage() {
             />
             <div>
               <CardContent>
-                <Grid direction="column" justify="center" alignItems="center">
+                <Grid
+                  container
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+                >
                   <Typography component="h2" variant="h10">
                     Martha Bosnian
                   </Typography>
@@ -118,7 +123,12 @@ export default function IndexPage() {
             />
             <div>
               <CardContent>
-                <Grid direction="column" justify="center" alignItems="center">
+                <Grid
+                  container
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+                >
                   <Typography component="h2" variant="h10">
                     Martha Bosnia
                   </Typography>
@@ -158,7 +168,12 @@ export default function IndexPage() {
             />
             <div>
               <CardContent>
-                <Grid direction="column" justify="center" alignItems="center">
+                <Grid
+                  container
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+                >
                   <Typography component="h2" variant="h10">
                     Martha Bosnia
                   </Typography>

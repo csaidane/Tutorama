@@ -1,9 +1,16 @@
 import React, { useState, Fragment } from "react";
 import clsx from "clsx";
+
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Container } from "@material-ui/core";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import NavBar from "./components/Navbar.jsx";
 import HomePage from "./components/HomePage/HomePage";
 import StudentProfilePage from "./components/ProfilePage/StudentProfilePage";
@@ -59,6 +66,9 @@ function App() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
+  // let history = useHistory();
+  // let location = useLocation();
+
   // For passing in props
   const [state, setState] = useState({ user: null, tutor: null });
 
@@ -69,7 +79,10 @@ function App() {
   const updateTutor = function (user, tutor) {
     setState((prev) => ({ ...prev, user, tutor }));
   };
-
+  // TODO: Fix this code to auto signin if user was previously logged in and refreshed the page
+  if (!state.user && window.location.pathname !== "/signin") {
+    window.location.replace("/signin");
+  }
   return (
     <Router>
       <Fragment>
@@ -158,8 +171,8 @@ function App() {
           {/* <TopLayerProfile /> */}
           {/* <BottomLayerProfileTutor /> */}
           {/* <BottomLayerProfileStudent /> */}
-          {/* <RateDialog /> */}
         </main>
+        {/* <RateDialog /> */}
       </Fragment>
     </Router>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import WrongEmailPassword from "./WrongEmailPassword";
@@ -88,7 +88,7 @@ export default function SignIn(props) {
   };
 
   return (
-    <Container component="main" alignItems="center">
+    <Container component="main">
       <Grid
         container
         component="main"
