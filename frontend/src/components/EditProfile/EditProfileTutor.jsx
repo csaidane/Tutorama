@@ -1,16 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Paper,
-  Avatar,
-  Box,
-  Typography,
-  Fab,
-  Grid,
-  Button,
-  TextField,
-  Container,
-} from "@material-ui/core/";
+import { Fab, Grid, Button, TextField, Container } from "@material-ui/core/";
 import EditIcon from "@material-ui/icons/Edit";
 import TopLayerProfile from "../ProfilePage/TopLayerProfile.jsx";
 

@@ -23,6 +23,7 @@ import ProfileBoxItem from "./components/SearchResults/ProfileBoxItem.jsx";
 import ReviewTutorProfile from "./components/SearchResults/ReviewTutorProfile.jsx";
 import FilterBar from "./components/SearchResults/FilterBar.jsx";
 import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
+import EditProfileStudent from "./components/EditProfile/EditProfileStudent";
 
 const drawerWidth = 240;
 
@@ -101,8 +102,8 @@ function App() {
             {state.user ? (
               <Route path="/" exact component={HomePage} />
             ) : (
-              <Route path="/" exact component={IndexPage} />
-            )}
+                <Route path="/" exact component={IndexPage} />
+              )}
 
             <Route
               path="/signup/student"
@@ -130,20 +131,22 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
-              <Route
-                path="/profile"
-                exact
-                render={(props) => (
-                  <StudentProfilePage {...props} user={state} />
-                )}
-              />
-            )}
+                <Route
+                  path="/profile"
+                  exact
+                  render={(props) => (
+                    <StudentProfilePage {...props} user={state} />
+                  )}
+                />
+              )}
+
+
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
-          {/* <EditProfile /> */}
+          {/* <EditProfileStudent /> */}
           {/* <ProfileBoxItem /> */}
-          {/* <ReviewTutorProfile /> */}
+          <ReviewTutorProfile />
           {/* <FilterBar /> */}
           {/* <ProfileBoxItem /> */}
           {/* <MessagePage /> */}

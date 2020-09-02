@@ -1,18 +1,7 @@
 import React from "react";
 // import "./HowWorks.scss";
 
-import {
-  makeStyles,
-  Avatar,
-  Box,
-  Grid,
-  Container,
-  Typography,
-} from "@material-ui/core/";
-import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
-import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
-import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
-import DoneOutlineOutlinedIcon from "@material-ui/icons/DoneOutlineOutlined";
+import { makeStyles, Box, Grid, Typography } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
   // image: {
@@ -86,7 +75,6 @@ export default function HowWorks() {
             item
             xs={12}
             md={3}
-            className={classes.image}
           >
             <img
               className={classes.imgSize}
@@ -103,7 +91,6 @@ export default function HowWorks() {
             item
             xs={12}
             md={3}
-            className={classes.image}
           >
             <img
               className={classes.imgSize}
@@ -118,7 +105,6 @@ export default function HowWorks() {
             direction="column"
             justify="center"
             alignItems="center"
-            className={classes.image}
             item
             xs={12}
             md={3}
@@ -139,7 +125,6 @@ export default function HowWorks() {
             item
             xs={12}
             md={3}
-            className={classes.image}
           >
             <img
               className={classes.imgSize}
@@ -164,7 +149,6 @@ export default function HowWorks() {
               item
               xs={12}
               md={3}
-              className={classes.image}
             >
               <img
                 className={classes.imgSize}
@@ -182,7 +166,6 @@ export default function HowWorks() {
               item
               xs={12}
               md={3}
-              className={classes.image}
             >
               <img
                 className={classes.imgSize}
@@ -199,7 +182,6 @@ export default function HowWorks() {
               item
               xs={12}
               md={3}
-              className={classes.image}
             >
               <img
                 className={classes.imgSize}
@@ -216,7 +198,6 @@ export default function HowWorks() {
               item
               xs={12}
               md={3}
-              className={classes.image}
             >
               <img
                 className={classes.imgSize}
