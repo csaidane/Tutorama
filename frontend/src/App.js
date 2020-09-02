@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import clsx from "clsx";
+
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Container } from "@material-ui/core";
 
@@ -61,13 +62,21 @@ function App() {
   const [open, setOpen] = useState(false);
 
   // For passing in props
-  const [state, setState] = useState({ user: null, tutor: null });
+  const storedUsers = window.localStorage.getItem("user");
+  const storedTutors = window.localStorage.getItem("tutor");
+
+  const [state, setState] = useState({
+    user: storedUsers && JSON.parse(storedUsers),
+    tutor: storedTutors && JSON.parse(storedTutors),
+  });
 
   const updateUser = function (user) {
     setState((prev) => ({ ...prev, user }));
   };
 
   const updateTutor = function (user, tutor) {
+    user && window.localStorage.setItem("user", JSON.stringify(user));
+    tutor && window.localStorage.setItem("tutor", JSON.stringify(tutor));
     setState((prev) => ({ ...prev, user, tutor }));
   };
 
@@ -161,8 +170,8 @@ function App() {
           {/* <TopLayerProfile /> */}
           {/* <BottomLayerProfileTutor /> */}
           {/* <BottomLayerProfileStudent /> */}
-          {/* <RateDialog /> */}
         </main>
+        {/* <RateDialog /> */}
       </Fragment>
     </Router>
   );
