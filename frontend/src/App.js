@@ -4,13 +4,7 @@ import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Container } from "@material-ui/core";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/Navbar.jsx";
 import HomePage from "./components/HomePage/HomePage";
 import StudentProfilePage from "./components/ProfilePage/StudentProfilePage";
@@ -66,23 +60,25 @@ function App() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  // let history = useHistory();
-  // let location = useLocation();
-
   // For passing in props
-  const [state, setState] = useState({ user: null, tutor: null });
+  const storedUsers = window.localStorage.getItem("user");
+  const storedTutors = window.localStorage.getItem("tutor");
+
+  const [state, setState] = useState({
+    user: storedUsers && JSON.parse(storedUsers),
+    tutor: storedTutors && JSON.parse(storedTutors),
+  });
 
   const updateUser = function (user) {
     setState((prev) => ({ ...prev, user }));
   };
 
   const updateTutor = function (user, tutor) {
+    user && window.localStorage.setItem("user", JSON.stringify(user));
+    tutor && window.localStorage.setItem("tutor", JSON.stringify(tutor));
     setState((prev) => ({ ...prev, user, tutor }));
   };
-  // TODO: Fix this code to auto signin if user was previously logged in and refreshed the page
-  if (!state.user && window.location.pathname !== "/signin") {
-    window.location.replace("/signin");
-  }
+
   return (
     <Router>
       <Fragment>
