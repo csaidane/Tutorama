@@ -62,7 +62,6 @@ module.exports = (db) => {
   });
 
 
-
   router.get('/search/:key', (req,res) => {
     const search_keywords = req.params.key
     searchTutors(search_keywords)
@@ -76,10 +75,6 @@ module.exports = (db) => {
     })
     .catch(e => res.send(e));
   });
-
-
-
-
 
 
 
