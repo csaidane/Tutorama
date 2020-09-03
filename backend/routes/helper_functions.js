@@ -128,13 +128,17 @@ exports.getMessageThreads = getMessageThreads;
 
 const getMessageText = function(id) {
   return pool.query(`
-  SELECT content, sent_date
-  FROM messages
-  WHERE sender_id = $1
-  UNION
-  SELECT content, sent_date
-  FROM messages
-  WHERE receiver_id = $1;
+  SELECT *
+  FROM(
+    SELECT content, sent_date, sender_id, receiver_id
+    FROM messages
+    WHERE sender_id = $1
+    UNION
+    SELECT content, sent_date, sender_id, receiver_id
+    FROM messages
+    WHERE receiver_id = $1
+  ) as all_messages
+  ORDER BY sent_date;
   `, [id])
   .then(res => res.rows);
 }

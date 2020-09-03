@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 let cookieSession = require("cookie-session");
 router.use(cookieSession({ name: "session", keys: ["key1", "key2"] }));
-const { addUser, getTutorWithId, login } = require("./helper_functions");
+const { addUser, getTutorWithId, login, getMessageText, getMessageThreads } = require("./helper_functions");
 
 module.exports = (db) => {
   router.post("/register", (req, res) => {
@@ -67,6 +67,40 @@ module.exports = (db) => {
     let templateVars = { user: null, logout: "success" };
     res.json(templateVars);
   });
+
+
+  router.get('/messages/:id', (req,res) => {
+    const user_id = req.params.id
+    let outputVars = {};
+    getMessageThreads(user_id)
+    .then((threads) => {
+      console.log("threads", threads)
+      if(!threads){
+        res.json("no threads found")
+      } else{
+        outputVars['threads'] = threads;
+        return getMessageText(user_id)
+      }
+    })
+    .then((texts)=>{
+      console.log("texts", texts)
+      if(!texts){
+        res.json("no texts found")
+      } else{
+        outputVars['texts'] = texts;
+        res.json(outputVars)
+      }
+    })
+    .catch(e => res.send(e));
+  });
+
+
+
+
+
+
+
+
 
   return router;
 };
