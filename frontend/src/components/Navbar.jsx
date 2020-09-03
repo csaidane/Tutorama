@@ -122,10 +122,8 @@ export default function NavBar(props) {
       return "/profile";
     } else if (index === 1) {
       return "/messages";
-    } else if (index === 2) {
-      return "/mytutor";
     } else {
-      return "/profile";
+      return "/mytutor";
     }
   };
 
@@ -234,13 +232,7 @@ export default function NavBar(props) {
         </div>
         <Divider />
         <List>
-          {[
-            "Profile",
-            "Messages",
-            "My Tutors",
-            "Drafts?",
-            "Still-thinking",
-          ].map((text, index) => (
+          {["Profile", "Messages", "My Tutors"].map((text, index) => (
             <ListItem button key={text} component={Link} to={linkPath(index)}>
               <ListItemIcon>{iconDisplay(index)}</ListItemIcon>
               <ListItemText primary={text} />
