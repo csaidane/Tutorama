@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 let cookieSession = require("cookie-session");
 router.use(cookieSession({ name: "session", keys: ["key1", "key2"] }));
-const { addUser, getTutorWithId, login, getMessageText, getMessageThreads } = require("./helper_functions");
+const { addUser, getTutorWithId, login, getMessageThreads, getMessagesBetweenUsers } = require("./helper_functions");
 
 module.exports = (db) => {
   router.post("/register", (req, res) => {
@@ -69,35 +69,34 @@ module.exports = (db) => {
   });
 
 
-  router.get('/messages/:id', (req,res) => {
+  router.get('/:id/messages/threads', (req,res) => {
     const user_id = req.params.id
     let outputVars = {};
     getMessageThreads(user_id)
-    .then((threads) => {
-      console.log("threads", threads)
+    .then((threads)=>{
       if(!threads){
         res.json("no threads found")
       } else{
         outputVars['threads'] = threads;
-        return getMessageText(user_id)
-      }
-    })
-    .then((texts)=>{
-      console.log("texts", texts)
-      if(!texts){
-        res.json("no texts found")
-      } else{
-        outputVars['texts'] = texts;
         res.json(outputVars)
       }
     })
-    .catch(e => res.send(e));
   });
 
-
-
-
-
+  router.get('/:id/messages/:other', (req,res) => {
+    const user_id = req.params.id
+    const partner = req.params.other
+    let outputVars = {};
+    getMessagesBetweenUsers(user_id,partner)
+    .then((messages)=> {
+      if(!messages){
+        res.json("no messages found !")
+      } else{
+        outputVars['messages'] = messages;
+        res.json(outputVars)
+      }
+    })
+  });
 
 
 

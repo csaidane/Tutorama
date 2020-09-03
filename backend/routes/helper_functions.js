@@ -117,30 +117,36 @@ exports.addTutorSubject = addTutorSubject;
 
 const getMessageThreads = function(id) {
   return pool.query(`
-  SELECT DISTINCT receiver_id, u.name, u.profile_picture_url
+  SELECT receiver_id as id, u.name, u.profile_picture_url
   FROM messages as m
   JOIN users as u on u.id = m.receiver_id
-  WHERE sender_id = $1;
+  WHERE sender_id = $1
+  UNION
+  SELECT sender_id as id , u.name, u.profile_picture_url
+  FROM messages as m
+  JOIN users as u on u.id = m.sender_id
+  WHERE receiver_id = $1;
   `, [id])
   .then(res => res.rows);
 }
 exports.getMessageThreads = getMessageThreads;
 
-const getMessageText = function(id) {
+
+const getMessagesBetweenUsers = function(sender_id, receiver_id) {
   return pool.query(`
-  SELECT *
-  FROM(
-    SELECT content, sent_date, sender_id, receiver_id
-    FROM messages
-    WHERE sender_id = $1
-    UNION
-    SELECT content, sent_date, sender_id, receiver_id
-    FROM messages
-    WHERE receiver_id = $1
-  ) as all_messages
-  ORDER BY sent_date;
-  `, [id])
+  SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
+  FROM messages as m
+  JOIN users as u on sender_id = u.id
+  WHERE sender_id = $1 AND receiver_id = $2
+  UNION
+  SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
+  FROM messages as m
+  JOIN users as u on sender_id = u.id
+  WHERE sender_id = $2 AND receiver_id = $1;
+
+  `, [sender_id,receiver_id])
   .then(res => res.rows);
 }
-exports.getMessageText = getMessageText;
+exports.getMessagesBetweenUsers = getMessagesBetweenUsers;
+
 

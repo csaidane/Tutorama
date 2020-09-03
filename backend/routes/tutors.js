@@ -61,8 +61,8 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/search/:key", (req, res) => {
-    const search_keywords = req.params.key;
+  router.get("/search/", (req, res) => {
+    const search_keywords = req.query.query;
     searchTutors(search_keywords)
     .then((tutors) => {
       console.log("tutors", tutors)
