@@ -144,7 +144,12 @@ function App() {
                 />
               )}
             />
-            <Route path="/messages" exact component={MessagePage} />
+            <Route path="/messages" exact render={(props) => (
+                <MessagePage
+                  {...props}
+                  userId={state.user && state.user.id}
+                />
+              )}  />
             {state.tutor ? (
               <Route
                 path="/profile"

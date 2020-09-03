@@ -27,7 +27,7 @@ export default function SearchField(props) {
   const APISearch = function(event){
     event.preventDefault();
     let key = {key: searchKeywords}
-    axios({ url: "/api/tutors/search/" + key.key, method: "GET" }).then(
+    axios({ url: `/api/tutors/search?query=${key.key}`, method: "GET" }).then(
       (result) => {
         console.log(result.data)
         props.updateSearchResult(result.data.seach)
