@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HowWorks() {
   const classes = useStyles();
   return (
-    <div id="searchField">
+    <div>
       <Typography
         className={classes.bottomMargin}
         variant="h3"

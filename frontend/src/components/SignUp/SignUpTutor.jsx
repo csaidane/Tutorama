@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(2),
+    width: "90%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -57,6 +57,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderRadius: 100,
+  },
+  shiftRight: {
+    marginLeft: "23%",
+  },
+  spacingTypo: {
+    margin: "3%",
   },
 }));
 
@@ -101,7 +107,7 @@ export default function SignUpTutor(props) {
   };
 
   return (
-    <Container component="main">
+    <div className={classes.shiftRight}>
       <form className={classes.form} noValidate onSubmit={APISubmit}>
         <Grid container spacing={10}>
           {/* Left part Sign Up */}
@@ -111,7 +117,11 @@ export default function SignUpTutor(props) {
               <Avatar className={classes.avatar}>
                 <AccountBoxOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography
+                className={classes.spacingTypo}
+                component="h1"
+                variant="h5"
+              >
                 Personal details
               </Typography>
               {/* <form className={classes.form} noValidate> */}
@@ -230,7 +240,11 @@ export default function SignUpTutor(props) {
               <Avatar className={classes.avatar}>
                 <HomeOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography
+                className={classes.spacingTypo}
+                component="h1"
+                variant="h5"
+              >
                 Contact details
               </Typography>
               <Grid container spacing={6}>
@@ -320,10 +334,10 @@ export default function SignUpTutor(props) {
             Sign Up
           </Button>
         </Grid>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
       </form>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+    </div>
   );
 }

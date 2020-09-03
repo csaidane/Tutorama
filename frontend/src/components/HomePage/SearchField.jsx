@@ -5,13 +5,6 @@ import { makeStyles, Box, Button, TextField } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
-  image: {
-    // backgroundImage:
-    //   "url(https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=955&q=80)",
-    // height: "400px",
-    // backgroundSize: "cover",
-    // boxShadow: "25px 25px 50px 50px white inset",
-  },
   margin: {
     margin: theme.spacing(3),
   },
@@ -29,18 +22,6 @@ export default function SearchField() {
       >
         <form action="">
           <Box display="flex" justifyContent="center" alignItems="center">
-            {/* <input
-              id="searchInput"
-              type="text"
-              placeholder="Search for a subject ..."
-              name="search"
-            /> */}
-            {/* <SearchBar
-              placeholder="Search for a subject..."
-              // value={this.state.value}
-              // onChange={(newValue) => this.setState({ value: newValue })}
-              // onRequestSearch={() => doSomethingWith(this.state.value)}
-            /> */}
             <div style={{ width: 300 }}>
               <Autocomplete
                 freeSolo

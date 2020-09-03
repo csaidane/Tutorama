@@ -13,15 +13,28 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  shiftRight: {
+    marginLeft: "15%",
+    display: "flex",
+    flexDirection: "column",
+    placeItems: "center",
+  },
+  form: {
+    width: "60%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  spacingBtns: {
+    margin: "3%",
+  },
 }));
 
 export default function EditProfileTutor() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.shiftRight}>
       <TopLayerProfile />
-      <Fab color="secondary" aria-label="edit">
+      <Fab color="secondary" aria-label="edit" className={classes.spacingBtns}>
         <EditIcon />
       </Fab>
 
@@ -152,7 +165,7 @@ export default function EditProfileTutor() {
               type="submit"
               variant="contained"
               color="primary"
-              className={classes.submit}
+              className={classes.spacingBtns}
             >
               Update
             </Button>

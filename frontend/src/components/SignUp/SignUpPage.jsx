@@ -69,7 +69,7 @@ export default function SignUpPage() {
       alignItems="center"
     >
       {/* Left part Sign Up */}
-      <Grid item sm={6} xs={12} className={classes.shiftRight}>
+      <Grid item sm={6} xs={12}>
         <div className={classes.paper}>
           <form className={classes.form} id="radioForm" noValidate>
             <Typography variant="h3" className={classes.spacing}>
