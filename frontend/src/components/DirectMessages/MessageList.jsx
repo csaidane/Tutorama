@@ -51,18 +51,24 @@ export default function MessageList(props) {
   const msgList = messageThreads.map((thread) => {
     return (
       <Fragment>
-        <ListItem onClick={() => console.log(thread.id)} id={thread.id} key={thread.name} className={classes.listItem} alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar src={thread.profile_picture_url} />
-            </ListItemAvatar>
-            <ListItemText
-              primary={<Typography variant="h6">{thread.name}</Typography>}
-            />
-          </ListItem>
-          <Divider />
+        <ListItem
+          onClick={() => console.log(thread.id)}
+          id={thread.id}
+          key={thread.name}
+          className={classes.listItem}
+          alignItems="flex-start"
+        >
+          <ListItemAvatar>
+            <Avatar src={thread.profile_picture_url} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={<Typography variant="h6">{thread.name}</Typography>}
+          />
+        </ListItem>
+        <Divider />
       </Fragment>
-    )
-  })
+    );
+  });
   return (
     <div className={classes.root}>
       {/* <Button
@@ -74,10 +80,7 @@ export default function MessageList(props) {
         New Message
       </Button> */}
       <List>
-        <div key="1">
-          {msgList}
-          
-        </div>
+        <div key="1">{msgList}</div>
       </List>
     </div>
   );

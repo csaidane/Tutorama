@@ -92,6 +92,7 @@ function ImageAvatars() {
 }
 
 export default function ReviewTutorProfile(props) {
+  console.log("TUTOR PROFILE", props);
   const classes = useStyles();
   return (
     <Container>

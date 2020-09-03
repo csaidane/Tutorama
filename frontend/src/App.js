@@ -69,9 +69,8 @@ function App() {
   const [state, setState] = useState({
     user: storedUsers && JSON.parse(storedUsers),
     tutor: storedTutors && JSON.parse(storedTutors),
-    searchResult: null
+    searchResult: null,
   });
-
 
   const updateUser = function (user) {
     user && window.localStorage.setItem("user", JSON.stringify(user));
@@ -84,11 +83,10 @@ function App() {
     setState((prev) => ({ ...prev, user, tutor }));
   };
 
-  const updateSearchResult = function(searchResult){
+  const updateSearchResult = function (searchResult) {
+    console.log("UPDATE SEARCH RESULT", searchResult);
     setState((prev) => ({ ...prev, searchResult }));
-
-
-  }
+  };
 
   return (
     <Router>
@@ -119,9 +117,16 @@ function App() {
             />
             <Route path="/signup" exact component={SignUpPage} />
             {state.user ? (
-              <Route path="/" exact render={(props) => (
-                <HomePage  {...props} updateSearchResult={updateSearchResult} />
-              )} />
+              <Route
+                path="/"
+                exact
+                render={(props) => (
+                  <HomePage
+                    {...props}
+                    updateSearchResult={updateSearchResult}
+                  />
+                )}
+              />
             ) : (
               <Route path="/" exact component={IndexPage} />
             )}
@@ -144,12 +149,13 @@ function App() {
                 />
               )}
             />
-            <Route path="/messages" exact render={(props) => (
-                <MessagePage
-                  {...props}
-                  userId={state.user && state.user.id}
-                />
-              )}  />
+            <Route
+              path="/messages"
+              exact
+              render={(props) => (
+                <MessagePage {...props} userId={state.user && state.user.id} />
+              )}
+            />
             {state.tutor ? (
               <Route
                 path="/profile"
@@ -166,12 +172,19 @@ function App() {
               />
             )}
             <Route
-                path="/searchresult"
-                exact
-                render={(props) => (
-                  <SearchResultPage  />
-                )}
-              />
+              path="/searchresult"
+              exact
+              render={(props) => (
+                <SearchResultPage searchResult={state.searchResult} />
+              )}
+            />
+            <Route
+              path="/tutor"
+              exact
+              render={(props) => (
+                <ReviewTutorProfile searchResult={state.searchResult} />
+              )}
+            />
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
