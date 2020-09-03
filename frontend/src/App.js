@@ -154,8 +154,9 @@ function App() {
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
           {/* <EditProfileStudent /> */}
+          {/* <EditProfileTutor /> */}
           {/* <ProfileBoxItem /> */}
-          <ReviewTutorProfile />
+          {/* <ReviewTutorProfile /> */}
           {/* <FilterBar /> */}
           {/* <ProfileBoxItem /> */}
           {/* <MessagePage /> */}

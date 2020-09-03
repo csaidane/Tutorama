@@ -1,4 +1,4 @@
-import React, { Fragment, Container } from "react";
+import React, { Fragment } from "react";
 
 import { makeStyles, Grid } from "@material-ui/core";
 import HowWorks from "./HowWorks";

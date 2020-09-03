@@ -27,7 +27,6 @@ const useStyles = makeStyles({
   },
   window: {
     display: "flex",
-    direction: "column",
     width: "400px",
     heigth: "400px",
     border: "1px solid black",
