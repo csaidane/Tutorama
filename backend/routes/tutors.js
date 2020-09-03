@@ -64,15 +64,16 @@ module.exports = (db) => {
   router.get("/search/:key", (req, res) => {
     const search_keywords = req.params.key;
     searchTutors(search_keywords)
-      .then((tutors) => {
-        if (!tutors) {
-          res.json("no tutors found for these keywords");
-        } else {
-          let templateVars = { tutors: tutors };
-          res.json(templateVars);
-        }
-      })
-      .catch((e) => res.send(e));
+    .then((tutors) => {
+      console.log("tutors", tutors)
+      if(!tutors){
+        res.json("no tutors found for these keywords")
+      } else{
+        let templateVars = {search: tutors}
+        res.json(templateVars)
+      }
+    })
+    .catch(e => res.send(e));
   });
 
   return router;

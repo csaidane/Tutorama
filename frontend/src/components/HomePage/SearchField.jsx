@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchField.scss";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+
 
 import { makeStyles, Box, Button, TextField } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -10,8 +15,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchField() {
+
+
+export default function SearchField(props) {
   const classes = useStyles();
+  let history = useHistory();
+
+
+  const [searchKeywords, setSearchKeywords] = useState("");
+
+  const APISearch = function(event){
+    event.preventDefault();
+    let key = {key: searchKeywords}
+    axios({ url: "/api/tutors/search/" + key.key, method: "GET" }).then(
+      (result) => {
+        console.log(result.data)
+        props.updateSearchResult(result.data.seach)
+        //history.push("/searchresult");
+      }
+    );
+  };
+
+
+
+
+
+
   return (
     <div id="searchField">
       <Box
@@ -20,7 +49,7 @@ export default function SearchField() {
         justifyContent="center"
         alignItems="center"
       >
-        <form action="">
+        <form onSubmit={APISearch}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <div style={{ width: 300 }}>
               <Autocomplete
@@ -35,6 +64,8 @@ export default function SearchField() {
                     margin="normal"
                     variant="outlined"
                     InputProps={{ ...params.InputProps, type: "search" }}
+                    value={searchKeywords}
+                    onChange={(e) => setSearchKeywords(e.target.value)}
                   />
                 )}
               />
@@ -44,6 +75,7 @@ export default function SearchField() {
               variant="contained"
               color="secondary"
               size="large"
+              type="submit"
               className={classes.margin}
             >
               Search

@@ -25,6 +25,7 @@ import ReviewTutorProfile from "./components/SearchResults/ReviewTutorProfile.js
 import FilterBar from "./components/SearchResults/FilterBar.jsx";
 import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
 import EditProfileStudent from "./components/EditProfile/EditProfileStudent";
+import SearchResultPage from "./components/SearchResults/SearchResultPage";
 
 const drawerWidth = 240;
 
@@ -68,9 +69,12 @@ function App() {
   const [state, setState] = useState({
     user: storedUsers && JSON.parse(storedUsers),
     tutor: storedTutors && JSON.parse(storedTutors),
+    searchResult: null
   });
 
+
   const updateUser = function (user) {
+    user && window.localStorage.setItem("user", JSON.stringify(user));
     setState((prev) => ({ ...prev, user }));
   };
 
@@ -79,6 +83,12 @@ function App() {
     tutor && window.localStorage.setItem("tutor", JSON.stringify(tutor));
     setState((prev) => ({ ...prev, user, tutor }));
   };
+
+  const updateSearchResult = function(searchResult){
+    setState((prev) => ({ ...prev, searchResult }));
+
+
+  }
 
   return (
     <Router>
@@ -109,7 +119,9 @@ function App() {
             />
             <Route path="/signup" exact component={SignUpPage} />
             {state.user ? (
-              <Route path="/" exact component={HomePage} />
+              <Route path="/" exact render={(props) => (
+                <HomePage  {...props} updateSearchResult={updateSearchResult} />
+              )} />
             ) : (
               <Route path="/" exact component={IndexPage} />
             )}
@@ -148,6 +160,13 @@ function App() {
                 )}
               />
             )}
+            <Route
+                path="/searchresult"
+                exact
+                render={(props) => (
+                  <SearchResultPage  />
+                )}
+              />
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}

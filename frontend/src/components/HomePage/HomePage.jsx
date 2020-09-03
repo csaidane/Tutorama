@@ -19,13 +19,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function HomePage() {
   const classes = useStyles();
 
   return (
     <Fragment>
       <Grid className={classes.shiftRight}>
-        <SearchField />
+        <SearchField {...props} updateSearchResult={props.updateSearchResult} />
         <HowWorks />
         <FindSubjects />
         <ScrollToTop />
