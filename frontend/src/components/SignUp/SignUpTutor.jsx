@@ -3,8 +3,6 @@ import "./SignUpPage.scss";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-
-
 import {
   Avatar,
   CssBaseline,
@@ -47,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(2),
+    width: "90%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -60,37 +58,56 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     borderRadius: 100,
   },
+  shiftRight: {
+    marginLeft: "23%",
+  },
+  spacingTypo: {
+    margin: "3%",
+  },
 }));
 
 export default function SignUpTutor(props) {
   const classes = useStyles();
 
-  let history = useHistory()
+  let history = useHistory();
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [province, setProvince] = useState("")
-  const [city, setCity] = useState("")
-  const [address, setAddress] = useState("")
-  const [zip, setZip] = useState("")
-  const [education, setEducation] = useState("")
-  const [bio, setBio] = useState("")
-  const [rate, setRate] = useState("")
-  const [subject, setSubject] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
+  const [education, setEducation] = useState("");
+  const [bio, setBio] = useState("");
+  const [rate, setRate] = useState("");
+  const [subject, setSubject] = useState("");
 
   const APISubmit = function (event) {
     event.preventDefault();
-    let user = { name, email, password, street: address, city, province, post_code: zip, education, rate, bio, subject}
-    axios({ url: '/api/tutors/register', data: user, method: 'POST' })
-      .then((result) => {
-        props.updateTutor(result.data.user, result.data.tutor)
-        history.push("/homepage");
-      })
-  }
+    let user = {
+      name,
+      email,
+      password,
+      street: address,
+      city,
+      province,
+      post_code: zip,
+      education,
+      rate,
+      bio,
+      subject,
+    };
+    axios({ url: "/api/tutors/register", data: user, method: "POST" }).then(
+      (result) => {
+        props.updateTutor(result.data.user, result.data.tutor);
+        history.push("/");
+      }
+    );
+  };
 
   return (
-    <Container component="main">
+    <div className={classes.shiftRight}>
       <form className={classes.form} noValidate onSubmit={APISubmit}>
         <Grid container spacing={10}>
           {/* Left part Sign Up */}
@@ -100,7 +117,11 @@ export default function SignUpTutor(props) {
               <Avatar className={classes.avatar}>
                 <AccountBoxOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography
+                className={classes.spacingTypo}
+                component="h1"
+                variant="h5"
+              >
                 Personal details
               </Typography>
               {/* <form className={classes.form} noValidate> */}
@@ -158,7 +179,6 @@ export default function SignUpTutor(props) {
                     id="education"
                     value={education}
                     onChange={(e) => setEducation(e.target.value)}
-                    
                   />
                 </Grid>
 
@@ -220,7 +240,11 @@ export default function SignUpTutor(props) {
               <Avatar className={classes.avatar}>
                 <HomeOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography
+                className={classes.spacingTypo}
+                component="h1"
+                variant="h5"
+              >
                 Contact details
               </Typography>
               <Grid container spacing={6}>
@@ -310,10 +334,10 @@ export default function SignUpTutor(props) {
             Sign Up
           </Button>
         </Grid>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
       </form>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+    </div>
   );
 }

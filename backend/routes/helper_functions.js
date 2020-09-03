@@ -88,12 +88,20 @@ const getTutorWithId = function(id) {
 exports.getTutorWithId = getTutorWithId;
 
 const searchTutors = function(keyword) {
-  return pool.query(`
-  SELECT tutor_id, u.name, t.education, s.name FROM subjects as s
+  temp = keyword.toLowerCase();
+  const query = {
+    text: `SELECT tutor_id, u.name, t.education, s.name, t.rate_per_hour, avg(r.rating), count(r.rating) FROM subjects as s
   JOIN tutors as t on t.id = s.tutor_id
   JOIN users as u on u.id = t.id
-  WHERE s.name LIKE '%$1%';
-  `, [keyword])
+  JOIN reviews as r on u.id = r.reviewed_id
+  WHERE s.name LIKE $1
+  GROUP BY tutor_id, u.name, t.education, s.name, t.rate_per_hour
+  LIMIT 25;`,
+    values: [`%${temp}%`]
+  }
+  return pool.query(query)
+  .then(res => {
+    return res.rows});
 }
 exports.searchTutors = searchTutors;
 
@@ -106,4 +114,39 @@ const addTutorSubject =  function(object) {
   .then(res => res.rows[0]);
 }
 exports.addTutorSubject = addTutorSubject;
+
+const getMessageThreads = function(id) {
+  return pool.query(`
+  SELECT receiver_id as id, u.name, u.profile_picture_url
+  FROM messages as m
+  JOIN users as u on u.id = m.receiver_id
+  WHERE sender_id = $1
+  UNION
+  SELECT sender_id as id , u.name, u.profile_picture_url
+  FROM messages as m
+  JOIN users as u on u.id = m.sender_id
+  WHERE receiver_id = $1;
+  `, [id])
+  .then(res => res.rows);
+}
+exports.getMessageThreads = getMessageThreads;
+
+
+const getMessagesBetweenUsers = function(sender_id, receiver_id) {
+  return pool.query(`
+  SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
+  FROM messages as m
+  JOIN users as u on sender_id = u.id
+  WHERE sender_id = $1 AND receiver_id = $2
+  UNION
+  SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
+  FROM messages as m
+  JOIN users as u on sender_id = u.id
+  WHERE sender_id = $2 AND receiver_id = $1;
+
+  `, [sender_id,receiver_id])
+  .then(res => res.rows);
+}
+exports.getMessagesBetweenUsers = getMessagesBetweenUsers;
+
 

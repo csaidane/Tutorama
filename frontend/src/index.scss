@@ -24,6 +24,7 @@ code {
 
 .msg {
   flex: 1;
+
   .msg-list {
     position: static !important; // f the framework
     margin-left: 0 !important; // f the framework
@@ -34,6 +35,10 @@ code {
 
 .makeStyles-chatHeader-19 {
   margin-left: 0 !important; // f the framework
+}
+
+.main-container {
+  height: 100vh;
 }
 
 /*
