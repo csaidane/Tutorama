@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import clsx from "clsx";
+
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Container } from "@material-ui/core";
 
@@ -23,6 +24,7 @@ import ProfileBoxItem from "./components/SearchResults/ProfileBoxItem.jsx";
 import ReviewTutorProfile from "./components/SearchResults/ReviewTutorProfile.jsx";
 import FilterBar from "./components/SearchResults/FilterBar.jsx";
 import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
+import EditProfileStudent from "./components/EditProfile/EditProfileStudent";
 import SearchResultPage from "./components/SearchResults/SearchResultPage";
 
 const drawerWidth = 240;
@@ -61,13 +63,24 @@ function App() {
   const [open, setOpen] = useState(false);
 
   // For passing in props
-  const [state, setState] = useState({ user: null, tutor: null, searchResult: null });
+  const storedUsers = window.localStorage.getItem("user");
+  const storedTutors = window.localStorage.getItem("tutor");
+
+  const [state, setState] = useState({
+    user: storedUsers && JSON.parse(storedUsers),
+    tutor: storedTutors && JSON.parse(storedTutors),
+    searchResult: null
+  });
+
 
   const updateUser = function (user) {
+    user && window.localStorage.setItem("user", JSON.stringify(user));
     setState((prev) => ({ ...prev, user }));
   };
 
   const updateTutor = function (user, tutor) {
+    user && window.localStorage.setItem("user", JSON.stringify(user));
+    tutor && window.localStorage.setItem("tutor", JSON.stringify(tutor));
     setState((prev) => ({ ...prev, user, tutor }));
   };
 
@@ -157,7 +170,8 @@ function App() {
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
-          {/* <EditProfile /> */}
+          {/* <EditProfileStudent /> */}
+          {/* <EditProfileTutor /> */}
           {/* <ProfileBoxItem /> */}
           {/* <ReviewTutorProfile /> */}
           {/* <FilterBar /> */}
@@ -174,8 +188,8 @@ function App() {
           {/* <TopLayerProfile /> */}
           {/* <BottomLayerProfileTutor /> */}
           {/* <BottomLayerProfileStudent /> */}
-          {/* <RateDialog /> */}
         </main>
+        {/* <RateDialog /> */}
       </Fragment>
     </Router>
   );

@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { createMuiTheme } from "@material-ui/core/styles";
 
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   Drawer,
+  Grid,
   Button,
   CssBaseline,
   AppBar,
@@ -59,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    marginLeft: "2%",
   },
   drawer: {
     width: drawerWidth,
@@ -75,11 +78,21 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
   },
+
+  buttonLoginMargin: {
+    marginRight: "3%",
+    marginLeft: "3%",
+  },
+  logo: {
+    height: "25px",
+    width: "25px",
+  },
 }));
 
 export default function NavBar(props) {
   const classes = useStyles();
   const theme = useTheme();
+
   let history = useHistory();
 
   const { open, setOpen } = props;
@@ -109,10 +122,8 @@ export default function NavBar(props) {
       return "/profile";
     } else if (index === 1) {
       return "/messages";
-    } else if (index === 2) {
-      return "/mytutor";
     } else {
-      return "/profile";
+      return "/mytutor";
     }
   };
 
@@ -130,6 +141,7 @@ export default function NavBar(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color="transparent"
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -151,33 +163,50 @@ export default function NavBar(props) {
           ) : null}
 
           <Typography
+            style={{ textDecoration: "none" }}
             component={Link}
             to="/"
-            variant="h6"
+            variant="h5"
             noWrap
             className={classes.title}
           >
+            <img
+              className={classes.logo}
+              src="https://image.flaticon.com/icons/svg/2466/2466682.svg"
+            ></img>
             tutorama
           </Typography>
 
           {isLoggedIn ? (
             <Fragment>
-              <span>
-                <p>Hello {props.state.user.name}</p>
-              </span>
-              <Link to="/signout">
-                <Button onClick={APILogout} variant="contained">
+              <Typography variant="overline">
+                Hello {props.state.user.name}!
+              </Typography>
+              <Link
+                to="/signout"
+                className={classes.buttonLoginMargin}
+                style={{ textDecoration: "none" }}
+              >
+                <Button onClick={APILogout} variant="contained" color="primary">
                   Log out
                 </Button>
               </Link>
             </Fragment>
           ) : (
             <Fragment>
-              <Link to="/signup">
-                <Button variant="contained">Sign up</Button>
+              <Link to="/signup" style={{ textDecoration: "none" }}>
+                <Button variant="contained" color="primary">
+                  Sign up
+                </Button>
               </Link>
-              <Link to="/signin">
-                <Button variant="contained">Log in</Button>
+              <Link
+                to="/signin"
+                style={{ textDecoration: "none" }}
+                className={classes.buttonLoginMargin}
+              >
+                <Button variant="contained" color="primary">
+                  Log in
+                </Button>
               </Link>
             </Fragment>
           )}
@@ -203,13 +232,7 @@ export default function NavBar(props) {
         </div>
         <Divider />
         <List>
-          {[
-            "Profile",
-            "Messages",
-            "My Tutors",
-            "Drafts?",
-            "Still-thinking",
-          ].map((text, index) => (
+          {["Profile", "Messages", "My Tutors"].map((text, index) => (
             <ListItem button key={text} component={Link} to={linkPath(index)}>
               <ListItemIcon>{iconDisplay(index)}</ListItemIcon>
               <ListItemText primary={text} />

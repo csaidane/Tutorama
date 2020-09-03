@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
   box: {
     width: "40%",
     height: "40%",
+    borderRadius: "10%",
   },
   padding: {
     padding: "5%",
@@ -100,18 +101,12 @@ export default function BottomLayerProfileStudent(props) {
             <Typography className={classes.padding} align="left">
               Email: {email}
             </Typography>
-            <Typography className={classes.padding} align="left">
-              Phone number:
-            </Typography>
           </Paper>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
-            <Typography className={classes.padding} align="left">
-              Country:
-            </Typography>
             <Typography className={classes.padding} align="left">
               Province: {province}
             </Typography>

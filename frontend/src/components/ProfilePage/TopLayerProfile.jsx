@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Avatar, Box, Typography, Fab } from "@material-ui/core/";
-import EditIcon from "@material-ui/icons/Edit";
+import { Avatar, Box, Typography } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
   root: {

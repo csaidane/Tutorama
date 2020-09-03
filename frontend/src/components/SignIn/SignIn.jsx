@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import WrongEmailPassword from "./WrongEmailPassword";
@@ -35,13 +35,7 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "100vh",
-    width: "50%",
-    display: "flex",
-    alignItems: "center",
-    textAlign: "center",
-  },
+  root: {},
   image: {
     backgroundImage:
       "url(https://images.unsplash.com/photo-1586775490184-b79f0621891f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80)",
@@ -60,12 +54,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    // width: "400px", // Fix IE 11 issue.
+    width: "400px", // Fix IE 11 issue.
+    height: "400px", // Fix IE 11 issue.
 
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(5),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  shiftRight: {
+    marginLeft: "15%",
+    // margin: "auto",
   },
 }));
 
@@ -88,18 +87,11 @@ export default function SignIn(props) {
   };
 
   return (
-    <Container component="main" alignItems="center">
-      <Grid
-        container
-        component="main"
-        className={classes.root}
-        alignContent="center"
-      >
+    <div className={classes.shiftRight}>
+      <Grid className={classes.root}>
         <CssBaseline />
-        <Grid item xs={12} component={Paper} elevation={6} square>
+        <Grid item xs={12}>
           <div className={classes.paper}>
-            {/* <WrongEmailPassword /> */}
-
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
@@ -165,6 +157,6 @@ export default function SignIn(props) {
       <Box mt={5}>
         <Copyright />
       </Box>
-    </Container>
+    </div>
   );
 }
