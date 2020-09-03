@@ -4,6 +4,7 @@ import { makeStyles, Grid } from "@material-ui/core";
 import HowWorks from "./HowWorks";
 import SearchField from "./SearchField";
 import FindSubjects from "./FindSubjects";
+import ScrollToTop from "./ScrollToTop";
 
 const useStyles = makeStyles((theme) => ({
   shiftRight: {
@@ -27,6 +28,7 @@ export default function HomePage() {
         <SearchField />
         <HowWorks />
         <FindSubjects />
+        <ScrollToTop />
       </Grid>
     </Fragment>
   );

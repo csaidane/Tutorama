@@ -111,8 +111,8 @@ function App() {
             {state.user ? (
               <Route path="/" exact component={HomePage} />
             ) : (
-                <Route path="/" exact component={IndexPage} />
-              )}
+              <Route path="/" exact component={IndexPage} />
+            )}
 
             <Route
               path="/signup/student"
@@ -140,22 +140,20 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
-                <Route
-                  path="/profile"
-                  exact
-                  render={(props) => (
-                    <StudentProfilePage {...props} user={state} />
-                  )}
-                />
-              )}
-
-
+              <Route
+                path="/profile"
+                exact
+                render={(props) => (
+                  <StudentProfilePage {...props} user={state} />
+                )}
+              />
+            )}
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
           {/* <EditProfileStudent /> */}
           {/* <ProfileBoxItem /> */}
-          <ReviewTutorProfile />
+          {/* <ReviewTutorProfile /> */}
           {/* <FilterBar /> */}
           {/* <ProfileBoxItem /> */}
           {/* <MessagePage /> */}
