@@ -7,44 +7,47 @@ import {
   CssBaseline,
   Button,
   FormControlLabel,
-  FormLabel,
   FormControl,
   Grid,
   Box,
-  Typography,
-  Container,
   Radio,
   RadioGroup,
-  Paper,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
+  Hidden,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import WbIncandescentOutlinedIcon from "@material-ui/icons/WbIncandescentOutlined";
-import MessageOutlinedIcon from "@material-ui/icons/MessageOutlined";
+import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(18),
-    display: "flex",
+    marginTop: theme.spacing(7),
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(-2.5),
+    color: "primary",
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(4),
   },
 
   image: {
     backgroundImage:
-      "url(https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=955&q=80)",
+      // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
+      "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
+    height: "100%",
+    // marginLeft: "5%",
+    // marginTop: "4%",
+    backgroundSize: "cover",
+    position: "fixed",
+    top: "0",
+    left: "0",
   },
 }));
 
@@ -60,21 +63,22 @@ export default function SignUpPage() {
     }
   };
   return (
-    <Container component="main">
-      <Grid container spacing={1}>
-        {/* Left part Sign Up */}
-        <Grid item sm={6} xs={12}>
-          <CssBaseline />
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-          </div>
+    <Grid
+      item
+      lg={12}
+      // md={12}
+      // sm={12}
+      container
+      className={classes.image}
+      direction="row"
+      alignItems="center"
+    >
+      {/* Left part Sign Up */}
+      <Grid item lg={6} md={12} sm={12} xs={12}>
+        <div className={classes.paper}>
           <form className={classes.form} id="radioForm" noValidate>
-            <Typography component="h1" variant="h5">
-              I am a...
-            </Typography>
-            <FormControl component="fieldset">
+            <h1 className="heading">I am a...</h1>
+            <FormControl component="fieldset" style={{ fontSize: "3rem" }}>
               <RadioGroup
                 row
                 aria-label="position"
@@ -86,15 +90,15 @@ export default function SignUpPage() {
                 <FormControlLabel
                   value="/signup/student"
                   control={<Radio color="primary" />}
-                  label="Student"
+                  label={<p className="optionText">Student</p>}
                 />
                 <FormControlLabel
                   value="/signup/tutor"
                   control={<Radio color="primary" />}
-                  label="Tutor"
+                  label={<p className="optionText">Tutor</p>}
                 />
               </RadioGroup>
-              <Link to={userType}>
+              <Link to={userType} style={{ textDecoration: "none" }}>
                 <Button variant="contained" color="secondary">
                   Next
                 </Button>
@@ -102,69 +106,100 @@ export default function SignUpPage() {
             </FormControl>
           </form>
           <Box mt={5}></Box>
-        </Grid>
-
-        {/* Right part  */}
-        <Grid item sm={6} xs={12}>
-          <CssBaseline />
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <WbIncandescentOutlinedIcon />
-            </Avatar>
-            <form className={classes.form} id="featureList" noValidate>
-              <Typography component="h1" variant="h5">
-                Why use Tutorama?
-              </Typography>
-              <FormControl component="fieldset">
-                <div className={classes.demo}>
-                  <List>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <MessageOutlinedIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary=" Chat via instant messages" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <MessageOutlinedIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary=" Chat via instant messages" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <MessageOutlinedIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary=" Chat via instant messages" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <MessageOutlinedIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary=" Chat via instant messages" />
-                    </ListItem>
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <MessageOutlinedIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary=" Chat via instant messages" />
-                    </ListItem>
-                  </List>
-                </div>
-              </FormControl>
-            </form>
-          </div>{" "}
-        </Grid>
+        </div>
       </Grid>
-    </Container>
+
+      {/* Right part  */}
+      <Grid lg={6} md={12} sm={12}>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <CssBaseline />
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <form className={classes.form} id="featureList" noValidate>
+            <h1 className="heading">Why use Tutorama?</h1>
+            <FormControl component="fieldset">
+              <div>
+                <List>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <DoneOutlineIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <p className="optionText2">
+                          {" "}
+                          Chat via instant messages with tutors
+                        </p>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <DoneOutlineIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <p className="optionText2">
+                          {" "}
+                          Search for any subject of your interest
+                        </p>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <DoneOutlineIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <p className="optionText2"> View tutors' profiles</p>
+                      }
+                    />{" "}
+                  </ListItem>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <DoneOutlineIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <p className="optionText2">
+                          {" "}
+                          See real reviews of the tutors
+                        </p>
+                      }
+                    />{" "}
+                  </ListItem>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <DoneOutlineIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <p className="optionText2">
+                          {" "}
+                          Select a tutor based on your location
+                        </p>
+                      }
+                    />{" "}
+                  </ListItem>
+                </List>
+              </div>
+            </FormControl>
+          </form>
+        </div>{" "}
+      </Grid>
+    </Grid>
   );
 }

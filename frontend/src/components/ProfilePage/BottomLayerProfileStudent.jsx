@@ -61,13 +61,16 @@ const useStyles = makeStyles((theme) => ({
   box: {
     width: "40%",
     height: "40%",
+    borderRadius: "10%",
   },
   padding: {
     padding: "5%",
   },
 }));
 
-export default function BottomLayerProfileStudent() {
+export default function BottomLayerProfileStudent(props) {
+  const { name, email, post_code, province, city, street } = props.user.user;
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -93,13 +96,10 @@ export default function BottomLayerProfileStudent() {
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
             <Typography className={classes.padding} align="left">
-              Full name:
+              Full name: {name}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Email:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Phone number:
+              Email: {email}
             </Typography>
           </Paper>
         </Grid>
@@ -108,19 +108,16 @@ export default function BottomLayerProfileStudent() {
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
             <Typography className={classes.padding} align="left">
-              Country:
+              Province: {province}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Province:
+              City: {city}
             </Typography>
             <Typography className={classes.padding} align="left">
-              City:
+              Street: {street}
             </Typography>
             <Typography className={classes.padding} align="left">
-              Street:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Post code:
+              Post code: {post_code}
             </Typography>
           </Paper>
         </Grid>

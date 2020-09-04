@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Avatar, Box, Typography, Fab } from "@material-ui/core/";
-import EditIcon from "@material-ui/icons/Edit";
+import { Avatar, Box, Typography } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +39,10 @@ function ImageAvatars() {
   );
 }
 
-export default function TopLayerProfile() {
+export default function TopLayerProfile(props) {
+  console.log("HELLO", props);
+  const { name } = props.user.user;
+
   const classes = useStyles();
 
   return (
@@ -53,7 +55,7 @@ export default function TopLayerProfile() {
       >
         <ImageAvatars />
 
-        <Typography variant="h6"> Student Name</Typography>
+        <Typography variant="h6"> {name}</Typography>
         {/* <Fab color="secondary" aria-label="edit">
           <EditIcon />
         </Fab> */}

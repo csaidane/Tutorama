@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Send from "@material-ui/icons/Send";
+import "./MessageTextBox.scss";
 
 const useStyles = makeStyles((theme) => ({
   sendBtn: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     left: "315px",
     boxSizing: "border-box",
     overflow: "auto",
-    width: "calc(100% - 300px - 50px)",
+    width: "100%",
   },
 
   chatTextBox: {
@@ -35,6 +36,7 @@ export default function MessageTextBox() {
     <div>
       <TextField
         placeholder="Type your message.."
+        fullWidth={true}
         id="chattextbox"
         className={classes.chatTextBox}
       ></TextField>

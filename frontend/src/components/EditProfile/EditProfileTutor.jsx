@@ -1,16 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Paper,
-  Avatar,
-  Box,
-  Typography,
-  Fab,
-  Grid,
-  Button,
-  TextField,
-  Container,
-} from "@material-ui/core/";
+import { Fab, Grid, Button, TextField, Container } from "@material-ui/core/";
 import EditIcon from "@material-ui/icons/Edit";
 import TopLayerProfile from "../ProfilePage/TopLayerProfile.jsx";
 
@@ -23,15 +13,29 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  shiftRight: {
+    marginLeft: "15%",
+    display: "flex",
+    flexDirection: "column",
+    placeItems: "center",
+  },
+  form: {
+    width: "60%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  spacingBtns: {
+    margin: "3%",
+  },
 }));
 
-export default function EditProfileTutor() {
+export default function EditProfileTutor(props) {
+  console.log("TUTOR", props);
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <TopLayerProfile />
-      <Fab color="secondary" aria-label="edit">
+    <div className={classes.shiftRight}>
+      <TopLayerProfile user={props.user} />
+      <Fab color="secondary" aria-label="edit" className={classes.spacingBtns}>
         <EditIcon />
       </Fab>
 
@@ -162,7 +166,7 @@ export default function EditProfileTutor() {
               type="submit"
               variant="contained"
               color="primary"
-              className={classes.submit}
+              className={classes.spacingBtns}
             >
               Update
             </Button>

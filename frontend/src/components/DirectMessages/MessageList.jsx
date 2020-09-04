@@ -8,7 +8,6 @@ import {
   Avatar,
   Typography,
   Divider,
-  Button,
 } from "@material-ui/core";
 
 /*
@@ -43,9 +42,32 @@ const useStyles = makeStyles((theme) => ({
   */
 }));
 
-export default function MessageList() {
+export default function MessageList(props) {
   const classes = useStyles();
 
+  let messageThreads = props.messageThreads;
+
+  const msgList = messageThreads.map((thread) => {
+    return (
+      <Fragment>
+        <ListItem
+          onClick={() => console.log(thread.id)}
+          id={thread.id}
+          key={thread.name}
+          className={classes.listItem}
+          alignItems="flex-start"
+        >
+          <ListItemAvatar>
+            <Avatar src={thread.profile_picture_url} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={<Typography variant="h6">{thread.name}</Typography>}
+          />
+        </ListItem>
+        <Divider />
+      </Fragment>
+    );
+  });
   return (
     <div className={classes.root}>
       {/* <Button
@@ -57,41 +79,7 @@ export default function MessageList() {
         New Message
       </Button> */}
       <List>
-        l
-        <divdiv key="1">
-          <ListItem className={classes.listItem} alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar src="/broken-image.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary={<Typography variant="h6">Username</Typography>}
-              secondary={
-                <Fragment>
-                  <Typography component="span" color="textPrimary">
-                    <p>Hello This is a chat text</p>
-                  </Typography>
-                </Fragment>
-              }
-            />
-          </ListItem>
-          <Divider />
-          <ListItem className={classes.listItem} alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar src="/broken-image.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary={<Typography variant="h6">Username</Typography>}
-              secondary={
-                <Fragment>
-                  <Typography component="span" color="textPrimary">
-                    <p>Hello This is a chat text</p>
-                  </Typography>
-                </Fragment>
-              }
-            />
-          </ListItem>
-          <Divider />
-        </divdiv>
+        <div key="1">{msgList}</div>
       </List>
     </div>
   );
