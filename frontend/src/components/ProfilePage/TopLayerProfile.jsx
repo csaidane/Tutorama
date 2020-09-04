@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   large: {
-    width: theme.spacing(20),
-    height: theme.spacing(20),
+    width: theme.spacing(25),
+    height: theme.spacing(25),
   },
 }));
 
@@ -32,7 +32,7 @@ function ImageAvatars() {
     <div className={classes.img}>
       <Avatar
         alt="Remy Sharp"
-        src="/static/images/avatar/1.jpg"
+        src="https://image.flaticon.com/icons/svg/1053/1053244.svg"
         className={classes.large}
       />
     </div>
@@ -54,11 +54,7 @@ export default function TopLayerProfile(props) {
         alignItems="center"
       >
         <ImageAvatars />
-
-        <Typography variant="h6"> {name}</Typography>
-        {/* <Fab color="secondary" aria-label="edit">
-          <EditIcon />
-        </Fab> */}
+        <h1> {name}</h1>
       </Box>
     </div>
   );

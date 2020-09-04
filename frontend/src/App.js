@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import clsx from "clsx";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Drawer, Container } from "@material-ui/core";
+import { Drawer, Grid } from "@material-ui/core";
 
 import {
   BrowserRouter as Router,
@@ -96,7 +96,7 @@ function App() {
   };
 
   return (
-    <div id='main'>
+    <Grid item lg={12} md={12} id='main' >
       <Router>
 
         <NavBar
@@ -203,14 +203,14 @@ function App() {
                 render={(props) => <EditProfileTutor {...props} user={state} />}
               />
             ) : (
-              <Route
-                path="/editprofile"
-                exact
-                render={(props) => (
-                  <EditProfileStudent {...props} user={state} />
-                )}
-              />
-            )}
+                <Route
+                  path="/editprofile"
+                  exact
+                  render={(props) => (
+                    <EditProfileStudent {...props} user={state} />
+                  )}
+                />
+              )}
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
@@ -236,7 +236,7 @@ function App() {
         {/* <RateDialog /> */}
 
       </Router>
-    </div>
+    </Grid>
   );
 }
 

@@ -14,15 +14,10 @@ import {
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
-    marginLeft: "10%",
-    marginRight: "10%",
+    marginLeft: "20%",
     marginTop: "7%",
     padding: theme.spacing(2),
-
     // textAlign: "center",
     color: theme.palette.text.primary,
   },
@@ -30,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
+    placeItems: "center",
   },
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
     minWidth: 120,
   },
   selectEmpty: {
@@ -48,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     width: "30%",
+  },
+  margin: {
+    margin: "0 3% 0 3%",
   },
 }));
 
@@ -95,12 +94,12 @@ export default function FilterBar(props) {
   };
 
   return (
-    <Grid item xs={12}>
+    <Grid item xl={12} md={12} xs={12}>
       <Paper className={classes.paper}>
         <form onSubmit={APISearch}>
           <FormControl className={classes.form}>
             {/* Choosing a subject  */}
-            <div style={{ width: 200 }}>
+            <div style={{ width: 250 }} className={classes.margin}>
               <Autocomplete
                 freeSolo
                 id="subjectList"

@@ -8,9 +8,7 @@ import "./SearchResultsPage.scss";
 const useStyles = makeStyles((theme) => ({
   shiftRight: {
     marginLeft: "15%",
-    // display: "flex",
-    // flexDirection: "column",
-    // placeItems: "center",
+    backgroundColor: "#FFFFFF",
   },
 }));
 
