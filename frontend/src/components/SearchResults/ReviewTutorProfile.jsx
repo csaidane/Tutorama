@@ -1,5 +1,6 @@
 import React from "react";
 import StarRateIcon from "@material-ui/icons/StarRate";
+import "./SearchResultsPage.scss";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
@@ -70,19 +71,26 @@ const useStyles = makeStyles((theme) => ({
     // margin: "auto",
   },
   shiftRightPrice: {
-    marginLeft: "30%",
+    fontFamily: "Roboto Mono",
+    fontSize: "25px",
+    marginTop: "3%",
+    marginLeft: "20%",
     // margin: "auto",
   },
-  shiftRightName: {
-    marginLeft: "10%",
-  },
+
   alignButtons: {
     textAlignLast: "center",
+  },
+  marginBackBtn: {
+    margin: "4%",
+  },
+  marginEdu: {
+    marginTop: "10%",
   },
 }));
 
 export default function ReviewTutorProfile(props) {
-  console.log("TUTOR PROFILE", props);
+  // console.log("TUTOR PROFILE", props);
   const {
     avg,
     bio,
@@ -114,10 +122,14 @@ export default function ReviewTutorProfile(props) {
 
   return (
     <Container>
-      <Grid className={classes.shiftRight} item xs={12}>
-        <div className={classes.root}>
+      <Grid className={classes.shiftRight} item lg={12}>
+        <Grid className={classes.root}>
           <Paper elevation={0}>
-            <Fab variant="extended" onClick={() => history.goBack()}>
+            <Fab
+              className={classes.marginBackBtn}
+              variant="extended"
+              onClick={() => history.goBack()}
+            >
               <ArrowBackOutlinedIcon className={classes.extendedIcon} />
               Back to search
             </Fab>
@@ -132,68 +144,63 @@ export default function ReviewTutorProfile(props) {
             >
               <Grid>
                 <ImageAvatars />
-                <Typography className={classes.shiftRightPrice} variant="h5">
+                <p className={classes.shiftRightPrice}>
                   CAD${rate_per_hour}/hour
-                </Typography>
+                </p>
                 <Typography
                   className={classes.shiftRightPrice}
                   variant="subtitle1"
                   color="primary"
                 >
                   {[...Array(parseInt(rate))].map((star, i) => {
-                    return <StarRateIcon key={i} />;
+                    return (
+                      <StarRateIcon style={{ color: "#f99f02" }} key={i} />
+                    );
                   })}
                 </Typography>
               </Grid>
 
               <Grid>
-                <Typography variant="h3" className={classes.shiftRightName}>
-                  {name}
-                </Typography>
-                <Typography
-                  variant="overline"
-                  className={classes.shiftRightName}
-                >
-                  {" "}
-                  {subject}
-                </Typography>
+                <h3 className="nameInReview">{name}</h3>
+                <p className="titleInReview"> {subject}</p>
               </Grid>
 
               <Grid item xs={3}>
                 {" "}
               </Grid>
               <Grid className={classes.alignButtons}>
-                <Link
-                  to="/messages"
-                  component="button"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Fab variant="extended" color="primary">
+                <Link component="button" style={{ textDecoration: "none" }}>
+                  <Fab
+                    className={classes.marginBackBtn}
+                    variant="extended"
+                    color="primary"
+                  >
                     <SendOutlinedIcon className={classes.extendedIcon} />
                     Send a message
                   </Fab>
                 </Link>
                 <RateDialog />
               </Grid>
-              <Grid item xs={3}></Grid>
-              <Grid item xs={3}></Grid>
-              <Grid item xs={3}></Grid>
+              <Grid item lg={3}></Grid>
+              <Grid item lg={3}></Grid>
+              <Grid item lg={3}></Grid>
 
               <Grid></Grid>
             </Grid>
           </Paper>
-        </div>
+        </Grid>
         <Grid className={classes.infoGrid}>
           <Grid
             item
-            xs={12}
+            lg={12}
             container
             direction="column"
             justify="center"
             alignItems="center"
+            className={classes.marginEdu}
           >
-            <Typography variant="h3">Education</Typography>
-            <Typography variant="overline">{education}</Typography>
+            <h4 className="eduInReview">Education</h4>
+            <p className="descinReview">{education}</p>
           </Grid>
         </Grid>
         <Divider variant="inset" style={{ marginBottom: "1%" }} />
@@ -201,36 +208,38 @@ export default function ReviewTutorProfile(props) {
         <Grid className={classes.infoGrid}>
           <Grid
             item
-            xs={12}
+            lg={12}
             container
-            direction="row"
+            direction="column"
             justify="center"
             alignItems="center"
           >
-            <Typography variant="h3">Bio</Typography>
-            <Typography variant="overline">{bio}</Typography>
+            <h4 className="eduInReview">Bio</h4>
+            <p className="descinReview">{bio}</p>
           </Grid>
         </Grid>
         <Divider variant="inset" style={{ marginBottom: "1%" }} />
 
-        <Grid className={classes.infoGrid}>
+        <Grid item lg={12} md={12} xs={12} className={classes.infoGrid}>
           <Grid
             item
+            lg={12}
+            md={12}
             xs={12}
             container
             direction="column"
             justify="center"
             alignItems="center"
           >
-            <Typography variant="h3">Reviews</Typography>
+            <h4 className="eduInReview">Reviews</h4>
             {/* Container for a review */}
-            <Grid item xs={12}>
+            <Grid item lg={12} md={12} xs={12}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.cardMedia}
                   image="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
                 />
-                <div className={classes.cardDetails}>
+                <Grid item lg={12} md={12} xs={12}>
                   <CardContent>
                     <Typography component="h2" variant="h6">
                       Liz Erits
@@ -238,15 +247,15 @@ export default function ReviewTutorProfile(props) {
                     <Typography variant="subtitle1" color="textSecondary">
                       Location: Montreal
                     </Typography>
-                    <Typography variant="subtitle1" paragraph>
+                    <p className="descinReview">
                       This tutor is the best one. This tutor is the best one.
                       This tutor is the best one. This tutor is the best one.
-                    </Typography>
+                    </p>
                     <Typography variant="subtitle1" color="primary">
                       Rating: <span role="img"> ⭐⭐⭐⭐⭐ </span>
                     </Typography>
                   </CardContent>
-                </div>
+                </Grid>
               </Card>
             </Grid>
           </Grid>

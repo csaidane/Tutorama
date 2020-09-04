@@ -7,6 +7,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import "./BottomLayerProfileTutor.scss";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,6 +66,8 @@ const useStyles = makeStyles((theme) => ({
   },
   padding: {
     padding: "5%",
+    fontFamily: "Lora",
+    fontSize: "1rem",
   },
 }));
 
@@ -95,30 +98,31 @@ export default function BottomLayerProfileStudent(props) {
       <TabPanel value={value} index={0}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
-            <Typography className={classes.padding} align="left">
-              Full name: {name}
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Email: {email}
-            </Typography>
+            <p className={classes.padding}>
+              <strong>Full name:</strong> {name}
+            </p>
+            <p className={classes.padding}>
+              <strong>Email: </strong>
+              {email}
+            </p>
           </Paper>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
-            <Typography className={classes.padding} align="left">
-              Province: {province}
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              City: {city}
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Street: {street}
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Post code: {post_code}
-            </Typography>
+            <p className={classes.padding}>
+              <strong>Province:</strong> {province}
+            </p>
+            <p className={classes.padding}>
+              <strong>City:</strong> {city}
+            </p>
+            <p className={classes.padding}>
+              <strong>Street:</strong> {street}
+            </p>
+            <p className={classes.padding}>
+              <strong>Post code:</strong> {post_code}
+            </p>
           </Paper>
         </Grid>
       </TabPanel>

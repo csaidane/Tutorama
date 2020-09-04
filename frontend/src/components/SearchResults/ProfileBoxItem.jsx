@@ -21,13 +21,14 @@ const useStyles = makeStyles({
     display: "flex",
   },
   cardDetails: {
+    paddingLeft: "5%",
     flex: 4,
   },
   cardMedia: {
-    marginTop: "6%",
+    // marginTop: "6%",
     marginRight: "2%",
-    width: 150,
-    height: 150,
+    width: 170,
+    height: 170,
     borderRadius: "70%",
   },
 });
@@ -45,38 +46,41 @@ export default function ProfileBoxItem(props) {
 
   return (
     <div>
-      <Grid item xs={10}>
-        <CardActionArea component="a" href="#" onClick={selectId}>
-          <Card className={classes.card}>
+      <Grid item lg={12} md={12} xs={12}>
+        <Card className={classes.card}>
+          <CardActionArea
+            style={{ display: "flex" }}
+            component="a"
+            href="#"
+            onClick={selectId}
+          >
             <div className={classes.cardDetails}>
               <CardContent>
-                <Typography component="h2" variant="h6">
-                  {props.name}
-                </Typography>
-                <Typography variant="h6">{props.subject} tutor </Typography>
+                <h3 className="teacherNameSearch">{props.name}</h3>
+                <p className="teacherTitleSearch">{props.subject} tutor </p>
                 <Typography variant="subtitle1" color="textSecondary">
                   ${props.rate_per_hour}/hour, {props.city}
                 </Typography>
-                <Typography variant="subtitle1" paragraph>
-                  {props.bio}
-                </Typography>
-                <Typography variant="subtitle1" color="primary">
+                <p className="teacherBioSearch">{props.bio}</p>
+                <p className="teacherRateSearch">
                   Rating:
                   {[...Array(parseInt(rate))].map((star, i) => {
-                    return <StarRateIcon key={i} />;
+                    return (
+                      <StarRateIcon style={{ color: "#f79f07" }} key={i} />
+                    );
                   })}
-                </Typography>
-                <Typography variant="subtitle1" color="primary">
+                </p>
+                <p className="teacherRateSearch">
                   {props.count} {props.count <= 1 ? "review" : "reviews"}
-                </Typography>
+                </p>
               </CardContent>
             </div>
             <CardMedia
               className={classes.cardMedia}
               image={props.profile_picture_url}
             />
-          </Card>
-        </CardActionArea>
+          </CardActionArea>
+        </Card>
       </Grid>
     </div>
   );
