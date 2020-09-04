@@ -12,10 +12,8 @@ import {
   Grid,
   Box,
   Typography,
-  Container,
 } from "@material-ui/core/";
 
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import AccountBoxOutlinedIcon from "@material-ui/icons/AccountBoxOutlined";
 import { makeStyles } from "@material-ui/core/styles";

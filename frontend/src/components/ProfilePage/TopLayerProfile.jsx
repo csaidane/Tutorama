@@ -40,6 +40,7 @@ function ImageAvatars() {
 }
 
 export default function TopLayerProfile(props) {
+  console.log("HELLO", props);
   const { name } = props.user.user;
 
   const classes = useStyles();

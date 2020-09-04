@@ -195,6 +195,21 @@ function App() {
                 return <ReviewTutorProfile tutor={tutor} />;
               }}
             />
+            {state.tutor ? (
+              <Route
+                path="/editprofile"
+                exact
+                render={(props) => <EditProfileTutor {...props} user={state} />}
+              />
+            ) : (
+              <Route
+                path="/editprofile"
+                exact
+                render={(props) => (
+                  <EditProfileStudent {...props} user={state} />
+                )}
+              />
+            )}
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}

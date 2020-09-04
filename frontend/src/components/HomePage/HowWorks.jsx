@@ -99,9 +99,9 @@ export default function HowWorks() {
       <h2 id="heading"> How tutorama works?</h2>
       <div id="slider">
         <Slider {...settings}>
-          {steps.map((step) => {
+          {steps.map((step, index) => {
             return (
-              <div>
+              <div key={index}>
                 <img
                   id="sliderPic"
                   // width="300px"
