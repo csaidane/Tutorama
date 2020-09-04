@@ -9,8 +9,10 @@ const {
   addTutorSubject,
   addReview,
   getTutorWithId,
+  getUserWithId,
   updateUser,
-  updateTutor
+  updateTutor,
+  getReviewsForTutor
 } = require("./helper_functions");
 
 module.exports = (db) => {
@@ -104,16 +106,36 @@ module.exports = (db) => {
   router.get('/profile/:id', (req,res) => {
     const tutor_id = req.params.id
     let outputVars = {};
-    getTutorWithId(tutor_id)
+    getUserWithId(tutor_id)
+    .then((user)=>{
+      if(!user){
+        res.json("error: no user found")
+        return;
+      } else{
+        outputVars['user_info'] = user
+        return getTutorWithId(tutor_id);
+      }
+    })
     .then((tutor)=>{
       if(!tutor){
-        res.json("no tutor found")
+        res.json("error: no tutor found")
       } else{
         outputVars['tutor'] = tutor;
+        return getReviewsForTutor(tutor_id)
+      }
+    })
+    .then((reviews)=>{
+      if(!reviews){
+        res.json("error: no reviews found")
+        return;
+      } else{
+        outputVars['reviews'] = reviews
         res.json(outputVars)
       }
     })
   });
+
+
 
   router.post("/profile/update", (req, res) => {
     const user = {

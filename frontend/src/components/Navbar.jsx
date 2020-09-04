@@ -132,8 +132,8 @@ export default function NavBar(props) {
   const APILogout = function (event) {
     event.preventDefault();
     axios({ url: "/api/users/logout", method: "POST" }).then((result) => {
-      props.updateTutor(null, null);
       history.push("/");
+      props.updateTutor(null, null);
     });
   };
 

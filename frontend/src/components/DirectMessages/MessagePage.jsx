@@ -41,7 +41,7 @@ export default function MessagePage(props) {
       <div className="msg">
         <MessageView interlocutor={interlocutor} messageConversation={messageConversation}/>
         <div className="text-message-box">
-          {interlocutor.their_name&& <MessageTextBox />}
+          {interlocutor.their_name&& <MessageTextBox userId={props.userId} interlocutor={interlocutor} />}
         </div>
       </div>
     </div>
