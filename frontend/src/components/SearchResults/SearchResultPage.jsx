@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import FilterBar from "./FilterBar";
 import ProfileBoxItem from "./ProfileBoxItem";
 import ReviewTutorProfile from "./ReviewTutorProfile";
@@ -16,30 +16,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchResultPage(props) {
   const classes = useStyles();
+  const [searchResult, setSearchResult] = useState(props.searchResult);
 
-  let searchResults = props.searchResult.map((result) => {
+  const searchResults = searchResult.map((result) => {
     return <ProfileBoxItem key={result.tutor_id} {...result} />;
   });
 
-  const onSearch = useCallback(
-    function (searchCriteria) {
-      console.log(searchCriteria, "HELLLLLO");
-      let searchResult;
-      if (searchCriteria.sortBy === "10") {
-        searchResult = props.searchResult.sort(
-          (a, b) => b.rate_per_hour - a.rate_per_hour
-        );
-        searchResults = searchResult.map((result) => {
-          return <ProfileBoxItem key={result.tutor_id} {...result} />;
-        });
-      }
-    },
-    [props]
-  );
+  // const onSearch = useCallback(
+  //   function (searchCriteria) {
+  //     console.log(searchCriteria, "HELLLLLO");
+  //     let searchResult;
+  //     if (searchCriteria.sortBy === "10") {
+  //       searchResult = props.searchResult.sort(
+  //         (a, b) => b.rate_per_hour - a.rate_per_hour
+  //       );
+  //       searchResults = searchResult.map((result) => {
+  //         return <ProfileBoxItem key={result.tutor_id} {...result} />;
+  //       });
+  //     }
+  //   },
+  //   [props]
+  // );
 
   return (
     <div className="searchResultsMain">
-      <FilterBar onSearch={onSearch} />
+      <FilterBar setSearchResult={setSearchResult} />
       {searchResults}
     </div>
   );
