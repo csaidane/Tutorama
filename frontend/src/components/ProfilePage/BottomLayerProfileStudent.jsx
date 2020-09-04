@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Grid } from "@material-ui/core";
+import { AppBar, Grid, Fab } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import EditIcon from "@material-ui/icons/Edit";
+
 import "./BottomLayerProfileTutor.scss";
 
 function TabPanel(props) {
@@ -72,7 +74,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BottomLayerProfileStudent(props) {
-  const { name, email, post_code, province, city, street } = props.user.user;
+  const {
+    name,
+    email,
+    password,
+    post_code,
+    province,
+    city,
+    street,
+  } = props.user.user;
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -82,7 +92,23 @@ export default function BottomLayerProfileStudent(props) {
   };
 
   return (
-    <div className={classes.root}>
+    <Grid className={classes.root}>
+      <Grid
+        item
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+        <Fab
+          href="/editprofile"
+          color="secondary"
+          aria-label="edit"
+          style={{ marginBottom: "3%" }}
+        >
+          <EditIcon />
+        </Fab>
+      </Grid>
       <AppBar position="static">
         <Tabs
           variant="fullWidth"
@@ -105,6 +131,10 @@ export default function BottomLayerProfileStudent(props) {
               <strong>Email: </strong>
               {email}
             </p>
+            <p className={classes.padding}>
+              <strong>Password: </strong>
+              {password}
+            </p>
           </Paper>
         </Grid>
       </TabPanel>
@@ -126,6 +156,6 @@ export default function BottomLayerProfileStudent(props) {
           </Paper>
         </Grid>
       </TabPanel>
-    </div>
+    </Grid>
   );
 }
