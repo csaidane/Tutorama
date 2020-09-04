@@ -48,8 +48,11 @@ export default function MessageTextBox(props) {
     let message = {content: newMessage, receiver_id:props.interlocutor.their_id, sender_id: props.userId}
     axios({ url: "/api/users/messages/add", data: message, method: "POST" })
     .then((results)=>{
-      console.log(results.data)
       setNewMessage("")
+      return axios({url:`api/users/${props.userId}/messages/${props.interlocutor.their_id}`, method:"GET"})
+    })
+    .then((results)=>{
+    props.setMessageConversation(results.data.messages)
     })
   }
 

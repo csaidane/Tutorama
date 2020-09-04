@@ -180,8 +180,7 @@ const getMessagesBetweenUsers = function (sender_id, receiver_id) {
         JOIN users as u on sender_id = u.id
         WHERE sender_id = $2 AND receiver_id = $1
       ) as all_msg
-      ORDER BY sent_date DESC;
-
+      ORDER BY sent_date ASC;
   `,
       [sender_id, receiver_id]
     )
