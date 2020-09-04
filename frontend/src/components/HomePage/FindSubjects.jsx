@@ -1,14 +1,10 @@
 import React from "react";
-// import "./HowWorks.scss";
+import "./FindSubjects.scss";
 
 import { makeStyles, Box, Grid, Typography } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
   image: {
-    backgroundImage:
-      // "url('https://image.flaticon.com/icons/svg/891/891733.svg')",
-      // "url('https://image.flaticon.com/icons/svg/1361/1361194.svg')",
-      "url('https://image.flaticon.com/icons/svg/136/136830.svg')",
     height: "250px",
     width: "150px",
     backgroundSize: "cover",
@@ -18,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
     // boxShadow: "25px 25px 50px 50px white inset"
   },
   root: {
-    maxWidth: 345,
+    marginLeft: "10%",
+    marginRight: "10%",
   },
   media: {
     height: 140,
@@ -48,25 +45,92 @@ const useStyles = makeStyles((theme) => ({
 export default function HowWorks() {
   const classes = useStyles();
   return (
-    <div id="searchField">
-      <Typography
-        className={classes.bottomMargin}
-        variant="h3"
-        align="center"
-        color="textPrimary"
-      >
+    <div className={classes.root}>
+      <h2 id="heading" align="center">
         What subject you need help with?
-      </Typography>
-
-      <Box
-        display="flex"
-        justifyContent="flex-start"
-        // alignItems="center"
+      </h2>
+      <Grid
+        container
+        direction="row"
+        justify="flex-start"
+        alignItems="flex-start"
       >
         <Grid
           container
-          direction="row"
-          justify="flex-start"
+          direction="column"
+          justify="center"
+          alignItems="center"
+          item
+          xs={12}
+          md={3}
+          className={classes.image}
+        >
+          <img
+            className={classes.imgSize}
+            src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/geography.png?raw=true"
+            alt="login"
+          ></img>
+          <p className="stepText">Geography </p>
+        </Grid>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          item
+          xs={12}
+          md={3}
+          className={classes.image}
+        >
+          <img
+            className={classes.imgSize}
+            alt="stepImage"
+            src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/astronomy.png?raw=true"
+          ></img>
+          <p className="stepText">Astronomy</p>
+        </Grid>
+
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          className={classes.image}
+          item
+          xs={12}
+          md={3}
+        >
+          <img
+            className={classes.imgSize}
+            alt="stepImage"
+            src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/geometry.png?raw=true"
+          ></img>
+          <p className="stepText">Geometry</p>
+        </Grid>
+
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          item
+          xs={12}
+          md={3}
+          className={classes.image}
+        >
+          <img
+            className={classes.imgSize}
+            alt="stepImage"
+            src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/literature.png?raw=true"
+          ></img>
+          <p className="stepText">Literature </p>
+        </Grid>
+        {/* Next row  */}
+
+        <Grid
+          container
+          direction="row-reverse"
+          justify="center"
           alignItems="flex-start"
         >
           <Grid
@@ -81,45 +145,10 @@ export default function HowWorks() {
           >
             <img
               className={classes.imgSize}
-              src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/geography.png?raw=true"
-              alt="login"
-            ></img>
-            <Typography variant="h4">Geography </Typography>
-          </Grid>
-          <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-            item
-            xs={12}
-            md={3}
-            className={classes.image}
-          >
-            <img
-              className={classes.imgSize}
               alt="stepImage"
-              src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/astronomy.png?raw=true"
+              src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/math.png?raw=true"
             ></img>
-            <Typography variant="h4">Astronomy</Typography>
-          </Grid>
-
-          <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-            className={classes.image}
-            item
-            xs={12}
-            md={3}
-          >
-            <img
-              className={classes.imgSize}
-              alt="stepImage"
-              src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/geometry.png?raw=true"
-            ></img>
-            <Typography variant="h4">Geometry</Typography>
+            <p className="stepText">Math</p>
           </Grid>
 
           <Grid
@@ -135,90 +164,46 @@ export default function HowWorks() {
             <img
               className={classes.imgSize}
               alt="stepImage"
-              src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/literature.png?raw=true"
+              src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/music.png?raw=true"
             ></img>
-            <Typography variant="h4">Literature </Typography>
+            <p className="stepText">Music</p>
           </Grid>
-          {/* Next row  */}
-
           <Grid
             container
-            direction="row-reverse"
+            direction="column"
             justify="center"
-            alignItems="flex-start"
+            alignItems="center"
+            item
+            xs={12}
+            md={3}
+            className={classes.image}
           >
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-              item
-              xs={12}
-              md={3}
-              className={classes.image}
-            >
-              <img
-                className={classes.imgSize}
-                alt="stepImage"
-                src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/math.png?raw=true"
-              ></img>
-              <Typography variant="h4">Math</Typography>
-            </Grid>
-
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-              item
-              xs={12}
-              md={3}
-              className={classes.image}
-            >
-              <img
-                className={classes.imgSize}
-                alt="stepImage"
-                src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/music.png?raw=true"
-              ></img>
-              <Typography variant="h4">Music</Typography>
-            </Grid>
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-              item
-              xs={12}
-              md={3}
-              className={classes.image}
-            >
-              <img
-                className={classes.imgSize}
-                alt=""
-                src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/biology.png?raw=true"
-              ></img>
-              <Typography variant="h4">Biology</Typography>
-            </Grid>
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-              item
-              xs={12}
-              md={3}
-              className={classes.image}
-            >
-              <img
-                className={classes.imgSize}
-                alt=""
-                src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/socialStudies.png?raw=true"
-              ></img>
-              <Typography variant="h4">Social Studies</Typography>
-            </Grid>
+            <img
+              className={classes.imgSize}
+              alt=""
+              src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/biology.png?raw=true"
+            ></img>
+            <p className="stepText">Biology</p>
+          </Grid>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            item
+            xs={12}
+            md={3}
+            className={classes.image}
+          >
+            <img
+              className={classes.imgSize}
+              alt=""
+              src="https://github.com/csaidane/Tutorama/blob/feature/frontend/frontend/src/img/subject%20illustrations/socialStudies.png?raw=true"
+            ></img>
+            <p className="stepText">Social Studies</p>
           </Grid>
         </Grid>
-      </Box>
+      </Grid>
     </div>
   );
 }

@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import StarRateIcon from "@material-ui/icons/StarRate";
+import { useHistory } from "react-router-dom";
+
 import {
   Typography,
   makeStyles,
@@ -29,46 +32,52 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProfileBoxItem() {
+export default function ProfileBoxItem(props) {
+  const selectId = function () {
+    const tutorId = props.tutor_id;
+    // props = { ...props, currentTutorId: tutorId };
+    history.push(`/tutor/${tutorId}`);
+  };
+  const rate = props.avg.charAt(0);
+  let history = useHistory();
+
   const classes = useStyles();
 
   return (
-    <Container component="main">
+    <div>
       <Grid item xs={10}>
-        <CardActionArea component="a" href="#">
+        <CardActionArea component="a" href="#" onClick={selectId}>
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>
                 <Typography component="h2" variant="h6">
-                  Martha Bosnia
+                  {props.name}
                 </Typography>
-                <Typography variant="h6">History tutor</Typography>
+                <Typography variant="h6">{props.subject} tutor </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
-                  $35/hour, Montreal
+                  ${props.rate_per_hour}/hour, {props.city}
                 </Typography>
                 <Typography variant="subtitle1" paragraph>
-                  An experienced tutor with over 5 years of experience ipsum
-                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                  minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut aliquip ex ea commodo consequat. Duis aute...
+                  {props.bio}
                 </Typography>
                 <Typography variant="subtitle1" color="primary">
-                  Rating: ⭐⭐⭐⭐⭐
+                  Rating:
+                  {[...Array(parseInt(rate))].map((star, i) => {
+                    return <StarRateIcon key={i} />;
+                  })}
                 </Typography>
                 <Typography variant="subtitle1" color="primary">
-                  10 reviews
+                  {props.count} {props.count <= 1 ? "review" : "reviews"}
                 </Typography>
               </CardContent>
             </div>
             <CardMedia
               className={classes.cardMedia}
-              image="https://images.unsplash.com/photo-1551989745-347c28b620e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
-              title="has 10 reviews"
+              image={props.profile_picture_url}
             />
           </Card>
         </CardActionArea>
       </Grid>
-    </Container>
+    </div>
   );
 }

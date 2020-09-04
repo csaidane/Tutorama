@@ -65,19 +65,19 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/search/", (req, res) => {
+  router.get("/search", (req, res) => {
     const search_keywords = req.query.query;
     searchTutors(search_keywords)
-    .then((tutors) => {
-      console.log("tutors", tutors)
-      if(!tutors){
-        res.json("no tutors found for these keywords")
-      } else{
-        let templateVars = {search: tutors}
-        res.json(templateVars)
-      }
-    })
-    .catch(e => res.send(e));
+      .then((tutors) => {
+        console.log("tutors", tutors);
+        if (!tutors) {
+          res.json("no tutors found for these keywords");
+        } else {
+          let templateVars = { search: tutors };
+          res.json(templateVars);
+        }
+      })
+      .catch((e) => res.send(e));
   });
 
 

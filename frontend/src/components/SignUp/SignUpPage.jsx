@@ -10,18 +10,16 @@ import {
   FormControl,
   Grid,
   Box,
-  Typography,
-  Container,
   Radio,
   RadioGroup,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
+  Hidden,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import WbIncandescentOutlinedIcon from "@material-ui/icons/WbIncandescentOutlined";
-import MessageOutlinedIcon from "@material-ui/icons/MessageOutlined";
+import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   avatar: {
-    margin: theme.spacing(1),
-
+    margin: theme.spacing(-2.5),
+    color: "primary",
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
@@ -41,12 +39,15 @@ const useStyles = makeStyles((theme) => ({
 
   image: {
     backgroundImage:
-      "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
+      // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
+      "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
     height: "100%",
-    marginLeft: "2%",
-  },
-  spacing: {
-    margin: "3%",
+    // marginLeft: "5%",
+    // marginTop: "4%",
+    backgroundSize: "cover",
+    position: "fixed",
+    top: "0",
+    left: "0",
   },
 }));
 
@@ -63,19 +64,21 @@ export default function SignUpPage() {
   };
   return (
     <Grid
+      item
+      lg={12}
+      // md={12}
+      // sm={12}
       container
       className={classes.image}
       direction="row"
       alignItems="center"
     >
       {/* Left part Sign Up */}
-      <Grid item sm={6} xs={12}>
+      <Grid item lg={6} md={12} sm={12} xs={12}>
         <div className={classes.paper}>
           <form className={classes.form} id="radioForm" noValidate>
-            <Typography variant="h3" className={classes.spacing}>
-              I am a...
-            </Typography>
-            <FormControl component="fieldset">
+            <h1 className="heading">I am a...</h1>
+            <FormControl component="fieldset" style={{ fontSize: "3rem" }}>
               <RadioGroup
                 row
                 aria-label="position"
@@ -87,20 +90,16 @@ export default function SignUpPage() {
                 <FormControlLabel
                   value="/signup/student"
                   control={<Radio color="primary" />}
-                  label="Student"
+                  label={<p className="optionText">Student</p>}
                 />
                 <FormControlLabel
                   value="/signup/tutor"
                   control={<Radio color="primary" />}
-                  label="Tutor"
+                  label={<p className="optionText">Tutor</p>}
                 />
               </RadioGroup>
               <Link to={userType} style={{ textDecoration: "none" }}>
-                <Button
-                  className={classes.spacing}
-                  variant="contained"
-                  color="secondary"
-                >
+                <Button variant="contained" color="secondary">
                   Next
                 </Button>
               </Link>
@@ -111,7 +110,7 @@ export default function SignUpPage() {
       </Grid>
 
       {/* Right part  */}
-      <Grid item sm={6} xs={12}>
+      <Grid lg={6} md={12} sm={12}>
         <CssBaseline />
         <div className={classes.paper}>
           <CssBaseline />
@@ -119,51 +118,81 @@ export default function SignUpPage() {
             <LockOutlinedIcon />
           </Avatar>
           <form className={classes.form} id="featureList" noValidate>
-            <Typography variant="h3" className={classes.spacing}>
-              Why use Tutorama?
-            </Typography>
+            <h1 className="heading">Why use Tutorama?</h1>
             <FormControl component="fieldset">
               <div>
                 <List>
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
-                        <MessageOutlinedIcon />
+                        <DoneOutlineIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary=" Chat via instant messages" />
+                    <ListItemText
+                      primary={
+                        <p className="optionText2">
+                          {" "}
+                          Chat via instant messages with tutors
+                        </p>
+                      }
+                    />
                   </ListItem>
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
-                        <MessageOutlinedIcon />
+                        <DoneOutlineIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary=" Chat via instant messages" />
+                    <ListItemText
+                      primary={
+                        <p className="optionText2">
+                          {" "}
+                          Search for any subject of your interest
+                        </p>
+                      }
+                    />
                   </ListItem>
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
-                        <MessageOutlinedIcon />
+                        <DoneOutlineIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary=" Chat via instant messages" />
+                    <ListItemText
+                      primary={
+                        <p className="optionText2"> View tutors' profiles</p>
+                      }
+                    />{" "}
                   </ListItem>
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
-                        <MessageOutlinedIcon />
+                        <DoneOutlineIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary=" Chat via instant messages" />
+                    <ListItemText
+                      primary={
+                        <p className="optionText2">
+                          {" "}
+                          See real reviews of the tutors
+                        </p>
+                      }
+                    />{" "}
                   </ListItem>
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
-                        <MessageOutlinedIcon />
+                        <DoneOutlineIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary=" Chat via instant messages" />
+                    <ListItemText
+                      primary={
+                        <p className="optionText2">
+                          {" "}
+                          Select a tutor based on your location
+                        </p>
+                      }
+                    />{" "}
                   </ListItem>
                 </List>
               </div>

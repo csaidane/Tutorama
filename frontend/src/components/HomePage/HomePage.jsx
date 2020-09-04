@@ -1,24 +1,32 @@
 import React, { Fragment } from "react";
 
-import { makeStyles, Grid } from "@material-ui/core";
+import { makeStyles, Grid, Typography, Link, Box } from "@material-ui/core";
 import HowWorks from "./HowWorks";
 import SearchField from "./SearchField";
 import FindSubjects from "./FindSubjects";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "./ScrollToTop.jsx";
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="/">
+        tutorama
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   shiftRight: {
-    marginLeft: "15%",
+    // marginLeft: "15%",
+    paddingLeft: "15%",
+    backgroundColor: "#FFFFFF",
     // margin: "auto",
   },
-  image: {
-    backgroundImage: "url(../img/background.png)",
-    height: "400px",
-    backgroundSize: "cover",
-    boxShadow: "25px 25px 50px 50px white inset",
-  },
 }));
-
 
 export default function HomePage(props) {
   const classes = useStyles();
@@ -29,6 +37,9 @@ export default function HomePage(props) {
         <SearchField {...props} updateSearchResult={props.updateSearchResult} />
         <HowWorks />
         <FindSubjects />
+      </Grid>
+
+      <Grid item xs={12} container id="bottomImg">
         <ScrollToTop />
       </Grid>
     </Fragment>

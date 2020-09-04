@@ -4,7 +4,12 @@ import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Container } from "@material-ui/core";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from "react-router-dom";
 import NavBar from "./components/Navbar.jsx";
 import HomePage from "./components/HomePage/HomePage";
 import StudentProfilePage from "./components/ProfilePage/StudentProfilePage";
@@ -27,7 +32,7 @@ import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
 import EditProfileStudent from "./components/EditProfile/EditProfileStudent";
 import SearchResultPage from "./components/SearchResults/SearchResultPage";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -38,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: -drawerWidth,
     height: "100vh",
-    padding: "24px 24px 0 24px",
+    // padding: "24px 24px 0 24px",
+    padding: "0px 0px 0 0px",
+    backgroundColor: "#FFFFFF",
   },
   drawerHeader: {
     display: "flex",
@@ -69,9 +76,8 @@ function App() {
   const [state, setState] = useState({
     user: storedUsers && JSON.parse(storedUsers),
     tutor: storedTutors && JSON.parse(storedTutors),
-    searchResult: null
+    searchResult: null,
   });
-
 
   const updateUser = function (user) {
     user && window.localStorage.setItem("user", JSON.stringify(user));
@@ -84,15 +90,15 @@ function App() {
     setState((prev) => ({ ...prev, user, tutor }));
   };
 
-  const updateSearchResult = function(searchResult){
+  const updateSearchResult = function (searchResult) {
+    console.log("UPDATE SEARCH RESULT", searchResult);
     setState((prev) => ({ ...prev, searchResult }));
-
-
-  }
+  };
 
   return (
-    <Router>
-      <Fragment>
+    <div id='main'>
+      <Router>
+
         <NavBar
           open={open}
           setOpen={setOpen}
@@ -119,12 +125,19 @@ function App() {
             />
             <Route path="/signup" exact component={SignUpPage} />
             {state.user ? (
-              <Route path="/" exact render={(props) => (
-                <HomePage  {...props} updateSearchResult={updateSearchResult} />
-              )} />
+              <Route
+                path="/"
+                exact
+                render={(props) => (
+                  <HomePage
+                    {...props}
+                    updateSearchResult={updateSearchResult}
+                  />
+                )}
+              />
             ) : (
-              <Route path="/" exact component={IndexPage} />
-            )}
+                <Route path="/" exact component={IndexPage} />
+              )}
 
             <Route
               path="/signup/student"
@@ -144,12 +157,13 @@ function App() {
                 />
               )}
             />
-            <Route path="/messages" exact render={(props) => (
-                <MessagePage
-                  {...props}
-                  userId={state.user && state.user.id}
-                />
-              )}  />
+            <Route
+              path="/messages"
+              exact
+              render={(props) => (
+                <MessagePage {...props} userId={state.user && state.user.id} />
+              )}
+            />
             {state.tutor ? (
               <Route
                 path="/profile"
@@ -157,21 +171,46 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
+                <Route
+                  path="/profile"
+                  exact
+                  render={(props) => (
+                    <StudentProfilePage {...props} user={state} />
+                  )}
+                />
+              )}
+            <Route
+              path="/searchresult"
+              exact
+              render={(props) => (
+                <SearchResultPage searchResult={state.searchResult} />
+              )}
+            />
+            <Route
+              path="/tutor/:id"
+              exact
+              render={(props) => {
+                const { id } = props.match.params;
+                const tutor = state.searchResult.find((r) => r.tutor_id == id);
+
+                return <ReviewTutorProfile tutor={tutor} />;
+              }}
+            />
+            {state.tutor ? (
               <Route
-                path="/profile"
+                path="/editprofile"
+                exact
+                render={(props) => <EditProfileTutor {...props} user={state} />}
+              />
+            ) : (
+              <Route
+                path="/editprofile"
                 exact
                 render={(props) => (
-                  <StudentProfilePage {...props} user={state} />
+                  <EditProfileStudent {...props} user={state} />
                 )}
               />
             )}
-            <Route
-                path="/searchresult"
-                exact
-                render={(props) => (
-                  <SearchResultPage  />
-                )}
-              />
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
@@ -195,8 +234,9 @@ function App() {
           {/* <BottomLayerProfileStudent /> */}
         </main>
         {/* <RateDialog /> */}
-      </Fragment>
-    </Router>
+
+      </Router>
+    </div>
   );
 }
 

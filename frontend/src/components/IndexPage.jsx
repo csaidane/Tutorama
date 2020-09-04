@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import "./IndexPage.scss";
+
 import {
   Typography,
   makeStyles,
@@ -8,7 +10,6 @@ import {
   Divider,
   CardContent,
   CardMedia,
-  Container,
 } from "@material-ui/core/";
 
 const useStyles = makeStyles({
@@ -19,8 +20,9 @@ const useStyles = makeStyles({
     width: "250px",
     height: "450px",
     "&:hover": {
-      background: "#FEFC4C",
+      background: "#303F9F",
       borderTop: "solid 1px #cccccc",
+      color: "white",
     },
   },
 
@@ -30,7 +32,7 @@ const useStyles = makeStyles({
     borderRadius: "2%",
   },
   box: { display: "flex", flexDirection: "row" },
-  heading: { marginTop: "6%", marginBottom: "0" },
+  heading: { paddingTop: "5%", marginBottom: "0" },
   img: {
     width: "400px",
     height: "600px",
@@ -38,6 +40,10 @@ const useStyles = makeStyles({
   shiftRight: {
     marginLeft: "15%",
     // margin: "auto",
+    backgroundImage:
+      "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 90%)",
+    height: "100%",
+    // backgroundSize: "cover",
   },
 });
 
@@ -45,22 +51,15 @@ export default function IndexPage() {
   const classes = useStyles();
 
   return (
-    <div className={classes.shiftRight}>
-      <Container
-        component="main"
-        style={{
-          backgroundImage: `url("https://cdn.pixabay.com/photo/2019/04/10/12/40/watercolour-4117017_1280.png")`,
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+    <Grid item sm={12} className={classes.shiftRight}>
+      <Grid component="main">
         <Grid
           container
           direction="column"
-          // justify="center"
           alignItems="center"
           className={classes.heading}
         >
-          <Typography variant="h2">Hire the right tutor today!</Typography>
+          <h1 id="heading">Hire the right tutor today!</h1>
         </Grid>
 
         <Box className={classes.box}>
@@ -99,7 +98,11 @@ export default function IndexPage() {
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">
-                    Rating: ⭐⭐⭐⭐⭐
+                    Rating:{" "}
+                    <span aria-label="Star" role="img">
+                      {" "}
+                      ⭐⭐⭐⭐⭐{" "}
+                    </span>
                   </Typography>
                   <Typography variant="subtitle1" color="primary">
                     2 reviews
@@ -143,7 +146,11 @@ export default function IndexPage() {
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">
-                    Rating: ⭐⭐⭐⭐⭐
+                    Rating:{" "}
+                    <span aria-label="Star" role="img">
+                      {" "}
+                      ⭐⭐⭐⭐⭐{" "}
+                    </span>
                   </Typography>
                   <Typography variant="subtitle1" color="primary">
                     6 reviews
@@ -188,7 +195,11 @@ export default function IndexPage() {
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">
-                    Rating: ⭐⭐⭐⭐⭐
+                    Rating:{" "}
+                    <span aria-label="Star" role="img">
+                      {" "}
+                      ⭐⭐⭐⭐⭐{" "}
+                    </span>
                   </Typography>
                   <Typography variant="subtitle1" color="primary">
                     11 reviews
@@ -198,19 +209,15 @@ export default function IndexPage() {
             </Grid>
           </Card>
           <Grid>
-            {/* <img
-            className={classes.img}
-            alt=""
-            src="https://cdn.pixabay.com/photo/2013/07/12/14/07/student-147783_1280.png"
-          ></img> */}
             <img
               className={classes.img}
               alt=""
-              src="https://cdn.pixabay.com/photo/2017/10/23/10/14/idea-2880595_1280.png"
+              // src="https://cdn.pixabay.com/photo/2017/10/23/10/14/idea-2880595_1280.png"
+              src="https://cdn.pixabay.com/photo/2013/07/12/14/07/student-147783_1280.png"
             ></img>
           </Grid>
         </Box>
-      </Container>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
