@@ -7,6 +7,12 @@ const pool = new Pool({
   database: 'final'
 });
 
+function getFormattedDate(input){
+  var d = new Date(input);
+  d = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2) + " " + ('0' + d.getHours()).slice(-2) + ":" + ('0' + d.getMinutes()).slice(-2) + ":" + ('0' + d.getSeconds()).slice(-2);
+  return d;
+}
+
 
 const addUser =  function(user) {
   return pool.query(`
@@ -148,5 +154,26 @@ const getMessagesBetweenUsers = function(sender_id, receiver_id) {
   .then(res => res.rows);
 }
 exports.getMessagesBetweenUsers = getMessagesBetweenUsers;
+
+const addMessage =  function(message) {
+  return pool.query(`
+  INSERT INTO messages (sender_id,receiver_id,content,sent_date)
+  VALUES ($1, $2, $3, $4)
+  RETURNING *
+  `, [message.sender_id , message.receiver_id, message.content, getFormattedDate(Date.now())])
+  .then(res => res.rows[0]);S
+}
+exports.addMessage = addMessage;
+
+const addReview =  function(review) {
+  return pool.query(`
+  INSERT INTO "reviews" (reviewer_id,reviewed_id,comment,rating,date)
+  VALUES ($1, $2, $3, $4, $5)
+  RETURNING *
+  `, [review.reviewer_id , review.reviewed_id, review.comment,review.rating, getFormattedDate(Date.now())])
+  .then(res => res.rows[0]);S
+}
+exports.addReview = addReview;
+
 
 
