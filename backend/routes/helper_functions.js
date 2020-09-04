@@ -7,27 +7,15 @@ const pool = new Pool({
   database: "final",
 });
 
-const addUser = function (user) {
-  return pool
-    .query(
-      `
+const addUser =  function(user) {
+  return pool.query(`
   INSERT INTO users (
     name, email, password, street, city, province, post_code
   ) VALUES ($1, $2, $3 , $4, $5, $6, $7)
   RETURNING *
-  `,
-      [
-        user.name,
-        user.email,
-        user.password,
-        user.street,
-        user.city,
-        user.province,
-        user.post_code,
-      ]
-    )
-    .then((res) => res.rows[0]);
-};
+  `, [user.name, user.email, user.password, user.street, user.city, user.province, user.post_code])
+  .then(res => res.rows[0]);
+}
 exports.addUser = addUser;
 
 const getUserWithEmail = function (email) {
@@ -214,3 +202,49 @@ const getMessagesBetweenUsers = function (sender_id, receiver_id) {
     .then((res) => res.rows);
 };
 exports.getMessagesBetweenUsers = getMessagesBetweenUsers;
+
+
+const addMessage =  function(message) {
+  return pool.query(`
+  INSERT INTO messages (sender_id,receiver_id,content,sent_date)
+  VALUES ($1, $2, $3, $4)
+  RETURNING *
+  `, [message.sender_id , message.receiver_id, message.content, getFormattedDate(Date.now())])
+  .then(res => res.rows[0]);S
+}
+exports.addMessage = addMessage;
+
+const addReview =  function(review) {
+  return pool.query(`
+  INSERT INTO "reviews" (reviewer_id,reviewed_id,comment,rating,date)
+  VALUES ($1, $2, $3, $4, $5)
+  RETURNING *
+  `, [review.reviewer_id , review.reviewed_id, review.comment,review.rating, getFormattedDate(Date.now())])
+  .then(res => res.rows[0]);S
+}
+exports.addReview = addReview;
+
+
+const updateUser =  function(user) {
+  return pool.query(`
+  UPDATE users
+  SET name = $1, email = $2, password = $3, street= $4, city = $5, province = $6, post_code = $7
+  WHERE id = $8
+  RETURNING *
+  `, [user.name, user.email, user.password, user.street, user.city, user.province, user.post_code, user.id ])
+  .then(res => res.rows[0]);
+}
+exports.updateUser = updateUser;
+
+const updateTutor =  function(user) {
+  return pool.query(`
+  UPDATE users
+  SET education = $1, bio = $2, rate_per_hour = $3
+  WHERE id = $4
+  RETURNING *
+  `, [user.education, user.bio, user.rate_per_hour, user.id ])
+  .then(res => res.rows[0]);
+}
+exports.updateTutor = updateTutor;
+
+

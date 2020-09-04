@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 let cookieSession = require("cookie-session");
 router.use(cookieSession({ name: "session", keys: ["key1", "key2"] }));
-const { addUser, getTutorWithId, login, getMessageThreads, getMessagesBetweenUsers } = require("./helper_functions");
+const { addUser, getTutorWithId, login, getMessageThreads, getMessagesBetweenUsers, addMessage,updateUser } = require("./helper_functions");
 
 module.exports = (db) => {
   router.post("/register", (req, res) => {
@@ -96,6 +96,49 @@ module.exports = (db) => {
         res.json(outputVars)
       }
     })
+  });
+
+
+  router.post("/messages/add", (req, res) => {
+    const message = {
+      sender_id: req.body.sender_id,
+      receiver_id:req.body.receiver_id,
+      content: req.body.content
+    };
+    addMessage(message)
+      .then((message) => {
+        if (!message) {
+          res.send({ error: "message not added to the database" });
+          return;
+        }
+        let outputVars = {message: message, message_sent: "success" };
+        res.json(outputVars);
+      })
+      .catch((e) => res.send(e));
+  });
+
+
+  router.post("/profile/update", (req, res) => {
+    const user = {
+      id: req.body.id,
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      street: req.body.street,
+      city: req.body.city,
+      province: req.body.province,
+      post_code: req.body.post_code
+    }
+    updateUser(user)
+      .then((user) => {
+        if (!user) {
+          res.send({ error: "Could not update user" });
+          return;
+        }
+        let outputVars = {user: user, user_update: "success" };
+        res.json(outputVars);
+      })
+      .catch((e) => res.send(e));
   });
 
 
