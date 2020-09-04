@@ -25,8 +25,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        tutorama
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -36,7 +36,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -46,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(5),
+    width: "90%", // Fix IE 11 issue.
+    marginTop: theme.spacing(7),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(0, 0, 2),
   },
   image: {
     backgroundImage:
@@ -59,6 +59,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     borderRadius: 100,
   },
+  shiftRight: {
+    marginLeft: "23%",
+
+    // margin: "auto",
+  },
+  spacingTypo: {
+    margin: "3%",
+  },
 }));
 
 export default function SignUpStudent(props) {
@@ -66,27 +74,35 @@ export default function SignUpStudent(props) {
 
   let history = useHistory();
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [province, setProvince] = useState("")
-  const [city, setCity] = useState("")
-  const [address, setAddress] = useState("")
-  const [zip, setZip] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
 
   const APISubmit = function (event) {
     event.preventDefault();
-    let user = { name, email, password, street: address, city, province, post_code: zip }
-    axios({ url: '/api/users/register', data: user, method: 'POST' })
-      .then((result) => {
-        props.updateUser(result.data.user)
-        history.push("/homepage");
-      })
-  }
-
+    let user = {
+      name,
+      email,
+      password,
+      street: address,
+      city,
+      province,
+      post_code: zip,
+    };
+    axios({ url: "/api/users/register", data: user, method: "POST" }).then(
+      (result) => {
+        props.updateUser(result.data.user);
+        history.push("/");
+      }
+    );
+  };
 
   return (
-    <Container component="main">
+    <div className={classes.shiftRight}>
       <form className={classes.form} noValidate onSubmit={APISubmit}>
         <Grid container spacing={10}>
           {/* Left part Sign Up */}
@@ -96,7 +112,11 @@ export default function SignUpStudent(props) {
               <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography
+                className={classes.spacingTypo}
+                component="h1"
+                variant="h5"
+              >
                 Student Sign up
               </Typography>
               <Grid container spacing={5}>
@@ -155,7 +175,11 @@ export default function SignUpStudent(props) {
               <Avatar className={classes.avatar}>
                 <HomeOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography
+                className={classes.spacingTypo}
+                component="h1"
+                variant="h5"
+              >
                 Contact details
               </Typography>
               <Grid container spacing={2}>
@@ -236,10 +260,10 @@ export default function SignUpStudent(props) {
             Sign Up
           </Button>
         </Grid>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
       </form>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+    </div>
   );
 }

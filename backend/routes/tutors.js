@@ -1,16 +1,20 @@
-const express = require('express');
-const router  = express.Router();
-let cookieSession = require('cookie-session');
-router.use(cookieSession({name: 'session',
-  keys: ['key1', 'key2']}));
-const {addTutor, searchTutors, addUser, addTutorSubject} = require('./helper_functions');
-
-
+const express = require("express");
+const router = express.Router();
+let cookieSession = require("cookie-session");
+router.use(cookieSession({ name: "session", keys: ["key1", "key2"] }));
+const {
+  addTutor,
+  searchTutors,
+  addUser,
+  addTutorSubject,
+  addReview,
+  getTutorWithId,
+  updateUser,
+  updateTutor
+} = require("./helper_functions");
 
 module.exports = (db) => {
-
-
-  router.post('/register', (req, res) => {
+  router.post("/register", (req, res) => {
     let outputVars = {};
     const user = {
       name: req.body.name,
@@ -23,54 +27,53 @@ module.exports = (db) => {
       education: req.body.education,
       bio: req.body.bio,
       rate_per_hour: req.body.rate,
-      subject: req.body.subject
+      subject: req.body.subject,
     };
     addUser(user)
-    .then((returned_user) => {
-      if (!returned_user) {
-        res.send({error: "error: user"});
-        return;
-      }
-      outputVars['user'] = returned_user
-      user['id'] = returned_user.id
-      return addTutor(user)
-    })
-    .then(returned_tutor => {
-      if (!returned_tutor) {
-        res.send({error: "error: tutor"});
-        return;
-      }
-      outputVars['tutor'] = returned_tutor
-      return addTutorSubject(user)
-    })
-    .then((subject)=>{
-      if(!subject){
-        res.send({error: "error: subject"});
-        return;
-      }else {
-        req.session.user_id = user.id;
-        req.session.user_name = user.name;
-        outputVars['registration'] = "success"
-        res.json(outputVars);
-      }
-    })
-    .catch(e => {
-      console.log("login error: " , e)
-      res.status(500)
-      res.send(e)
-    });
+      .then((returned_user) => {
+        if (!returned_user) {
+          res.send({ error: "error: user" });
+          return;
+        }
+        outputVars["user"] = returned_user;
+        user["id"] = returned_user.id;
+        return addTutor(user);
+      })
+      .then((returned_tutor) => {
+        if (!returned_tutor) {
+          res.send({ error: "error: tutor" });
+          return;
+        }
+        outputVars["tutor"] = returned_tutor;
+        return addTutorSubject(user);
+      })
+      .then((subject) => {
+        if (!subject) {
+          res.send({ error: "error: subject" });
+          return;
+        } else {
+          req.session.user_id = user.id;
+          req.session.user_name = user.name;
+          outputVars["registration"] = "success";
+          res.json(outputVars);
+        }
+      })
+      .catch((e) => {
+        console.log("login error: ", e);
+        res.status(500);
+        res.send(e);
+      });
   });
 
-
-
-  router.get('/search/:key', (req,res) => {
-    const search_keywords = req.params.key
+  router.get("/search/", (req, res) => {
+    const search_keywords = req.query.query;
     searchTutors(search_keywords)
     .then((tutors) => {
+      console.log("tutors", tutors)
       if(!tutors){
         res.json("no tutors found for these keywords")
       } else{
-        let templateVars = {tutors: tutors}
+        let templateVars = {search: tutors}
         res.json(templateVars)
       }
     })
@@ -78,9 +81,77 @@ module.exports = (db) => {
   });
 
 
+  router.post("/reviews/add", (req, res) => {
+    const review = {
+      reviewer_id: req.body.reviewer_id,
+      reviewed_id: req.body.reviewed_id,
+      comment:req.body.comment,
+      rating:req.body.rating
+    };
+    addReview(review)
+      .then((review) => {
+        if (!review) {
+          res.send({ error: "review not added to the database" });
+          return;
+        }
+        let outputVars = {review: review, review_sent: "success" };
+        res.json(outputVars);
+      })
+      .catch((e) => res.send(e));
+  });
 
 
+  router.get('/profile/:id', (req,res) => {
+    const tutor_id = req.params.id
+    let outputVars = {};
+    getTutorWithId(tutor_id)
+    .then((tutor)=>{
+      if(!tutor){
+        res.json("no tutor found")
+      } else{
+        outputVars['tutor'] = tutor;
+        res.json(outputVars)
+      }
+    })
+  });
 
+  router.post("/profile/update", (req, res) => {
+    const user = {
+      id: req.body.id,
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      street: req.body.street,
+      city: req.body.city,
+      province: req.body.province,
+      post_code: req.body.post_code,
+      education: req.body.education,
+      bio: req.body.bio,
+      rate_per_hour:req.body.rate_per_hour
+    }
+    let outputVars = {}
+    updateUser(user)
+      .then((user) => {
+        if (!user) {
+          res.send({ error: "Could not update user" });
+          return;
+        }
+        outputVars['user'] = user;
+        outputVars['update_user'] = 'success'
+        return updateTutor(user)
+      })
+      .then((tutor=>{
+        if(!tutor){
+          res.send({error:"Could not update tutor"})
+          return;
+        } else{
+          outputVars['tutor'] = tutor;
+          outputVars['update_tutor'] = 'success'
+          res.json(outputVars);
+        }
+      }))
+      .catch((e) => res.send(e));
+  });
 
 
   return router;

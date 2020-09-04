@@ -1,19 +1,20 @@
 import React from "react";
-import "./HowWorks.scss";
+// import "./HowWorks.scss";
 
-import { makeStyles, Avatar, Box, Grid, Typography } from "@material-ui/core/";
-import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
-import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
-import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
-import DoneOutlineOutlinedIcon from "@material-ui/icons/DoneOutlineOutlined";
+import { makeStyles, Box, Grid, Typography } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
-  image: {
-    backgroundImage: "url()",
-    height: "800px",
-    backgroundSize: "cover",
-    boxShadow: "25px 25px 50px 50px white inset",
-  },
+  // image: {
+  //   backgroundImage:
+  //     "url('https://image.freepik.com/free-vector/abstract-bright-yellow-grunge-background_1055-8116.jpg')",
+  //   height: "250px",
+  //   width: "150px",
+  //   backgroundSize: "cover",
+  //   // borderRadius: "1%",
+  //   opacity: 5,
+
+  //   // boxShadow: "25px 25px 50px 50px white inset"
+  // },
   root: {
     maxWidth: 345,
   },
@@ -26,14 +27,26 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   bottomMargin: {
+    marginBottom: "2%",
+    marginTop: "2%",
+  },
+  imgSize: {
+    marginTop: "5%",
     marginBottom: "5%",
+    width: "150px",
+    height: "150px",
+    borderRadius: "4%",
+    "&:hover": {
+      border: "",
+      boxShadow: "4px 4px 4px 4px grey ",
+    },
   },
 }));
 
 export default function HowWorks() {
   const classes = useStyles();
   return (
-    <div id="searchField">
+    <div>
       <Typography
         className={classes.bottomMargin}
         variant="h3"
@@ -44,7 +57,6 @@ export default function HowWorks() {
       </Typography>
 
       <Box
-        className={classes.image}
         display="flex"
         justifyContent="flex-start"
         // alignItems="center"
@@ -55,95 +67,144 @@ export default function HowWorks() {
           justify="flex-start"
           alignItems="flex-start"
         >
-          <Grid item xs={12} md={3}>
-            <div className="stepImage">
-              <img
-                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/login.png?raw=true"
-                alt="login"
-              ></img>
-              <Typography variant="h4">Login or Sign Up </Typography>
-              <Avatar className={classes.avatar}>
-                <ArrowForwardOutlinedIcon />
-              </Avatar>
-            </div>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            item
+            xs={12}
+            md={3}
+          >
+            <img
+              className={classes.imgSize}
+              src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/login.png?raw=true"
+              alt="login"
+            ></img>
+            <Typography variant="h4">Login or Sign Up </Typography>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <div className="stepImage">
-              <img
-                alt="stepImage"
-                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/search.png?raw=true"
-              ></img>
-              <Typography variant="h4">Search for a tutor</Typography>
-              <Avatar className={classes.avatar}>
-                <ArrowForwardOutlinedIcon />
-              </Avatar>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} md={3}>
-            <div className="stepImage">
-              <img
-                alt="stepImage"
-                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/profile.png?raw=true"
-              ></img>
-              <Typography variant="h4">Review profiles</Typography>
-              <Avatar className={classes.avatar}>
-                <ArrowForwardOutlinedIcon />
-              </Avatar>
-            </div>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            item
+            xs={12}
+            md={3}
+          >
+            <img
+              className={classes.imgSize}
+              alt="stepImage"
+              src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/search.png?raw=true"
+            ></img>
+            <Typography variant="h4">Search for a tutor</Typography>
           </Grid>
 
-          <Grid item xs={12} md={3}>
-            <div className="stepImage">
-              <img
-                alt="stepImage"
-                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/message.png?raw=true"
-              ></img>
-              <Typography variant="h4">Sent a message to the tutor </Typography>
-              <Avatar className={classes.avatar}>
-                <ArrowDownwardOutlinedIcon />
-              </Avatar>
-            </div>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            item
+            xs={12}
+            md={3}
+          >
+            <img
+              className={classes.imgSize}
+              alt="stepImage"
+              src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/profile.png?raw=true"
+            ></img>
+            <Typography variant="h4">Review profiles</Typography>
           </Grid>
+
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            item
+            xs={12}
+            md={3}
+          >
+            <img
+              className={classes.imgSize}
+              alt="stepImage"
+              src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/message.png?raw=true"
+            ></img>
+            <Typography variant="h4">Message the tutor </Typography>
+          </Grid>
+          {/* Next row  */}
+
           <Grid
             container
             direction="row-reverse"
             justify="center"
             alignItems="flex-start"
           >
-            <Grid item xs={12} md={3}>
-              <div className="stepImage">
-                <img
-                  alt="stepImage"
-                  src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/lesson.png?raw=true"
-                ></img>
-                <Typography variant="h4">Get one-on-one class</Typography>
-                <Avatar className={classes.avatar}>
-                  <ArrowBackOutlinedIcon />
-                </Avatar>
-              </div>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              item
+              xs={12}
+              md={3}
+            >
+              <img
+                className={classes.imgSize}
+                alt="stepImage"
+                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/lesson.png?raw=true"
+              ></img>
+              <Typography variant="h4">Get one-on-one class</Typography>
             </Grid>
 
-            <Grid item xs={12} md={3}>
-              <div className="stepImage">
-                <img
-                  alt="stepImage"
-                  src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/pay.png?raw=true"
-                ></img>
-                <Typography variant="h4">Pay for the service</Typography>
-                <Avatar className={classes.avatar}>
-                  <ArrowBackOutlinedIcon />
-                </Avatar>
-              </div>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              item
+              xs={12}
+              md={3}
+            >
+              <img
+                className={classes.imgSize}
+                alt="stepImage"
+                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/pay.png?raw=true"
+              ></img>
+              <Typography variant="h4">Pay for the service</Typography>
             </Grid>
-            <Grid item xs={12} md={3}>
-              <div alt="stepImage" className="stepImage">
-                <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/rate.png?raw=true"></img>
-                <Typography variant="h4">Rate your tutor</Typography>
-                <Avatar className={classes.avatar}>
-                  <DoneOutlineOutlinedIcon />
-                </Avatar>
-              </div>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              item
+              xs={12}
+              md={3}
+            >
+              <img
+                className={classes.imgSize}
+                alt=""
+                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/rate.png?raw=true"
+              ></img>
+              <Typography variant="h4">Rate your tutor</Typography>
+            </Grid>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              item
+              xs={12}
+              md={3}
+            >
+              <img
+                className={classes.imgSize}
+                alt=""
+                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/rate.png?raw=true"
+              ></img>
+              <Typography variant="h4">Rate your tutor</Typography>
             </Grid>
           </Grid>
         </Grid>

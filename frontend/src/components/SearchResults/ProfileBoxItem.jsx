@@ -5,7 +5,6 @@ import {
   makeStyles,
   Grid,
   Card,
-  Containerfrom,
   CardActionArea,
   CardContent,
   CardMedia,
@@ -40,7 +39,7 @@ export default function ProfileBoxItem() {
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>
-                <Typography component="h2" variant="h10">
+                <Typography component="h2" variant="h6">
                   Martha Bosnia
                 </Typography>
                 <Typography variant="h6">History tutor</Typography>
