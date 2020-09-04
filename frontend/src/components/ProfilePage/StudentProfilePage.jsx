@@ -1,13 +1,23 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import TopLayerProfile from "./TopLayerProfile";
 import BottomLayerProfileStudent from "./BottomLayerProfileStudent";
+import { makeStyles } from "@material-ui/core";
 
-export default function HomePage() {
+const useStyles = makeStyles((theme) => ({
+  shiftRight: {
+    marginLeft: "15%",
+    // margin: "auto",
+  },
+}));
+
+export default function HomePage(props) {
+  const classes = useStyles();
+
   return (
-    <Fragment>
-      <TopLayerProfile />
-      <BottomLayerProfileStudent />
-    </Fragment>
+    <div className={classes.shiftRight}>
+      <TopLayerProfile user={props.user} />
+      <BottomLayerProfileStudent user={props.user} />
+    </div>
   );
 }
