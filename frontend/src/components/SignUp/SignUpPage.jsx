@@ -18,6 +18,7 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  Hidden,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
@@ -65,13 +66,17 @@ export default function SignUpPage() {
   };
   return (
     <Grid
+      item
+      lg={12}
+      // md={12}
+      // sm={12}
       container
       className={classes.image}
       direction="row"
       alignItems="center"
     >
       {/* Left part Sign Up */}
-      <Grid item sm={6} xs={12}>
+      <Grid item lg={6} md={12} sm={12} xs={12}>
         <div className={classes.paper}>
           <form className={classes.form} id="radioForm" noValidate>
             <h1 className="heading">I am a...</h1>
@@ -107,7 +112,7 @@ export default function SignUpPage() {
       </Grid>
 
       {/* Right part  */}
-      <Grid item sm={6} xs={12}>
+      <Grid lg={6} md={12} sm={12}>
         <CssBaseline />
         <div className={classes.paper}>
           <CssBaseline />

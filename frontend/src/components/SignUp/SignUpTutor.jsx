@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "10%",
     // marginTop: "4%",
     backgroundSize: "cover",
+    // backgroundPosition: "center",
   },
 }));
 
@@ -110,10 +111,10 @@ export default function SignUpTutor(props) {
   };
 
   return (
-    <div className={classes.image}>
+    <Grid item xl={12} className={classes.image}>
       <div className={classes.shiftRight}>
         <form className={classes.form} noValidate onSubmit={APISubmit}>
-          <Grid container spacing={10}>
+          <Grid item xl={12} container spacing={10}>
             {/* Left part Sign Up */}
             <Grid item sm={6} xs={12}>
               <CssBaseline />
@@ -332,6 +333,6 @@ export default function SignUpTutor(props) {
           </Box>
         </form>
       </div>
-    </div>
+    </Grid>
   );
 }

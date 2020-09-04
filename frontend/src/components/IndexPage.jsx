@@ -43,7 +43,7 @@ const useStyles = makeStyles({
     // margin: "auto",
     backgroundImage:
       "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 90%)",
-    // height: "100%",
+    height: "100%",
     // backgroundSize: "cover",
   },
 });
@@ -52,7 +52,7 @@ export default function IndexPage() {
   const classes = useStyles();
 
   return (
-    <div className={classes.shiftRight}>
+    <Grid item sm={12} className={classes.shiftRight}>
       <Grid component="main">
         <Grid
           container
@@ -207,6 +207,6 @@ export default function IndexPage() {
           </Grid>
         </Box>
       </Grid>
-    </div>
+    </Grid>
   );
 }
