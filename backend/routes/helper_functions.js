@@ -97,55 +97,22 @@ const getTutorWithId = function (id) {
 };
 exports.getTutorWithId = getTutorWithId;
 
-const searchTutors = function (params) {
-  console.log(params);
-  let city = null;
-  temp = params.query.toLowerCase();
-  if (params.city) {
-    city = params.city.toLowerCase();
+const searchTutors = function(keyword) {
+  temp = keyword.toLowerCase();
+  const query = {
+    text: `SELECT tutor_id, u.name, t.education, s.name, t.rate_per_hour, avg(r.rating), count(r.rating) FROM subjects as s
+  JOIN tutors as t on t.id = s.tutor_id
+  JOIN users as u on u.id = t.id
+  JOIN reviews as r on u.id = r.reviewed_id
+  WHERE s.name LIKE $1
+  GROUP BY tutor_id, u.name, t.education, s.name, t.rate_per_hour
+  LIMIT 25;`,
+    values: [`%${temp}%`]
   }
-  let query = `SELECT tutor_id, u.name, t.education, s.name as subject, t.bio, u.profile_picture_url, u.city, t.rate_per_hour, avg(r.rating), count(r.rating) FROM subjects as s
-    JOIN tutors as t on t.id = s.tutor_id
-    JOIN users as u on u.id = t.id
-    JOIN reviews as r on u.id = r.reviewed_id
-    WHERE subject LIKE $1`;
-  if (params.rate === "1") {
-    query += ` and t.rate_per_hour BETWEEN 10 AND 20`;
-  } else if (params.rate === "2") {
-    query += ` and t.rate_per_hour BETWEEN 20 AND 30`;
-  } else if (params.rate === "3") {
-    query += ` and t.rate_per_hour BETWEEN 30 AND 40`;
-  } else if (params.rate === "4") {
-    query += ` and t.rate_per_hour BETWEEN 40 AND 50`;
-  } else if (params.rate === "5") {
-    query += ` and t.rate_per_hour BETWEEN 50 AND 60`;
-  } else if (params.rate === "6") {
-    query += ` and t.rate_per_hour BETWEEN 60 AND 70`;
-  } else if (params.rate === "7") {
-    query += ` and t.rate_per_hour BETWEEN 70 AND 80`;
-  }
-  if (city) {
-    query += ` and u.city LIKE %${city}%`;
-  }
-  query += ` GROUP BY tutor_id, u.name, t.education, s.name, t.rate_per_hour, t.bio, u.profile_picture_url, u.city`;
-  if (params.sortBy === "lowest") {
-    query += ` ORDER BY t.rate_per_hour`;
-  } else if (params.sortBy === "highest") {
-    query += ` ORDER BY t.rate_per_hour DESC`;
-  } else if (params.sortBy === "rating") {
-    query += ` ORDER BY avg(r.rating) DESC`;
-  } else if (params.sortBy === "review") {
-    query += ` ORDER BY count(r.rating) DESC `;
-  }
-  query += ` LIMIT 25;`;
-
-  return pool
-    .query(query, [`%${temp}%`]) //this ???
-    .then((res) => {
-      console.log(res.rows, "HIII");
-      return res.rows;
-    });
-};
+  return pool.query(query)
+  .then(res => {
+    return res.rows});
+}
 exports.searchTutors = searchTutors;
 
 const addTutorSubject = function (object) {
