@@ -1,9 +1,22 @@
-import React, { Fragment, useCallback } from "react";
+import React, { useCallback } from "react";
 import FilterBar from "./FilterBar";
 import ProfileBoxItem from "./ProfileBoxItem";
 import ReviewTutorProfile from "./ReviewTutorProfile";
+import { makeStyles, Box, Grid, Typography } from "@material-ui/core/";
+import "./SearchResultsPage.scss";
+
+const useStyles = makeStyles((theme) => ({
+  shiftRight: {
+    marginLeft: "15%",
+    // display: "flex",
+    // flexDirection: "column",
+    // placeItems: "center",
+  },
+}));
 
 export default function SearchResultPage(props) {
+  const classes = useStyles();
+
   let searchResults = props.searchResult.map((result) => {
     return <ProfileBoxItem key={result.tutor_id} {...result} />;
   });
@@ -25,9 +38,9 @@ export default function SearchResultPage(props) {
   );
 
   return (
-    <Fragment>
+    <div className="searchResultsMain">
       <FilterBar onSearch={onSearch} />
       {searchResults}
-    </Fragment>
+    </div>
   );
 }
