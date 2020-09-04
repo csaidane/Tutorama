@@ -7,6 +7,10 @@ const {
   searchTutors,
   addUser,
   addTutorSubject,
+  addReview,
+  getTutorWithId,
+  updateUser,
+  updateTutor
 } = require("./helper_functions");
 
 module.exports = (db) => {
@@ -75,6 +79,80 @@ module.exports = (db) => {
       })
       .catch((e) => res.send(e));
   });
+
+
+  router.post("/reviews/add", (req, res) => {
+    const review = {
+      reviewer_id: req.body.reviewer_id,
+      reviewed_id: req.body.reviewed_id,
+      comment:req.body.comment,
+      rating:req.body.rating
+    };
+    addReview(review)
+      .then((review) => {
+        if (!review) {
+          res.send({ error: "review not added to the database" });
+          return;
+        }
+        let outputVars = {review: review, review_sent: "success" };
+        res.json(outputVars);
+      })
+      .catch((e) => res.send(e));
+  });
+
+
+  router.get('/profile/:id', (req,res) => {
+    const tutor_id = req.params.id
+    let outputVars = {};
+    getTutorWithId(tutor_id)
+    .then((tutor)=>{
+      if(!tutor){
+        res.json("no tutor found")
+      } else{
+        outputVars['tutor'] = tutor;
+        res.json(outputVars)
+      }
+    })
+  });
+
+  router.post("/profile/update", (req, res) => {
+    const user = {
+      id: req.body.id,
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      street: req.body.street,
+      city: req.body.city,
+      province: req.body.province,
+      post_code: req.body.post_code,
+      education: req.body.education,
+      bio: req.body.bio,
+      rate_per_hour:req.body.rate_per_hour
+    }
+    let outputVars = {}
+    updateUser(user)
+      .then((user) => {
+        if (!user) {
+          res.send({ error: "Could not update user" });
+          return;
+        }
+        outputVars['user'] = user;
+        outputVars['update_user'] = 'success'
+        return updateTutor(user)
+      })
+      .then((tutor=>{
+        if(!tutor){
+          res.send({error:"Could not update tutor"})
+          return;
+        } else{
+          outputVars['tutor'] = tutor;
+          outputVars['update_tutor'] = 'success'
+          res.json(outputVars);
+        }
+      }))
+      .catch((e) => res.send(e));
+  });
+
 
   return router;
 };
