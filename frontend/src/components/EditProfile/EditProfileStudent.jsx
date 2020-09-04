@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Paper,
@@ -38,12 +38,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditProfileStudent() {
+export default function EditProfileStudent(props) {
+  // const [value, setValue] = useState("");
+  console.log("STUDENT", props);
+  // const { name, email, province, city, post_code, street } = props.user.user;
+
   const classes = useStyles();
 
   return (
     <div className={classes.shiftRight}>
-      <TopLayerProfile />
+      <TopLayerProfile user={props.user} />
       <Fab color="secondary" aria-label="edit" className={classes.spacingBtns}>
         <EditIcon />
       </Fab>

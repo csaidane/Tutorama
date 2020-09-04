@@ -8,7 +8,6 @@ import {
   Avatar,
   Typography,
   Divider,
-  Button,
 } from "@material-ui/core";
 
 /*

@@ -12,10 +12,8 @@ import {
   Grid,
   Box,
   Typography,
-  Container,
 } from "@material-ui/core/";
 
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import AccountBoxOutlinedIcon from "@material-ui/icons/AccountBoxOutlined";
 import { makeStyles } from "@material-ui/core/styles";
@@ -64,6 +62,8 @@ const useStyles = makeStyles((theme) => ({
       "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
     // height: "100%",
     marginLeft: "10%",
+    backgroundPosition: "center",
+    width: "100%",
     // marginTop: "4%",
     backgroundSize: "cover",
     // backgroundPosition: "center",

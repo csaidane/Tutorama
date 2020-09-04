@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import StarRateIcon from "@material-ui/icons/StarRate";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -86,8 +86,7 @@ export default function ReviewTutorProfile(props) {
   const {
     avg,
     bio,
-    city,
-    count,
+
     education,
     name,
     profile_picture_url,
@@ -244,7 +243,7 @@ export default function ReviewTutorProfile(props) {
                       This tutor is the best one. This tutor is the best one.
                     </Typography>
                     <Typography variant="subtitle1" color="primary">
-                      Rating: ⭐⭐⭐⭐⭐
+                      Rating: <span role="img"> ⭐⭐⭐⭐⭐ </span>
                     </Typography>
                   </CardContent>
                 </div>

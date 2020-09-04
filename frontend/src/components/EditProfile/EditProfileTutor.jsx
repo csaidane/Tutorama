@@ -28,12 +28,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditProfileTutor() {
+export default function EditProfileTutor(props) {
+  console.log("TUTOR", props);
   const classes = useStyles();
 
   return (
     <div className={classes.shiftRight}>
-      <TopLayerProfile />
+      <TopLayerProfile user={props.user} />
       <Fab color="secondary" aria-label="edit" className={classes.spacingBtns}>
         <EditIcon />
       </Fab>

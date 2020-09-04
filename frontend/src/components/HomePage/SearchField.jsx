@@ -49,7 +49,7 @@ export default function SearchField(props) {
                   freeSolo
                   id="subjectList"
                   disableClearable
-                  options={subjectList.map((option) => option.title)}
+                  options={subjectList.map((option, index) => option.title)}
                   renderInput={(params) => (
                     <TextField
                       {...params}

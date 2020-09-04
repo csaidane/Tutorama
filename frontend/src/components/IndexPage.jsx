@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./IndexPage.scss";
 
 import {
@@ -10,7 +10,6 @@ import {
   Divider,
   CardContent,
   CardMedia,
-  Container,
 } from "@material-ui/core/";
 
 const useStyles = makeStyles({
@@ -99,7 +98,11 @@ export default function IndexPage() {
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">
-                    Rating: ⭐⭐⭐⭐⭐
+                    Rating:{" "}
+                    <span aria-label="Star" role="img">
+                      {" "}
+                      ⭐⭐⭐⭐⭐{" "}
+                    </span>
                   </Typography>
                   <Typography variant="subtitle1" color="primary">
                     2 reviews
@@ -143,7 +146,11 @@ export default function IndexPage() {
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">
-                    Rating: ⭐⭐⭐⭐⭐
+                    Rating:{" "}
+                    <span aria-label="Star" role="img">
+                      {" "}
+                      ⭐⭐⭐⭐⭐{" "}
+                    </span>
                   </Typography>
                   <Typography variant="subtitle1" color="primary">
                     6 reviews
@@ -188,7 +195,11 @@ export default function IndexPage() {
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">
-                    Rating: ⭐⭐⭐⭐⭐
+                    Rating:{" "}
+                    <span aria-label="Star" role="img">
+                      {" "}
+                      ⭐⭐⭐⭐⭐{" "}
+                    </span>
                   </Typography>
                   <Typography variant="subtitle1" color="primary">
                     11 reviews
