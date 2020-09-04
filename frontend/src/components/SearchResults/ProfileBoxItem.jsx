@@ -36,7 +36,8 @@ const useStyles = makeStyles({
 export default function ProfileBoxItem(props) {
   const selectId = function () {
     const tutorId = props.tutor_id;
-    // props = { ...props, currentTutorId: tutorId };
+    let got_reviews = props.APIGetReviews(tutorId)
+    props.setReviews(got_reviews)
     history.push(`/tutor/${tutorId}`);
   };
   const rate = props.avg.charAt(0);

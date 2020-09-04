@@ -3,6 +3,8 @@ import clsx from "clsx";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Grid } from "@material-ui/core";
+import axios from "axios";
+
 
 import {
   BrowserRouter as Router,
@@ -95,6 +97,16 @@ function App() {
     setState((prev) => ({ ...prev, searchResult }));
   };
 
+  const [reviews, setReviews] = useState([]);
+
+  const APIGetReviews = function (id) {
+    axios({ url: `/api/tutors/profile/${id}`, method: "GET" }).then(
+      (result) => {
+        setReviews(result.data.reviews);
+      }
+    );
+  };
+
   return (
     <Grid item lg={12} md={12} id='main' >
       <Router>
@@ -183,7 +195,7 @@ function App() {
               path="/searchresult"
               exact
               render={(props) => (
-                <SearchResultPage searchResult={state.searchResult} />
+                <SearchResultPage APIGetReviews={APIGetReviews} setReviews={setReviews} searchResult={state.searchResult} />
               )}
             />
             <Route
@@ -193,7 +205,7 @@ function App() {
                 const { id } = props.match.params;
                 const tutor = state.searchResult.find((r) => r.tutor_id == id);
 
-                return <ReviewTutorProfile tutor={tutor} />;
+                return <ReviewTutorProfile reviews={reviews} tutor={tutor} />;
               }}
             />
             {state.tutor ? (
