@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     // marginTop: "4%",
     backgroundSize: "cover",
-    // backgroundPosition: "center",
+    backgroundPosition: "center",
   },
 }));
 

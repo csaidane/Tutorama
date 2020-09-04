@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   spacingBtns: {
-    margin: "3%",
+    marginBottom: "1%",
   },
 }));
 
@@ -38,7 +38,6 @@ export default function EditProfileTutor(props) {
       <Fab color="secondary" aria-label="edit" className={classes.spacingBtns}>
         <EditIcon />
       </Fab>
-
       <form className={classes.form}>
         <Grid container spacing={2}>
           {/* //Full name */}
