@@ -17,6 +17,8 @@ export default function MessagePage(props) {
   // const classes = useStyles();
   
   const [messageThreads, setMessageThreads] = useState([])
+  const [messageConversation, setMessageConversation] = useState([])
+  const [interlocutor, setInterlocutor] = useState({})
 
   useEffect(()=>{
     axios({url:`/api/users/${props.userId}/messages/threads`, method:'GET'})
@@ -32,12 +34,12 @@ export default function MessagePage(props) {
   return (
     <div className="main">
       <div className="list">
-        <MessageList messageThreads={messageThreads} />
+        <MessageList setInterlocutor={setInterlocutor} userId={props.userId} setMessageConversation={setMessageConversation} messageThreads={messageThreads} />
       </div>
       <div className="msg">
-        <MessageView />
+        <MessageView interlocutor={interlocutor} messageConversation={messageConversation}/>
         <div className="text-message-box">
-          <MessageTextBox />
+          {interlocutor.their_name&& <MessageTextBox />}
         </div>
       </div>
     </div>

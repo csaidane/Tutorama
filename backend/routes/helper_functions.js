@@ -176,4 +176,27 @@ const addReview =  function(review) {
 exports.addReview = addReview;
 
 
+const updateUser =  function(user) {
+  return pool.query(`
+  UPDATE users
+  SET name = $1, email = $2, password = $3, street= $4, city = $5, province = $6, post_code = $7
+  WHERE id = $8
+  RETURNING *
+  `, [user.name, user.email, user.password, user.street, user.city, user.province, user.post_code, user.id ])
+  .then(res => res.rows[0]);
+}
+exports.updateUser = updateUser;
+
+const updateTutor =  function(user) {
+  return pool.query(`
+  UPDATE users
+  SET education = $1, bio = $2, rate_per_hour = $3
+  WHERE id = $4
+  RETURNING *
+  `, [user.education, user.bio, user.rate_per_hour, user.id ])
+  .then(res => res.rows[0]);
+}
+exports.updateTutor = updateTutor;
+
+
 

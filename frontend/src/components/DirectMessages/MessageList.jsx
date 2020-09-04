@@ -10,6 +10,7 @@ import {
   Divider,
   Button,
 } from "@material-ui/core";
+import axios from "axios";
 
 /*
 //This style will be helpful when implementing unread messages notification
@@ -48,10 +49,19 @@ export default function MessageList(props) {
 
   let messageThreads = props.messageThreads;
 
+  const conversationAPI = function(my_id,their_id,their_name){
+    axios({url:`api/users/${my_id}/messages/${their_id}`, method:"GET"})
+    .then((results)=>{
+      props.setMessageConversation(results.data.messages)
+      props.setInterlocutor({their_id, their_name})
+      console.log(results.data.messages)
+    })
+  }
+
   const msgList = messageThreads.map((thread) => {
     return (
-      <Fragment>
-        <ListItem onClick={() => console.log(thread.id)} id={thread.id} key={thread.name} className={classes.listItem} alignItems="flex-start">
+      <Fragment key={thread.name}>
+        <ListItem onClick={() => conversationAPI(props.userId,thread.id,thread.name)} id={thread.id} className={classes.listItem} alignItems="flex-start">
             <ListItemAvatar>
               <Avatar src={thread.profile_picture_url} />
             </ListItemAvatar>
