@@ -44,7 +44,7 @@ export default function ProfileBoxItem(props) {
   const classes = useStyles();
 
   return (
-    <Container component="main">
+    <div>
       <Grid item xs={10}>
         <CardActionArea component="a" href="#" onClick={selectId}>
           <Card className={classes.card}>
@@ -78,6 +78,6 @@ export default function ProfileBoxItem(props) {
           </Card>
         </CardActionArea>
       </Grid>
-    </Container>
+    </div>
   );
 }

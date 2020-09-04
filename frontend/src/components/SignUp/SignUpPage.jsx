@@ -41,9 +41,12 @@ const useStyles = makeStyles((theme) => ({
       // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
       "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
     height: "100%",
-    marginLeft: "5%",
+    // marginLeft: "5%",
     // marginTop: "4%",
     backgroundSize: "cover",
+    position: "fixed",
+    top: "0",
+    left: "0",
   },
 }));
 

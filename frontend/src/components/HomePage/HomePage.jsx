@@ -21,7 +21,9 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   shiftRight: {
-    marginLeft: "15%",
+    // marginLeft: "15%",
+    paddingLeft: "15%",
+    backgroundColor: "#FFFFFF",
     // margin: "auto",
   },
 }));

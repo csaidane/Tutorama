@@ -40,6 +40,10 @@ const useStyles = makeStyles({
   shiftRight: {
     marginLeft: "15%",
     // margin: "auto",
+    backgroundImage:
+      "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 90%)",
+    // height: "100%",
+    // backgroundSize: "cover",
   },
 });
 
@@ -48,13 +52,7 @@ export default function IndexPage() {
 
   return (
     <div className={classes.shiftRight}>
-      <Grid
-        component="main"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 90%)",
-        }}
-      >
+      <Grid component="main">
         <Grid
           container
           direction="column"
