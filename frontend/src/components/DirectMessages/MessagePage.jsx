@@ -21,9 +21,6 @@ export default function MessagePage(props) {
   const [messageConversation, setMessageConversation] = useState([])
   const [interlocutor, setInterlocutor] = useState({})
 
-
-  const [messageThreads, setMessageThreads] = useState([]);
-
   useEffect(() => {
     axios({
       url: `/api/users/${props.userId}/messages/threads`,
