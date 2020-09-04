@@ -7,6 +7,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import "./BottomLayerProfileTutor.scss";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -141,6 +142,7 @@ export default function BottomLayerProfileTutor(props) {
           </Paper>
         </Grid>
       </TabPanel>
+      <Grid item xs={12} container id="footer"></Grid>
     </div>
   );
 }

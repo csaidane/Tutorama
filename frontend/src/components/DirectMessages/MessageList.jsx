@@ -8,7 +8,6 @@ import {
   Avatar,
   Typography,
   Divider,
-  Button,
 } from "@material-ui/core";
 import axios from "axios";
 
@@ -71,8 +70,8 @@ export default function MessageList(props) {
           </ListItem>
           <Divider />
       </Fragment>
-    )
-  })
+    );
+  });
   return (
     <div className={classes.root}>
       {/* <Button
@@ -84,10 +83,7 @@ export default function MessageList(props) {
         New Message
       </Button> */}
       <List>
-        <div key="1">
-          {msgList}
-          
-        </div>
+        <div key="1">{msgList}</div>
       </List>
     </div>
   );

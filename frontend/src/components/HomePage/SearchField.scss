@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&display=swap');
+
+#heading {
+  font-family: 'Lora', serif;
+  font-size: 60px;
+  text-align: -webkit-center;
+}
+
 // SearchBar
 #searchField {
   display: flex;
@@ -7,15 +15,14 @@
   margin-top: 2%;
   width: 100%;
   height: 600px;
-  // background-image: url('https://assets.website-files.com/5bfd1275cc56e15ce750b18e/5c289afb9a157506f8893ae1_99.%20Roman.jpg');
-  background-image: url('');
+
+  background: #ffffff;
+
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   box-shadow: 0 0 8px 8px white inset;
   // filter: blur(1px);
-
-
 }
 
 #searchInput {
