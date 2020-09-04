@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HomePage(props) {
-  console.log("HOME PAGE", props);
   const classes = useStyles();
 
   return (

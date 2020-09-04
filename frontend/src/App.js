@@ -4,7 +4,12 @@ import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Container } from "@material-ui/core";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from "react-router-dom";
 import NavBar from "./components/Navbar.jsx";
 import HomePage from "./components/HomePage/HomePage";
 import StudentProfilePage from "./components/ProfilePage/StudentProfilePage";
@@ -179,11 +184,14 @@ function App() {
               )}
             />
             <Route
-              path="/tutor"
+              path="/tutor/:id"
               exact
-              render={(props) => (
-                <ReviewTutorProfile searchResult={state.searchResult} />
-              )}
+              render={(props) => {
+                const { id } = props.match.params;
+                const tutor = state.searchResult.find((r) => r.tutor_id == id);
+
+                return <ReviewTutorProfile tutor={tutor} />;
+              }}
             />
           </Switch>
           {/* <WrongEmailPassword /> */}

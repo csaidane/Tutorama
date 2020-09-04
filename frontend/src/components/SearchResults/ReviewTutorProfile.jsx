@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import StarRateIcon from "@material-ui/icons/StarRate";
+
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
+
 import {
   Paper,
   Avatar,
@@ -77,29 +81,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ImageAvatars() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.img}>
-      <Avatar
-        alt="Remy Sharp"
-        src="https://images.unsplash.com/photo-1555436169-38f939820724?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
-        className={classes.large}
-      />
-    </div>
-  );
-}
-
 export default function ReviewTutorProfile(props) {
   console.log("TUTOR PROFILE", props);
+  const {
+    avg,
+    bio,
+    city,
+    count,
+    education,
+    name,
+    profile_picture_url,
+    rate_per_hour,
+    subject,
+  } = props.tutor;
+  const rate = avg.charAt(0);
+  let history = useHistory();
+
   const classes = useStyles();
+
+  function ImageAvatars() {
+    const classes = useStyles();
+
+    return (
+      <div className={classes.img}>
+        <Avatar
+          alt="Remy Sharp"
+          src={profile_picture_url}
+          className={classes.large}
+        />
+      </div>
+    );
+  }
+
   return (
     <Container>
       <Grid className={classes.shiftRight} item xs={12}>
         <div className={classes.root}>
           <Paper elevation={0}>
-            <Fab variant="extended">
+            <Fab variant="extended" onClick={() => history.goBack()}>
               <ArrowBackOutlinedIcon className={classes.extendedIcon} />
               Back to search
             </Fab>
@@ -115,27 +134,29 @@ export default function ReviewTutorProfile(props) {
               <Grid>
                 <ImageAvatars />
                 <Typography className={classes.shiftRightPrice} variant="h5">
-                  50$/hour
+                  CAD${rate_per_hour}/hour
                 </Typography>
                 <Typography
                   className={classes.shiftRightPrice}
                   variant="subtitle1"
                   color="primary"
                 >
-                  ⭐⭐⭐⭐⭐
+                  {[...Array(parseInt(rate))].map((star, i) => {
+                    return <StarRateIcon key={i} />;
+                  })}
                 </Typography>
               </Grid>
 
               <Grid>
                 <Typography variant="h3" className={classes.shiftRightName}>
-                  David Davidson
+                  {name}
                 </Typography>
                 <Typography
                   variant="overline"
                   className={classes.shiftRightName}
                 >
                   {" "}
-                  Chemistry tutor
+                  {subject}
                 </Typography>
               </Grid>
 
@@ -173,10 +194,7 @@ export default function ReviewTutorProfile(props) {
             alignItems="center"
           >
             <Typography variant="h3">Education</Typography>
-            <Typography variant="overline">
-              {" "}
-              Université de Saint-Boniface
-            </Typography>
+            <Typography variant="overline">{education}</Typography>
           </Grid>
         </Grid>
         <Divider variant="inset" style={{ marginBottom: "1%" }} />
@@ -191,18 +209,7 @@ export default function ReviewTutorProfile(props) {
             alignItems="center"
           >
             <Typography variant="h3">Bio</Typography>
-            <Typography variant="overline">
-              {" "}
-              I am a very experienced tutor who loves sharing knowledge Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              hfjd{" "}
-            </Typography>
+            <Typography variant="overline">{bio}</Typography>
           </Grid>
         </Grid>
         <Divider variant="inset" style={{ marginBottom: "1%" }} />

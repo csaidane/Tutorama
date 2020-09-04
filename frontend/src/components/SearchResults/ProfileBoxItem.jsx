@@ -33,6 +33,11 @@ const useStyles = makeStyles({
 });
 
 export default function ProfileBoxItem(props) {
+  const selectId = function () {
+    const tutorId = props.tutor_id;
+    // props = { ...props, currentTutorId: tutorId };
+    history.push(`/tutor/${tutorId}`);
+  };
   const rate = props.avg.charAt(0);
   let history = useHistory();
 
@@ -41,8 +46,8 @@ export default function ProfileBoxItem(props) {
   return (
     <Container component="main">
       <Grid item xs={10}>
-        <CardActionArea component="a" href="#">
-          <Card className={classes.card} onClick={() => history.push("/tutor")}>
+        <CardActionArea component="a" href="#" onClick={selectId}>
+          <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>
                 <Typography component="h2" variant="h6">
@@ -57,12 +62,12 @@ export default function ProfileBoxItem(props) {
                 </Typography>
                 <Typography variant="subtitle1" color="primary">
                   Rating:
-                  {[...Array(rate)].map((star) => {
-                    return <StarRateIcon />;
+                  {[...Array(parseInt(rate))].map((star, i) => {
+                    return <StarRateIcon key={i} />;
                   })}
                 </Typography>
                 <Typography variant="subtitle1" color="primary">
-                  {props.count} reviews
+                  {props.count} {props.count <= 1 ? "review" : "reviews"}
                 </Typography>
               </CardContent>
             </div>

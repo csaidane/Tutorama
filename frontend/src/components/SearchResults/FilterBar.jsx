@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, Fragment, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   makeStyles,
@@ -50,10 +50,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FilterBar() {
+export default function FilterBar(props) {
   const classes = useStyles();
   // sortby states
-  const [conditionState, setConditionState] = React.useState({
+  const [conditionState, setConditionState] = useState({
     sortBy: "",
   });
 
@@ -66,7 +66,7 @@ export default function FilterBar() {
   };
 
   // price range states
-  const [rateState, setRateState] = React.useState({
+  const [rateState, setRateState] = useState({
     rate: "",
   });
 
@@ -159,9 +159,7 @@ export default function FilterBar() {
             }}
             autoHighlight
             getOptionLabel={(option) => option.label}
-            renderOption={(option) => (
-              <React.Fragment>{option.label}</React.Fragment>
-            )}
+            renderOption={(option) => <Fragment>{option.label}</Fragment>}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -180,6 +178,7 @@ export default function FilterBar() {
             color="secondary"
             size="large"
             className={classes.margin}
+            onClick={props.onSearch(conditionState)}
           >
             Search
           </Button>
