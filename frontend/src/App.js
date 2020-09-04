@@ -43,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: -drawerWidth,
     height: "100vh",
-    padding: "24px 24px 0 24px",
+    // padding: "24px 24px 0 24px",
+    padding: "0px 0px 0 0px",
+    backgroundColor: "#FFFFFF",
   },
   drawerHeader: {
     display: "flex",

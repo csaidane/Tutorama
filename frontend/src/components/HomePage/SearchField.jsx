@@ -3,13 +3,16 @@ import "./SearchField.scss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import { makeStyles, Box, Button, TextField } from "@material-ui/core/";
+import { makeStyles, Box, Button, TextField, Grid } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(3),
+  },
+  marginTop: {
+    marginTop: "5%",
   },
 }));
 
@@ -31,46 +34,56 @@ export default function SearchField(props) {
 
   return (
     <div id="searchField">
-      <Box
-        // className={classes.image}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        // alignItems="center"
       >
-        <form onSubmit={APISearch}>
-          <Box display="flex" justifyContent="center" alignItems="center">
-            <div style={{ width: 300 }}>
-              <Autocomplete
-                freeSolo
-                id="subjectList"
-                disableClearable
-                options={subjectList.map((option) => option.title)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Search for a subject"
-                    margin="normal"
-                    variant="outlined"
-                    InputProps={{ ...params.InputProps, type: "search" }}
-                    value={searchKeywords}
-                    onChange={(e) => setSearchKeywords(e.target.value)}
-                  />
-                )}
-              />
-            </div>
+        <Grid xs={6} className={classes.marginTop}>
+          <h1 id="heading">Let's start learning today! </h1>
+          <form onSubmit={APISearch}>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <div style={{ width: 300 }}>
+                <Autocomplete
+                  freeSolo
+                  id="subjectList"
+                  disableClearable
+                  options={subjectList.map((option) => option.title)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Search for a subject"
+                      margin="normal"
+                      variant="outlined"
+                      InputProps={{ ...params.InputProps, type: "search" }}
+                      value={searchKeywords}
+                      onChange={(e) => setSearchKeywords(e.target.value)}
+                    />
+                  )}
+                />
+              </div>
 
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              type="submit"
-              className={classes.margin}
-            >
-              Search
-            </Button>
-          </Box>
-        </form>
-      </Box>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                type="submit"
+                className={classes.margin}
+              >
+                Search
+              </Button>
+            </Box>
+          </form>
+        </Grid>
+        <Grid xs={6} className={classes.marginTop}>
+          {" "}
+          <img
+            style={{ width: "500px", height: "500px" }}
+            src="https://github.com/katebatrakova/scheduler/blob/master/docs/girl2.jpg?raw=true"
+          ></img>
+        </Grid>
+      </Grid>
     </div>
   );
 }
