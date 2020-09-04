@@ -37,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: -drawerWidth,
     height: "100vh",
-    padding: "24px 24px 0 24px",
+    // padding: "24px 24px 0 24px",
+    padding: "0px 0px 0 0px",
+    backgroundColor: '#FFFFFF'
   },
   drawerHeader: {
     display: "flex",
@@ -111,8 +113,8 @@ function App() {
             {state.user ? (
               <Route path="/" exact component={HomePage} />
             ) : (
-              <Route path="/" exact component={IndexPage} />
-            )}
+                <Route path="/" exact component={IndexPage} />
+              )}
 
             <Route
               path="/signup/student"
@@ -140,14 +142,14 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
-              <Route
-                path="/profile"
-                exact
-                render={(props) => (
-                  <StudentProfilePage {...props} user={state} />
-                )}
-              />
-            )}
+                <Route
+                  path="/profile"
+                  exact
+                  render={(props) => (
+                    <StudentProfilePage {...props} user={state} />
+                  )}
+                />
+              )}
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
