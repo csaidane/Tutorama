@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     // marginLeft: "14%",
     backgroundPosition: "center",
     height: "100%",
+    width: "100%",
     // marginLeft: "5%",
     // marginTop: "4%",
     backgroundSize: "cover",

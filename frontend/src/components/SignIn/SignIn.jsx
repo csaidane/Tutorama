@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage:
       // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
       "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
-    height: "690px",
+    height: "100%",
     width: "100%",
     backgroundPosition: "center",
     marginLeft: "10%",
