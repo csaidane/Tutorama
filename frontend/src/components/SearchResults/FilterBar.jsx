@@ -79,6 +79,7 @@ export default function FilterBar(props) {
     });
   };
   const [searchKeywords, setSearchKeywords] = useState("");
+  const [city, setCity] = useState("");
 
   const APISearch = function (event) {
     event.preventDefault();
@@ -87,6 +88,9 @@ export default function FilterBar(props) {
       .get("/api/tutors/search", {
         params: {
           query: key.key,
+          ...conditionState,
+          ...rateState,
+          city,
         },
       })
       .then((result) => {
@@ -134,10 +138,10 @@ export default function FilterBar(props) {
                 }}
               >
                 <option aria-label="None" value="" />
-                <option value={10}>Price: lowest to highest</option>
-                <option value={20}>Price: highest to lowest</option>
-                <option value={30}>Reviews</option>
-                <option value={40}>Rating</option>
+                <option value={"lowest"}>Price: lowest to highest</option>
+                <option value={"highest"}>Price: highest to lowest</option>
+                <option value={"reviews"}>Reviews</option>
+                <option value={"rating"}>Rating</option>
               </Select>
             </FormControl>
 
@@ -181,6 +185,8 @@ export default function FilterBar(props) {
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
                   label="Choose a city"
                   // variant="outlined"
                   inputProps={{

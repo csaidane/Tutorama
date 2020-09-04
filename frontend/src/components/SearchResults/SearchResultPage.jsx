@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import FilterBar from "./FilterBar";
 import ProfileBoxItem from "./ProfileBoxItem";
 import ReviewTutorProfile from "./ReviewTutorProfile";
@@ -15,33 +15,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchResultPage(props) {
+  console.log(props, "HELLLLLLLO");
   const classes = useStyles();
   const [searchResult, setSearchResult] = useState(props.searchResult);
 
-  const searchResults = searchResult.map((result) => {
-    return <ProfileBoxItem key={result.tutor_id} {...result} />;
-  });
-
-  // const onSearch = useCallback(
-  //   function (searchCriteria) {
-  //     console.log(searchCriteria, "HELLLLLO");
-  //     let searchResult;
-  //     if (searchCriteria.sortBy === "10") {
-  //       searchResult = props.searchResult.sort(
-  //         (a, b) => b.rate_per_hour - a.rate_per_hour
-  //       );
-  //       searchResults = searchResult.map((result) => {
-  //         return <ProfileBoxItem key={result.tutor_id} {...result} />;
-  //       });
-  //     }
-  //   },
-  //   [props]
-  // );
+  // const searchResults = searchResult.map((result) => {
+  //   return <ProfileBoxItem key={result.tutor_id} {...result} />;
+  // });
 
   return (
     <div className="searchResultsMain">
       <FilterBar setSearchResult={setSearchResult} />
-      {searchResults}
+      {searchResult ? (
+        searchResult.map((result) => {
+          return <ProfileBoxItem key={result.tutor_id} {...result} />;
+        })
+      ) : (
+        <Typography>
+          There are no tutors available in our database that matches your query
+        </Typography>
+      )}
     </div>
   );
 }

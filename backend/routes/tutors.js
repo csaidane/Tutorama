@@ -62,10 +62,9 @@ module.exports = (db) => {
   });
 
   router.get("/search", (req, res) => {
-    const search_keywords = req.query.query;
-    searchTutors(search_keywords)
+    searchTutors(req.query)
       .then((tutors) => {
-        console.log("tutors", tutors);
+        // console.log("tutors", tutors);
         if (!tutors) {
           res.json("no tutors found for these keywords");
         } else {
