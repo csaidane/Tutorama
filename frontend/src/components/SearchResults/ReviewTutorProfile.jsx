@@ -120,6 +120,9 @@ export default function ReviewTutorProfile(props) {
     );
   }
 
+  let reviews = props.reviews;
+  console.log("that guys reviews" , reviews)
+
   return (
     <Container>
       <Grid className={classes.shiftRight} item lg={12}>

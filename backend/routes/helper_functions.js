@@ -206,7 +206,7 @@ const getReviewsForTutor = function(id){
   JOIN users as u on u.id = r.reviewer_id
   WHERE reviewed_id = $1;
   `,[id])
-  .then(res => res.rows[0]);
+  .then(res => res.rows);
 }
 exports.getReviewsForTutor = getReviewsForTutor;
 
