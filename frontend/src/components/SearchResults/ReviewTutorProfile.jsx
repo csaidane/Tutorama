@@ -3,7 +3,6 @@ import StarRateIcon from "@material-ui/icons/StarRate";
 import "./SearchResultsPage.scss";
 import axios from "axios";
 
-
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
@@ -23,7 +22,7 @@ import {
 import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 import RateDialog from "../RatingAndComment/RateDialog.jsx";
 import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
-import MessageButton from './MessageButton'
+import MessageButton from "./MessageButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,6 +105,8 @@ export default function ReviewTutorProfile(props) {
   let history = useHistory();
   const classes = useStyles();
 
+  // console.log(props, history, "FROM THE PROFILE OF THE TUTOR");
+
   function ImageAvatars() {
     const classes = useStyles();
 
@@ -120,22 +121,30 @@ export default function ReviewTutorProfile(props) {
     );
   }
 
-  const [firstMessage, setFirstMessage] = useState("")
+  const [firstMessage, setFirstMessage] = useState("");
 
-
-  const sendAPI = function(){
-    let message = {content: firstMessage, receiver_id:props.tutor.tutor_id, sender_id: props.userId}
+  const sendAPI = function () {
+    let message = {
+      content: firstMessage,
+      receiver_id: props.tutor.tutor_id,
+      sender_id: props.userId,
+    };
     axios({ url: "/api/users/messages/add", data: message, method: "POST" })
-    .then((results)=>{
-      props.setInterlocutor({their_id:props.tutor.tutor_id, their_name:props.tutor.name})
-      return axios({baseURL:'/', url:`api/users/${props.userId}/messages/${props.tutor.tutor_id}`, method:"GET"})
-    })
-    .then((results)=>{
-      props.setMessageConversation(results.data.messages)
-    })
-    
-  }
-
+      .then((results) => {
+        props.setInterlocutor({
+          their_id: props.tutor.tutor_id,
+          their_name: props.tutor.name,
+        });
+        return axios({
+          baseURL: "/",
+          url: `api/users/${props.userId}/messages/${props.tutor.tutor_id}`,
+          method: "GET",
+        });
+      })
+      .then((results) => {
+        props.setMessageConversation(results.data.messages);
+      });
+  };
 
   const reviews = props.reviews.map((review) => {
     return (
@@ -177,7 +186,6 @@ export default function ReviewTutorProfile(props) {
               className={classes.marginBackBtn}
               variant="extended"
               onClick={() => {
-                history.goBack();
                 history.goBack();
               }}
             >
@@ -231,9 +239,18 @@ export default function ReviewTutorProfile(props) {
                     Send a message
                   </Fab>
                 </Link> */}
-                <MessageButton sendAPI={sendAPI} firstMessage={firstMessage} setFirstMessage={setFirstMessage} tutor={props.tutor}  />
-                <RateDialog setReviews={props.setReviews} APIGetReviews={props.APIGetReviews} userId={props.userId} tutor={props.tutor} />
-
+                <MessageButton
+                  sendAPI={sendAPI}
+                  firstMessage={firstMessage}
+                  setFirstMessage={setFirstMessage}
+                  tutor={props.tutor}
+                />
+                <RateDialog
+                  setReviews={props.setReviews}
+                  APIGetReviews={props.APIGetReviews}
+                  userId={props.userId}
+                  tutor={props.tutor}
+                />
               </Grid>
               <Grid item lg={3}></Grid>
               <Grid item lg={3}></Grid>

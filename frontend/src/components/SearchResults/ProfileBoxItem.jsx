@@ -51,7 +51,6 @@ export default function ProfileBoxItem(props) {
           <CardActionArea
             style={{ display: "flex" }}
             component="a"
-            href="#"
             onClick={selectId}
           >
             <div className={classes.cardDetails}>
