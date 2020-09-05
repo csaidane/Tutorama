@@ -1,6 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import "./SearchResultsPage.scss";
+import axios from "axios";
+
 
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
@@ -21,6 +23,7 @@ import {
 import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 import RateDialog from "../RatingAndComment/RateDialog.jsx";
 import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
+import MessageButton from './MessageButton'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,7 +93,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ReviewTutorProfile(props) {
-  console.log("TUTOR PROFILE", props);
   const {
     avg,
     bio,
@@ -102,7 +104,6 @@ export default function ReviewTutorProfile(props) {
   } = props.tutor;
   const rate = avg.charAt(0);
   let history = useHistory();
-
   const classes = useStyles();
 
   function ImageAvatars() {
@@ -119,7 +120,22 @@ export default function ReviewTutorProfile(props) {
     );
   }
 
-  console.log("that guys reviews", props.reviews);
+  const [firstMessage, setFirstMessage] = useState("")
+
+
+  const sendAPI = function(){
+    let message = {content: firstMessage, receiver_id:props.tutor.tutor_id, sender_id: props.userId}
+    axios({ url: "/api/users/messages/add", data: message, method: "POST" })
+    .then((results)=>{
+      props.setInterlocutor({their_id:props.tutor.tutor_id, their_name:props.tutor.name})
+      return axios({baseURL:'/', url:`api/users/${props.userId}/messages/${props.tutor.tutor_id}`, method:"GET"})
+    })
+    .then((results)=>{
+      props.setMessageConversation(results.data.messages)
+    })
+    
+  }
+
 
   const reviews = props.reviews.map((review) => {
     return (
@@ -156,10 +172,14 @@ export default function ReviewTutorProfile(props) {
       <Grid className={classes.shiftRight} item lg={12}>
         <Grid className={classes.root}>
           <Paper elevation={0}>
+            {/* //TODO: FIX THIS NASTY HACK */}
             <Fab
               className={classes.marginBackBtn}
               variant="extended"
-              onClick={() => history.goBack()}
+              onClick={() => {
+                history.goBack();
+                history.goBack();
+              }}
             >
               <ArrowBackOutlinedIcon className={classes.extendedIcon} />
               Back to search
@@ -200,17 +220,20 @@ export default function ReviewTutorProfile(props) {
                 {" "}
               </Grid>
               <Grid className={classes.alignButtons}>
-                <Link component="button" style={{ textDecoration: "none" }}>
+                {/* <Link component="button" onClick={sendAPI} style={{ textDecoration: "none" }}>
                   <Fab
                     className={classes.marginBackBtn}
                     variant="extended"
                     color="primary"
                   >
                     <SendOutlinedIcon className={classes.extendedIcon} />
+                    
                     Send a message
                   </Fab>
-                </Link>
-                <RateDialog userId={props.userId} tutor={props.tutor} />
+                </Link> */}
+                <MessageButton sendAPI={sendAPI} firstMessage={firstMessage} setFirstMessage={setFirstMessage} tutor={props.tutor}  />
+                <RateDialog setReviews={props.setReviews} APIGetReviews={props.APIGetReviews} userId={props.userId} tutor={props.tutor} />
+
               </Grid>
               <Grid item lg={3}></Grid>
               <Grid item lg={3}></Grid>

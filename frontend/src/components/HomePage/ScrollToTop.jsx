@@ -9,7 +9,8 @@ export default function ScrollToTop() {
   const [visible, setVisiblity] = useState(false);
 
   useEffect(() => {
-    if (pageYOffset > 400) {
+    console.log(pageYOffset, "HELLO");
+    if (pageYOffset > 55) {
       setVisiblity(true);
     } else {
       setVisiblity(false);

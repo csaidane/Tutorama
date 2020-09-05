@@ -59,6 +59,7 @@ export default function RateDialog(props) {
         setComment("");
         setValue(3);
         setOpen(false);
+        props.APIGetReviews(props.tutor.tutor_id)
       }
     );
   }

@@ -53,7 +53,6 @@ export default function MessageList(props) {
     .then((results)=>{
       props.setMessageConversation(results.data.messages)
       props.setInterlocutor({their_id, their_name})
-      console.log(results.data.messages)
     })
   }
 
