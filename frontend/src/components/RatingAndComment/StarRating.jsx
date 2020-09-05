@@ -24,26 +24,25 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StarRating() {
-  const [value, setValue] = React.useState(3);
-  const [hover, setHover] = React.useState(-1);
+export default function StarRating(props) {
+  
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Rating
         name="hover-feedback"
-        value={value}
+        value={props.value}
         precision={0.5}
         onChange={(event, newValue) => {
-          setValue(newValue);
+          props.setValue(newValue);
         }}
         onChangeActive={(event, newHover) => {
-          setHover(newHover);
+          props.setHover(newHover);
         }}
       />
-      {value !== null && (
-        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
+      {props.value !== null && (
+        <Box ml={2}>{labels[props.hover !== -1 ? props.hover : props.value]}</Box>
       )}
     </div>
   );
