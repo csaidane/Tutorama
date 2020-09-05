@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Fab, Grid, Button, TextField, Container } from "@material-ui/core/";
 import EditIcon from "@material-ui/icons/Edit";
@@ -32,6 +32,18 @@ export default function EditProfileTutor(props) {
   console.log("TUTOR", props);
   const classes = useStyles();
 
+  const [name, setName] = useState(props.user.user.name);
+  const [email, setEmail] = useState(props.user.user.email);
+  const [password, setPassword] = useState(props.user.user.password);
+  const [province, setProvince] = useState(props.user.user.province);
+  const [city, setCity] = useState(props.user.user.city);
+  const [address, setAddress] = useState(props.user.user.street);
+  const [zip, setZip] = useState(props.user.user.post_code);
+  const [education, setEducation] = useState(props.user.tutor.education);
+  const [bio, setBio] = useState(props.user.tutor.bio);
+  const [rate, setRate] = useState(props.user.tutor.rate_per_hour);
+  const [subject, setSubject] = useState(props.user.tutor.name);
+
   return (
     <div className={classes.shiftRight}>
       <TopLayerProfile user={props.user} />
@@ -50,6 +62,8 @@ export default function EditProfileTutor(props) {
               label="Full name"
               type="text"
               id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </Grid>
 
@@ -62,6 +76,8 @@ export default function EditProfileTutor(props) {
               label="Email Address"
               name="email"
               autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Grid>
 
@@ -75,6 +91,8 @@ export default function EditProfileTutor(props) {
               type="text"
               helperText="Name of the institution where you studied"
               id="education"
+              value={education}
+              onChange={(e) => setEducation(e.target.value)}
             />
           </Grid>
 
@@ -88,6 +106,8 @@ export default function EditProfileTutor(props) {
               type="text"
               helperText="Name of the subject you are teaching"
               id="subject"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -100,6 +120,8 @@ export default function EditProfileTutor(props) {
               type="number"
               helperText="Your tutoring rate to charge per hour"
               id="rate"
+              value={rate}
+              onChange={(e) => setRate(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -114,6 +136,8 @@ export default function EditProfileTutor(props) {
               type="text"
               helperText="A brief background about yourself: your interests, passions, why you provide tutoring services, your experience and teaching style, etc. Provide any specific information, or limitations on your services, that prospective students should be aware of."
               id="bio"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -125,6 +149,8 @@ export default function EditProfileTutor(props) {
               label="Province"
               name="province"
               autoComplete="province"
+              value={province}
+              onChange={(e) => setProvince(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -136,6 +162,8 @@ export default function EditProfileTutor(props) {
               label="City"
               name="city"
               autoComplete="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -147,6 +175,8 @@ export default function EditProfileTutor(props) {
               label="Address line"
               name="address"
               autoComplete="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
@@ -158,6 +188,8 @@ export default function EditProfileTutor(props) {
               label="ZIP/Postal code"
               name="zip"
               autoComplete="zip"
+              value={zip}
+              onChange={(e) => setZip(e.target.value)}
             />
           </Grid>
           <Grid container justify="center">

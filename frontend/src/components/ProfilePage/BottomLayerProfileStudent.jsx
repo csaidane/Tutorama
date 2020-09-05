@@ -100,14 +100,14 @@ export default function BottomLayerProfileStudent(props) {
         justify="center"
         alignItems="center"
       >
-        <Fab
+        {/* <Fab
           href="/editprofile"
           color="secondary"
           aria-label="edit"
           style={{ marginBottom: "3%" }}
         >
           <EditIcon />
-        </Fab>
+        </Fab> */}
       </Grid>
       <AppBar position="static">
         <Tabs

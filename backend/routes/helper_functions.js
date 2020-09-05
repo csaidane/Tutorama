@@ -104,8 +104,9 @@ const getTutorWithId = function (id) {
   return pool
     .query(
       `
-  SELECT * FROM tutors
-  WHERE id = $1;
+  SELECT t.*, s.name FROM tutors as t
+  JOIN subjects as s on t.id = s.tutor_id
+  WHERE t.id = $1;
   `,
       [id]
     )
@@ -235,7 +236,7 @@ exports.updateUser = updateUser;
 
 const updateTutor =  function(user) {
   return pool.query(`
-  UPDATE users
+  UPDATE tutors
   SET education = $1, bio = $2, rate_per_hour = $3
   WHERE id = $4
   RETURNING *
