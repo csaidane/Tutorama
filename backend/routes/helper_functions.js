@@ -240,7 +240,7 @@ const updateTutor =  function(user) {
   SET education = $1, bio = $2, rate_per_hour = $3
   WHERE id = $4
   RETURNING *
-  `, [user.education, user.bio, user.rate_per_hour, user.id ])
+  `, [user.education, user.bio, user.rate, user.id ])
   .then(res => res.rows[0]);
 }
 exports.updateTutor = updateTutor;

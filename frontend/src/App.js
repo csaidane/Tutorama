@@ -122,6 +122,10 @@ function App() {
           updateUser={updateUser}
           updateTutor={updateTutor}
           setInterlocutor={setInterlocutor}
+          updateSearchResult={updateSearchResult}
+          setReviews={setReviews}
+          setMessageConversation={setMessageConversation}
+
         />
         <main
           className={clsx(classes.content, {
@@ -217,14 +221,14 @@ function App() {
               <Route
                 path="/editprofile"
                 exact
-                render={(props) => <EditProfileTutor {...props} user={state} />}
+                render={(props) => <EditProfileTutor updateTutor={updateTutor} {...props} user={state} />}
               />
             ) : (
                 <Route
                   path="/editprofile"
                   exact
                   render={(props) => (
-                    <EditProfileStudent {...props} user={state} />
+                    <EditProfileStudent updateUser={updateUser} {...props} user={state} />
                   )}
                 />
               )}
