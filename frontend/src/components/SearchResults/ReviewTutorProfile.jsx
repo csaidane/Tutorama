@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import "./SearchResultsPage.scss";
 
@@ -90,11 +90,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ReviewTutorProfile(props) {
-  // console.log("TUTOR PROFILE", props);
+  console.log("TUTOR PROFILE", props);
   const {
     avg,
     bio,
-
     education,
     name,
     profile_picture_url,
@@ -120,8 +119,34 @@ export default function ReviewTutorProfile(props) {
     );
   }
 
-  let reviews = props.reviews;
-  console.log("that guys reviews" , reviews)
+  console.log("that guys reviews", props.reviews);
+
+  const reviews = props.reviews.map((review) => {
+    return (
+      <Fragment>
+        <Card className={classes.card}>
+          <CardMedia
+            className={classes.cardMedia}
+            image={review.profile_picture_url}
+          />
+          <Grid item lg={12} md={12} xs={12}>
+            <CardContent>
+              <Typography component="h2" variant="h6">
+                {review.name}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                Location: {review.city}
+              </Typography>
+              <p className="descinReview">{review.comment}</p>
+              <Typography variant="subtitle1" color="primary">
+                Rating: <span role="img"> ⭐⭐⭐⭐⭐ </span>
+              </Typography>
+            </CardContent>
+          </Grid>
+        </Card>
+      </Fragment>
+    );
+  });
 
   return (
     <Container>
@@ -237,29 +262,7 @@ export default function ReviewTutorProfile(props) {
             <h4 className="eduInReview">Reviews</h4>
             {/* Container for a review */}
             <Grid item lg={12} md={12} xs={12}>
-              <Card className={classes.card}>
-                <CardMedia
-                  className={classes.cardMedia}
-                  image="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
-                />
-                <Grid item lg={12} md={12} xs={12}>
-                  <CardContent>
-                    <Typography component="h2" variant="h6">
-                      Liz Erits
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                      Location: Montreal
-                    </Typography>
-                    <p className="descinReview">
-                      This tutor is the best one. This tutor is the best one.
-                      This tutor is the best one. This tutor is the best one.
-                    </p>
-                    <Typography variant="subtitle1" color="primary">
-                      Rating: <span role="img"> ⭐⭐⭐⭐⭐ </span>
-                    </Typography>
-                  </CardContent>
-                </Grid>
-              </Card>
+              {reviews}
             </Grid>
           </Grid>
         </Grid>
