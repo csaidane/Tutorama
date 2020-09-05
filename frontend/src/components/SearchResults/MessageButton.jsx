@@ -7,7 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-export default function MessageButton() {
+export default function MessageButton(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -18,6 +18,11 @@ export default function MessageButton() {
     setOpen(false);
   };
 
+  const messageSendAndHandleClose = () => {
+    props.sendAPI();
+    setOpen(false);
+  };
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -25,13 +30,13 @@ export default function MessageButton() {
       </Button>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={messageSendAndHandleClose}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Send Message</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            This will be the beginning of your conversation with tutor name
+            This will be the beginning of your conversation with {props.tutor.name}
           </DialogContentText>
           <TextField
             autoFocus
@@ -40,13 +45,15 @@ export default function MessageButton() {
             label="Message"
             type="email"
             fullWidth
+            value={props.firstMessage}
+            onChange={(e) => props.setFirstMessage(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={messageSendAndHandleClose} color="primary">
             Send
           </Button>
         </DialogActions>
