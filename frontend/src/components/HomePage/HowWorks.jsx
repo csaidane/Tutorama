@@ -1,21 +1,74 @@
 import React from "react";
 import "./HowWorks.scss";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
-import { makeStyles, Avatar, Box, Grid, Typography } from "@material-ui/core/";
-import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
-import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
-import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
-import DoneOutlineOutlinedIcon from "@material-ui/icons/DoneOutlineOutlined";
+import { makeStyles, Box, Grid, Typography } from "@material-ui/core/";
+
+const settings = {
+  dots: true,
+  fade: true,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
+
+const steps = [
+  {
+    name: "step1",
+    url:
+      "https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/login.png?raw=true",
+    description: "Step 1: Login or Sign up",
+  },
+  {
+    name: "step2",
+    url:
+      "https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/search.png?raw=true",
+    description: "Step 2: Search for a tutor",
+  },
+  {
+    name: "step3",
+    url:
+      "https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/profile.png?raw=true",
+    description: "Step 3: Review tutors' profiles",
+  },
+  {
+    name: "step4",
+    url:
+      "https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/message.png?raw=true",
+    description: "Step 4: Message the preferred tutor",
+  },
+  {
+    name: "step5",
+    url:
+      "https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/lesson.png?raw=true",
+    description: "Step 5: Get one-on-one lesson",
+  },
+  {
+    name: "step6",
+    url:
+      "https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/pay.png?raw=true",
+    description: "Step 6: Pay for the service",
+  },
+  {
+    name: "step7",
+    url:
+      "https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/rate.png?raw=true",
+    description: "Step 7: Leave a feedback",
+  },
+];
 
 const useStyles = makeStyles((theme) => ({
-  image: {
-    backgroundImage: "url()",
+  backgroundColour: {
+    backgroundImage:
+      "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 90%)",
+    boxShadow: "12px 12px 10px 19px white  ",
     height: "800px",
-    backgroundSize: "cover",
-    boxShadow: "25px 25px 50px 50px white inset",
   },
   root: {
-    maxWidth: 345,
+    maxWidth: 45,
   },
   media: {
     height: 140,
@@ -23,131 +76,43 @@ const useStyles = makeStyles((theme) => ({
 
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
   },
-  bottomMargin: {
+
+  imgSize: {
+    marginTop: "5%",
     marginBottom: "5%",
+    width: "150px",
+    height: "150px",
+    borderRadius: "4%",
+    "&:hover": {
+      border: "",
+      boxShadow: "4px 4px 4px 4px grey ",
+    },
   },
 }));
 
 export default function HowWorks() {
   const classes = useStyles();
   return (
-    <div id="searchField">
-      <Typography
-        className={classes.bottomMargin}
-        variant="h3"
-        align="center"
-        color="textPrimary"
-      >
-        How tutorama works?
-      </Typography>
-
-      <Box
-        className={classes.image}
-        display="flex"
-        justifyContent="flex-start"
-        // alignItems="center"
-      >
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="flex-start"
-        >
-          <Grid item xs={12} md={3}>
-            <div className="stepImage">
-              <img
-                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/login.png?raw=true"
-                alt="login"
-              ></img>
-              <Typography variant="h4">Login or Sign Up </Typography>
-              <Avatar className={classes.avatar}>
-                <ArrowForwardOutlinedIcon />
-              </Avatar>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <div className="stepImage">
-              <img
-                alt="stepImage"
-                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/search.png?raw=true"
-              ></img>
-              <Typography variant="h4">Search for a tutor</Typography>
-              <Avatar className={classes.avatar}>
-                <ArrowForwardOutlinedIcon />
-              </Avatar>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} md={3}>
-            <div className="stepImage">
-              <img
-                alt="stepImage"
-                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/profile.png?raw=true"
-              ></img>
-              <Typography variant="h4">Review profiles</Typography>
-              <Avatar className={classes.avatar}>
-                <ArrowForwardOutlinedIcon />
-              </Avatar>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} md={3}>
-            <div className="stepImage">
-              <img
-                alt="stepImage"
-                src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/message.png?raw=true"
-              ></img>
-              <Typography variant="h4">Sent a message to the tutor </Typography>
-              <Avatar className={classes.avatar}>
-                <ArrowDownwardOutlinedIcon />
-              </Avatar>
-            </div>
-          </Grid>
-          <Grid
-            container
-            direction="row-reverse"
-            justify="center"
-            alignItems="flex-start"
-          >
-            <Grid item xs={12} md={3}>
-              <div className="stepImage">
+    <div className={classes.backgroundColour}>
+      <h2 id="heading"> How tutorama works?</h2>
+      <div id="slider">
+        <Slider {...settings}>
+          {steps.map((step, index) => {
+            return (
+              <div key={index}>
                 <img
-                  alt="stepImage"
-                  src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/lesson.png?raw=true"
+                  id="sliderPic"
+                  // width="300px"
+                  // height="300px"
+                  src={step.url}
                 ></img>
-                <Typography variant="h4">Get one-on-one class</Typography>
-                <Avatar className={classes.avatar}>
-                  <ArrowBackOutlinedIcon />
-                </Avatar>
+                <p className="stepText">{step.description}</p>
               </div>
-            </Grid>
-
-            <Grid item xs={12} md={3}>
-              <div className="stepImage">
-                <img
-                  alt="stepImage"
-                  src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/pay.png?raw=true"
-                ></img>
-                <Typography variant="h4">Pay for the service</Typography>
-                <Avatar className={classes.avatar}>
-                  <ArrowBackOutlinedIcon />
-                </Avatar>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <div alt="stepImage" className="stepImage">
-                <img src="https://github.com/csaidane/Tutorama/blob/component/navbar/frontend/src/img/rate.png?raw=true"></img>
-                <Typography variant="h4">Rate your tutor</Typography>
-                <Avatar className={classes.avatar}>
-                  <DoneOutlineOutlinedIcon />
-                </Avatar>
-              </div>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Box>
+            );
+          })}
+        </Slider>
+      </div>
     </div>
   );
 }

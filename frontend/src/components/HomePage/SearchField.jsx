@@ -1,75 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchField.scss";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-import { makeStyles, Box, Button, TextField } from "@material-ui/core/";
+import { makeStyles, Box, Button, TextField, Grid } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
-  image: {
-    backgroundImage:
-      "url(https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=955&q=80)",
-    height: "400px",
-    backgroundSize: "cover",
-    boxShadow: "25px 25px 50px 50px white inset",
-  },
   margin: {
     margin: theme.spacing(3),
   },
+  marginTop: {
+    marginTop: "5%",
+  },
 }));
 
-export default function SearchField() {
+export default function SearchField(props) {
   const classes = useStyles();
+  let history = useHistory();
+
+  const [searchKeywords, setSearchKeywords] = useState("");
+
+  const APISearch = function (event) {
+    event.preventDefault();
+    let key = { key: searchKeywords };
+    axios({ url: `/api/tutors/search?query=${key.key}`, method: "GET" })
+      .then((result) => {
+        props.updateSearchResult(result.data.search);
+      })
+      .then(() => history.push("/searchresult"));
+  };
+
   return (
     <div id="searchField">
-      <Box
-        className={classes.image}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        // alignItems="center"
       >
-        <form action="">
-          <Box display="flex" justifyContent="center" alignItems="center">
-            {/* <input
-              id="searchInput"
-              type="text"
-              placeholder="Search for a subject ..."
-              name="search"
-            /> */}
-            {/* <SearchBar
-              placeholder="Search for a subject..."
-              // value={this.state.value}
-              // onChange={(newValue) => this.setState({ value: newValue })}
-              // onRequestSearch={() => doSomethingWith(this.state.value)}
-            /> */}
-            <div style={{ width: 300 }}>
-              <Autocomplete
-                freeSolo
-                id="subjectList"
-                disableClearable
-                options={subjectList.map((option) => option.title)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Search for a subject"
-                    margin="normal"
-                    variant="outlined"
-                    InputProps={{ ...params.InputProps, type: "search" }}
-                  />
-                )}
-              />
-            </div>
+        <Grid xs={6} className={classes.marginTop}>
+          <h1 id="heading">Let's start learning today! </h1>
+          <form onSubmit={APISearch}>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <div style={{ width: 300 }}>
+                <Autocomplete
+                  freeSolo
+                  id="subjectList"
+                  disableClearable
+                  options={subjectList.map((option, index) => option.title)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Search for a subject"
+                      margin="normal"
+                      variant="outlined"
+                      InputProps={{ ...params.InputProps, type: "search" }}
+                      value={searchKeywords}
+                      onChange={(e) => setSearchKeywords(e.target.value)}
+                    />
+                  )}
+                />
+              </div>
 
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              className={classes.margin}
-            >
-              Search
-            </Button>
-          </Box>
-        </form>
-      </Box>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                type="submit"
+                className={classes.margin}
+              >
+                Search
+              </Button>
+            </Box>
+          </form>
+        </Grid>
+        <Grid xs={6} className={classes.marginTop}>
+          {" "}
+          <img
+            style={{ width: "500px", height: "500px" }}
+            src="https://github.com/katebatrakova/scheduler/blob/master/docs/girl2.jpg?raw=true"
+          ></img>
+        </Grid>
+      </Grid>
     </div>
   );
 }

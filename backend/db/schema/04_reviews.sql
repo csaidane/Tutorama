@@ -6,6 +6,6 @@ CREATE TABLE reviews (
   reviewer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   reviewed_id INTEGER REFERENCES tutors(id) ON DELETE CASCADE,
   comment TEXT,
-  rating INTEGER,
+  rating DECIMAL,
   date DATE
 );

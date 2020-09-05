@@ -1,10 +1,36 @@
-// SignUpPage
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300&display=swap');
 
 #radioForm {
-  margin-top: 25%;
+  margin-top: 5%;
   text-align: -webkit-center;
 }
 
 #featureList {
   text-align: -webkit-center;
+}
+
+
+.heading {
+  padding-top: 5%;
+  font-family: 'Lora';
+  font-size: 60px;
+  text-align: -webkit-center;
+}
+
+.optionText {
+  font-family: 'Roboto Mono';
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+.optionText2 {
+  font-family: 'Roboto Mono';
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.studentSignUpHeadings {
+  font-family: 'Lora';
+  font-size: 2rem;
 }

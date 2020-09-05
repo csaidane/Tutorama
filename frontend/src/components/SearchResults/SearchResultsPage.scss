@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Montserrat:wght@200&display=swap');
+
+.teacherNameSearch {
+  // padding-top: 5%;
+  font-family: 'Lora';
+  font-size: 1.5rem;
+  // text-align: -webkit-center;
+}
+
+.teacherTitleSearch {
+  font-family: 'Roboto Mono';
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.teacherBioSearch {
+  font-family: 'Lora';
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.teacherRateSearch {
+  color: #303F9F;
+  font-family: 'Lora';
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.searchResultsMain {
+  background-color: #FFFFFF;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.nameInReview {
+  width: max-content;
+  margin-left: 15%;
+  font-family: 'Lora';
+  font-size: 40px;
+}
+
+.titleInReview {
+  margin-left: 15%;
+  font-family: 'Roboto Mono';
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.eduInReview {
+  font-family: 'Lora';
+  font-size: 40px;
+}
+
+.descinReview {
+  font-family: 'Lora';
+  font-size: 1rem;
+  font-weight: 200;
+
+}
