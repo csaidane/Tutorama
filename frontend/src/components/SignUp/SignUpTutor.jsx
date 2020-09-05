@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./SignUpPage.scss";
 import { useHistory } from "react-router-dom";
+
 import axios from "axios";
 
 import {
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   shiftRight: {
-    marginLeft: "23%",
+    marginLeft: "16%",
   },
   spacingTypo: {
     margin: "3%",
@@ -66,7 +67,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     // marginTop: "4%",
     backgroundSize: "cover",
-    backgroundPosition: "center",
+  },
+  backForInputFields: {
+    backgroundColor: "#f6f6f6",
+    opacity: "0.8",
   },
 }));
 
@@ -127,6 +131,7 @@ export default function SignUpTutor(props) {
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -141,6 +146,7 @@ export default function SignUpTutor(props) {
 
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -154,6 +160,7 @@ export default function SignUpTutor(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -168,13 +175,14 @@ export default function SignUpTutor(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
                       name="education"
                       label="Education"
                       type="text"
-                      helperText="Please provide the name of the institution where you studied"
+                      helperText="*Please provide the name of the institution where you studied"
                       id="education"
                       value={education}
                       onChange={(e) => setEducation(e.target.value)}
@@ -183,13 +191,14 @@ export default function SignUpTutor(props) {
 
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
                       name="subject"
                       label="Subject taught"
                       type="text"
-                      helperText="Please provide the name of the subject you are teaching"
+                      helperText="*Please provide the name of the subject you are teaching"
                       id="subject"
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
@@ -197,13 +206,14 @@ export default function SignUpTutor(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
                       name="rate"
                       label="$/hour"
                       type="number"
-                      helperText="Please provide your tutoring rate to charge per hour"
+                      helperText="*Please provide your tutoring rate to charge per hour"
                       id="rate"
                       value={rate}
                       onChange={(e) => setRate(e.target.value)}
@@ -211,6 +221,7 @@ export default function SignUpTutor(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       rows={4}
                       required
@@ -219,7 +230,7 @@ export default function SignUpTutor(props) {
                       name="bio"
                       label="Bio"
                       type="text"
-                      helperText="A brief background about yourself: your interests, passions, why you provide tutoring services, your experience and teaching style, etc. Provide any specific information, or limitations on your services, that prospective students should be aware of."
+                      helperText="*A brief background about yourself: your interests, passions, why you provide tutoring services, your experience and teaching style, etc. Provide any specific information, or limitations on your services, that prospective students should be aware of."
                       id="bio"
                       value={bio}
                       onChange={(e) => setBio(e.target.value)}
@@ -244,6 +255,7 @@ export default function SignUpTutor(props) {
                 <Grid container spacing={6}>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -258,6 +270,7 @@ export default function SignUpTutor(props) {
 
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -271,6 +284,7 @@ export default function SignUpTutor(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -284,6 +298,7 @@ export default function SignUpTutor(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
