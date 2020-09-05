@@ -205,7 +205,7 @@ function App() {
                 const { id } = props.match.params;
                 const tutor = state.searchResult.find((r) => r.tutor_id == id);
 
-                return <ReviewTutorProfile reviews={reviews} tutor={tutor} />;
+                return <ReviewTutorProfile userId={state.user && state.user.id} reviews={reviews} tutor={tutor} />;
               }}
             />
             {state.tutor ? (
