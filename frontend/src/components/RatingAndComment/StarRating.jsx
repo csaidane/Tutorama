@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
@@ -25,8 +25,8 @@ const useStyles = makeStyles({
 });
 
 export default function StarRating() {
-  const [value, setValue] = React.useState(3);
-  const [hover, setHover] = React.useState(-1);
+  const [value, setValue] = useState(3);
+  const [hover, setHover] = useState(-1);
   const classes = useStyles();
 
   return (
