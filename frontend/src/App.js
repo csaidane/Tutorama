@@ -195,7 +195,7 @@ function App() {
               path="/searchresult"
               exact
               render={(props) => (
-                <SearchResultPage APIGetReviews={APIGetReviews} setReviews={setReviews} searchResult={state.searchResult} />
+                <SearchResultPage reviews={reviews} APIGetReviews={APIGetReviews} setReviews={setReviews} searchResult={state.searchResult} />
               )}
             />
             <Route

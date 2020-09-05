@@ -17,7 +17,7 @@ export default function SearchResultPage(props) {
   const [searchResult, setSearchResult] = useState(props.searchResult);
 
   const searchResults = searchResult.map((result) => {
-    return <ProfileBoxItem APIGetReviews={props.APIGetReviews} setReviews={props.setReviews} key={result.tutor_id} {...result} />;
+    return <ProfileBoxItem reviews={props.reviews} APIGetReviews={props.APIGetReviews} setReviews={props.setReviews} key={result.tutor_id} {...result} />;
   });
 
   // const onSearch = useCallback(
