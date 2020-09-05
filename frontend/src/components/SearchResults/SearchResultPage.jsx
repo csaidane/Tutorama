@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "15%",
     backgroundColor: "#FFFFFF",
   },
+  image: {},
 }));
 
 export default function SearchResultPage(props) {
