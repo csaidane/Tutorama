@@ -97,6 +97,10 @@ function App() {
   };
 
   const [reviews, setReviews] = useState([]);
+  const [interlocutor, setInterlocutor] = useState({})
+  const [messageConversation, setMessageConversation] = useState([])
+
+
 
   const APIGetReviews = function (id) {
     axios({ url: `/api/tutors/profile/${id}`, method: "GET" }).then(
@@ -115,6 +119,7 @@ function App() {
           state={state}
           updateUser={updateUser}
           updateTutor={updateTutor}
+          setInterlocutor={setInterlocutor}
         />
         <main
           className={clsx(classes.content, {
@@ -171,7 +176,7 @@ function App() {
               path="/messages"
               exact
               render={(props) => (
-                <MessagePage {...props} userId={state.user && state.user.id} />
+                <MessagePage setMessageConversation={setMessageConversation} messageConversation={messageConversation} interlocutor={interlocutor} setInterlocutor={setInterlocutor} {...props} userId={state.user && state.user.id} />
               )}
             />
             {state.tutor ? (
@@ -207,16 +212,7 @@ function App() {
               render={(props) => {
                 const { id } = props.match.params;
                 const tutor = state.searchResult.find((r) => r.tutor_id == id);
-
-                return (
-                  <ReviewTutorProfile
-                    APIGetReviews={APIGetReviews}
-                    setReviews={setReviews}
-                    userId={state.user && state.user.id}
-                    reviews={reviews}
-                    tutor={tutor}
-                  />
-                );
+                return <ReviewTutorProfile setMessageConversation={setMessageConversation} setInterlocutor={setInterlocutor} APIGetReviews={APIGetReviews} setReviews={setReviews} userId={state.user && state.user.id} reviews={reviews} tutor={tutor} />;
               }}
             />
             {state.tutor ? (
