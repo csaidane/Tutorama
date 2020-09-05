@@ -104,6 +104,9 @@ export default function FilterBar(props) {
                 freeSolo
                 id="subjectList"
                 disableClearable
+                onChange={(e, option) => {
+                  setSearchKeywords(option);
+                }}
                 options={subjectList.map((option) => option.title)}
                 renderInput={(params) => (
                   <TextField
@@ -173,6 +176,9 @@ export default function FilterBar(props) {
               options={cities}
               classes={{
                 option: classes.option,
+              }}
+              onChange={(e, option) => {
+                setSearchKeywords(option);
               }}
               autoHighlight
               getOptionLabel={(option) => option.label}
