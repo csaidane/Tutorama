@@ -159,8 +159,13 @@ export default function ReviewTutorProfile(props) {
             <Fab
               className={classes.marginBackBtn}
               variant="extended"
-              onClick={() => history.goBack()}
+              onClick={() => {
+                history.goBack();
+                history.goBack();
+              }}
             >
+              {" "}
+              //TODO: FIX THIS NASTY HACK
               <ArrowBackOutlinedIcon className={classes.extendedIcon} />
               Back to search
             </Fab>

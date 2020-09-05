@@ -39,9 +39,8 @@ export default function HomePage(props) {
         <FindSubjects />
       </Grid>
 
-      <Grid item xs={12} container id="bottomImg">
-        <ScrollToTop />
-      </Grid>
+      <ScrollToTop />
+      <Grid item xs={12} container id="bottomImg"></Grid>
     </Fragment>
   );
 }
