@@ -210,6 +210,8 @@ function App() {
 
                 return (
                   <ReviewTutorProfile
+                    APIGetReviews={APIGetReviews}
+                    setReviews={setReviews}
                     userId={state.user && state.user.id}
                     reviews={reviews}
                     tutor={tutor}

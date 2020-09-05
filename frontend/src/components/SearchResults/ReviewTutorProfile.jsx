@@ -215,7 +215,7 @@ export default function ReviewTutorProfile(props) {
                     Send a message
                   </Fab>
                 </Link>
-                <RateDialog userId={props.userId} tutor={props.tutor} />
+                <RateDialog setReviews={props.setReviews} APIGetReviews={props.APIGetReviews} userId={props.userId} tutor={props.tutor} />
               </Grid>
               <Grid item lg={3}></Grid>
               <Grid item lg={3}></Grid>
