@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import "./SearchResultsPage.scss";
+import axios from "axios";
+
 
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
@@ -90,7 +92,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ReviewTutorProfile(props) {
-  console.log("TUTOR PROFILE", props);
   const {
     avg,
     bio,
@@ -102,7 +103,6 @@ export default function ReviewTutorProfile(props) {
   } = props.tutor;
   const rate = avg.charAt(0);
   let history = useHistory();
-
   const classes = useStyles();
 
   function ImageAvatars() {
@@ -119,7 +119,21 @@ export default function ReviewTutorProfile(props) {
     );
   }
 
-  console.log("that guys reviews", props.reviews);
+  const sendAPI = function(){
+    let message = {content:"default message", receiver_id:props.tutor.tutor_id, sender_id: props.userId}
+    axios({ url: "/api/users/messages/add", data: message, method: "POST" })
+    .then((results)=>{
+      props.setInterlocutor({their_id:props.tutor.tutor_id, their_name:props.tutor.name})
+
+      console.log("we here")
+      return axios({baseURL:'/', url:`api/users/${props.userId}/messages/${props.tutor.tutor_id}`, method:"GET"})
+    })
+    .then((results)=>{
+      props.setMessageConversation(results.data.messages)
+      history.push('/messages')
+    })
+    
+  }
 
   const reviews = props.reviews.map((review) => {
     return (
@@ -200,7 +214,7 @@ export default function ReviewTutorProfile(props) {
                 {" "}
               </Grid>
               <Grid className={classes.alignButtons}>
-                <Link component="button" style={{ textDecoration: "none" }}>
+                <Link component="button" onClick={sendAPI} style={{ textDecoration: "none" }}>
                   <Fab
                     className={classes.marginBackBtn}
                     variant="extended"
