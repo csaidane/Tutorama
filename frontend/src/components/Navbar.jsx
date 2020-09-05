@@ -134,6 +134,7 @@ export default function NavBar(props) {
     axios({ url: "/api/users/logout", method: "POST" }).then((result) => {
       history.push("/");
       props.updateTutor(null, null);
+      props.setInterlocutor({})
     });
   };
 

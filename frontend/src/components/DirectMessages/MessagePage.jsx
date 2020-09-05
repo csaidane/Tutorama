@@ -18,8 +18,6 @@ export default function MessagePage(props) {
 
   
   const [messageThreads, setMessageThreads] = useState([])
-  const [messageConversation, setMessageConversation] = useState([])
-  const [interlocutor, setInterlocutor] = useState({})
 
 
   useEffect(() => {
@@ -36,12 +34,12 @@ export default function MessagePage(props) {
   return (
     <div className="main">
       <div className="list">
-        <MessageList setInterlocutor={setInterlocutor} userId={props.userId} setMessageConversation={setMessageConversation} messageThreads={messageThreads} />
+        <MessageList setInterlocutor={props.setInterlocutor} userId={props.userId} setMessageConversation={props.setMessageConversation} messageThreads={messageThreads} />
       </div>
       <div className="msg">
-        <MessageView interlocutor={interlocutor} messageConversation={messageConversation}/>
+        <MessageView interlocutor={props.interlocutor} messageConversation={props.messageConversation}/>
         <div className="text-message-box">
-          {interlocutor.their_name&& <MessageTextBox setMessageConversation={setMessageConversation} userId={props.userId} interlocutor={interlocutor} />}
+          {props.interlocutor.their_name&& <MessageTextBox setMessageConversation={props.setMessageConversation} userId={props.userId} interlocutor={props.interlocutor} />}
         </div>
       </div>
     </div>
