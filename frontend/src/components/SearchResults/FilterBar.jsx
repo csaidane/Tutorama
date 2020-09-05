@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, Fragment, useCallback } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import {
   makeStyles,
   Grid,
@@ -7,25 +8,16 @@ import {
   Button,
   InputLabel,
   FormControl,
-  BootstrapInput,
   Select,
   TextField,
 } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { flexbox } from "@material-ui/system";
-
-import useAutocomplete from "@material-ui/lab/useAutocomplete";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
-    marginLeft: "10%",
-    marginRight: "10%",
+    marginLeft: "20%",
     marginTop: "7%",
     padding: theme.spacing(2),
-
     // textAlign: "center",
     color: theme.palette.text.primary,
   },
@@ -33,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
+    placeItems: "center",
   },
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
     minWidth: 120,
   },
   selectEmpty: {
@@ -52,12 +45,15 @@ const useStyles = makeStyles((theme) => ({
   search: {
     width: "30%",
   },
+  margin: {
+    margin: "0 3% 0 3%",
+  },
 }));
 
-export default function FilterBar() {
+export default function FilterBar(props) {
   const classes = useStyles();
   // sortby states
-  const [conditionState, setConditionState] = React.useState({
+  const [conditionState, setConditionState] = useState({
     sortBy: "",
   });
 
@@ -70,7 +66,7 @@ export default function FilterBar() {
   };
 
   // price range states
-  const [rateState, setRateState] = React.useState({
+  const [rateState, setRateState] = useState({
     rate: "",
   });
 
@@ -81,113 +77,131 @@ export default function FilterBar() {
       [name]: event.target.value,
     });
   };
+  const [searchKeywords, setSearchKeywords] = useState("");
+
+  const APISearch = function (event) {
+    event.preventDefault();
+    let key = { key: searchKeywords };
+    axios
+      .get("/api/tutors/search", {
+        params: {
+          query: key.key,
+        },
+      })
+      .then((result) => {
+        props.setSearchResult(result.data.search);
+      });
+  };
 
   return (
-    <Grid item xs={12}>
+    <Grid item xl={12} md={12} xs={12}>
       <Paper className={classes.paper}>
-        <FormControl className={classes.form}>
-          {/* Choosing a subject  */}
-          <div style={{ width: 200 }}>
+        <form onSubmit={APISearch}>
+          <FormControl className={classes.form}>
+            {/* Choosing a subject  */}
+            <div style={{ width: 250 }} className={classes.margin}>
+              <Autocomplete
+                freeSolo
+                id="subjectList"
+                disableClearable
+                options={subjectList.map((option) => option.title)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Subject"
+                    margin="normal"
+                    variant="outlined"
+                    onChange={(e) => setSearchKeywords(e.target.value)}
+                    InputProps={{ ...params.InputProps, type: "search" }}
+                  />
+                )}
+              />
+            </div>
+            {/* Sort by  */}
+
+            <FormControl variant="standard" className={classes.formControl}>
+              <InputLabel htmlFor="outlined-age-native-simple">
+                Sort by
+              </InputLabel>
+              <Select
+                native
+                value={conditionState.sortBy}
+                onChange={handleChange}
+                // label="Sort By"
+                inputProps={{
+                  name: "sortBy",
+                }}
+              >
+                <option aria-label="None" value="" />
+                <option value={10}>Price: lowest to highest</option>
+                <option value={20}>Price: highest to lowest</option>
+                <option value={30}>Reviews</option>
+                <option value={40}>Rating</option>
+              </Select>
+            </FormControl>
+
+            {/* Price range */}
+            <FormControl variant="standard" className={classes.formControl}>
+              <InputLabel htmlFor="outlined-age-native-simple">
+                Hourly rate
+              </InputLabel>
+              <Select
+                native
+                value={rateState.rate}
+                onChange={handleRateChange}
+                // label="Sort By"
+                inputProps={{
+                  name: "rate",
+                }}
+              >
+                <option aria-label="None" value="" />
+                <option value={1}>$10-$20</option>
+                <option value={2}>$20-$30</option>
+                <option value={3}>$30-$40</option>
+                <option value={4}>$40-$50</option>
+                <option value={5}>$50-$60</option>
+                <option value={6}>$60-$70</option>
+                <option value={7}>$70-$80</option>
+              </Select>
+            </FormControl>
+
+            {/* City selector  */}
             <Autocomplete
-              freeSolo
-              id="subjectList"
-              disableClearable
-              options={subjectList.map((option) => option.title)}
+              variant="standard"
+              id="selectCity"
+              style={{ width: 300 }}
+              options={cities}
+              classes={{
+                option: classes.option,
+              }}
+              autoHighlight
+              getOptionLabel={(option) => option.label}
+              renderOption={(option) => <Fragment>{option.label}</Fragment>}
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  label="Subject"
-                  margin="normal"
-                  variant="outlined"
-                  InputProps={{ ...params.InputProps, type: "search" }}
+                  label="Choose a city"
+                  // variant="outlined"
+                  inputProps={{
+                    ...params.inputProps,
+                    autoComplete: "new-password", // disable autocomplete and autofill
+                  }}
                 />
               )}
             />
-          </div>
-          {/* Sort by  */}
 
-          <FormControl variant="standard" className={classes.formControl}>
-            <InputLabel htmlFor="outlined-age-native-simple">
-              Sort by
-            </InputLabel>
-            <Select
-              native
-              value={conditionState.sortBy}
-              onChange={handleChange}
-              // label="Sort By"
-              inputProps={{
-                name: "sortBy",
-              }}
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              type="submit"
+              className={classes.margin}
+              // onClick={props.onSearch(conditionState)}
             >
-              <option aria-label="None" value="" />
-              <option value={10}>Price: lowest to highest</option>
-              <option value={20}>Price: highest to lowest</option>
-              <option value={30}>Reviews</option>
-              <option value={40}>Rating</option>
-            </Select>
+              Search
+            </Button>
           </FormControl>
-
-          {/* Price range */}
-          <FormControl variant="standard" className={classes.formControl}>
-            <InputLabel htmlFor="outlined-age-native-simple">
-              Hourly rate
-            </InputLabel>
-            <Select
-              native
-              value={rateState.rate}
-              onChange={handleRateChange}
-              // label="Sort By"
-              inputProps={{
-                name: "rate",
-              }}
-            >
-              <option aria-label="None" value="" />
-              <option value={1}>$10-$20</option>
-              <option value={2}>$20-$30</option>
-              <option value={3}>$30-$40</option>
-              <option value={4}>$40-$50</option>
-              <option value={5}>$50-$60</option>
-              <option value={6}>$60-$70</option>
-              <option value={7}>$70-$80</option>
-            </Select>
-          </FormControl>
-
-          {/* City selector  */}
-          <Autocomplete
-            variant="standard"
-            id="selectCity"
-            style={{ width: 300 }}
-            options={cities}
-            classes={{
-              option: classes.option,
-            }}
-            autoHighlight
-            getOptionLabel={(option) => option.label}
-            renderOption={(option) => (
-              <React.Fragment>{option.label}</React.Fragment>
-            )}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Choose a city"
-                // variant="outlined"
-                inputProps={{
-                  ...params.inputProps,
-                  autoComplete: "new-password", // disable autocomplete and autofill
-                }}
-              />
-            )}
-          />
-
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            className={classes.margin}
-          >
-            Search
-          </Button>
-        </FormControl>
+        </form>
       </Paper>
     </Grid>
   );

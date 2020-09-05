@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Grid } from "@material-ui/core";
+import { AppBar, Grid, Fab, Link } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import EditIcon from "@material-ui/icons/Edit";
+
+import "./BottomLayerProfileTutor.scss";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,13 +64,27 @@ const useStyles = makeStyles((theme) => ({
   box: {
     width: "40%",
     height: "40%",
+    borderRadius: "10%",
   },
   padding: {
     padding: "5%",
+    fontFamily: "Lora",
+    fontSize: "1rem",
   },
 }));
 
-export default function BottomLayerProfileTutor() {
+export default function BottomLayerProfileTutor(props) {
+  const { bio, education, rate_per_hour } = props.user.tutor;
+  const {
+    name,
+    password,
+    email,
+    post_code,
+    province,
+    city,
+    street,
+  } = props.user.user;
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -76,7 +93,23 @@ export default function BottomLayerProfileTutor() {
   };
 
   return (
-    <div className={classes.root}>
+    <Grid className={classes.root}>
+      <Grid
+        item
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+        <Fab
+          href="/editprofile"
+          color="secondary"
+          aria-label="edit"
+          style={{ marginBottom: "3%" }}
+        >
+          <EditIcon />
+        </Fab>
+      </Grid>
       <AppBar position="static">
         <Tabs
           variant="fullWidth"
@@ -92,58 +125,52 @@ export default function BottomLayerProfileTutor() {
       <TabPanel value={value} index={0}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
-            <Typography className={classes.padding} align="center">
-              Your BIO Page Onenfa,jbffad,mn
-              adfm,ndfbfd,amnbad,dmnbfmanb,manba,mnb Page Onenfa,jbffad,mn
-            </Typography>
+            <p className={classes.padding}>{bio}</p>
           </Paper>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
-            <Typography className={classes.padding} align="left">
-              Full name:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Email:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Phone number:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Subject taught:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Education:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Rate per hour:
-            </Typography>
+            <p className={classes.padding}>
+              <strong>Full name: </strong> {name}
+            </p>
+            <p className={classes.padding}>
+              {" "}
+              <strong>Email: </strong> {email}
+            </p>
+            <p className={classes.padding}>
+              <strong>Password: </strong>
+              {password}
+            </p>
+            <p className={classes.padding}>
+              <strong>Education:</strong> {education}
+            </p>
+            <p className={classes.padding}>
+              <strong>Rate per hour:</strong> CAD${rate_per_hour}
+            </p>
           </Paper>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Grid container direction="column" justify="center" alignItems="center">
           <Paper className={classes.box}>
-            <Typography className={classes.padding} align="left">
-              Country:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Province:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              City:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Street:
-            </Typography>
-            <Typography className={classes.padding} align="left">
-              Post code:
-            </Typography>
+            <p className={classes.padding}>
+              <strong>Province:</strong> {province}
+            </p>
+            <p className={classes.padding}>
+              <strong>City:</strong> {city}
+            </p>
+            <p className={classes.padding}>
+              <strong>Street:</strong> {street}
+            </p>
+            <p className={classes.padding}>
+              <strong>Post code:</strong> {post_code}
+            </p>
           </Paper>
         </Grid>
       </TabPanel>
-    </div>
+      <Grid item lg={12} id="footer"></Grid>
+    </Grid>
   );
 }

@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import StarRateIcon from "@material-ui/icons/StarRate";
+import { useHistory } from "react-router-dom";
+
 import {
   Typography,
   makeStyles,
   Grid,
   Card,
-  Containerfrom,
   CardActionArea,
   CardContent,
   CardMedia,
@@ -19,57 +21,68 @@ const useStyles = makeStyles({
     display: "flex",
   },
   cardDetails: {
+    paddingLeft: "5%",
     flex: 4,
   },
   cardMedia: {
-    marginTop: "6%",
+    // marginTop: "6%",
     marginRight: "2%",
-    width: 150,
-    height: 150,
+    width: 170,
+    height: 170,
     borderRadius: "70%",
   },
 });
 
-export default function ProfileBoxItem() {
+export default function ProfileBoxItem(props) {
+  const selectId = function () {
+    const tutorId = props.tutor_id;
+    let got_reviews = props.APIGetReviews(tutorId)
+    props.setReviews(got_reviews)
+    history.push(`/tutor/${tutorId}`);
+  };
+  const rate = props.avg.charAt(0);
+  let history = useHistory();
+
   const classes = useStyles();
 
   return (
-    <Container component="main">
-      <Grid item xs={10}>
-        <CardActionArea component="a" href="#">
-          <Card className={classes.card}>
+    <div>
+      <Grid item lg={12} md={12} xs={12}>
+        <Card className={classes.card}>
+          <CardActionArea
+            style={{ display: "flex" }}
+            component="a"
+            href="#"
+            onClick={selectId}
+          >
             <div className={classes.cardDetails}>
               <CardContent>
-                <Typography component="h2" variant="h10">
-                  Martha Bosnia
-                </Typography>
-                <Typography variant="h6">History tutor</Typography>
+                <h3 className="teacherNameSearch">{props.name}</h3>
+                <p className="teacherTitleSearch">{props.subject} tutor </p>
                 <Typography variant="subtitle1" color="textSecondary">
-                  $35/hour, Montreal
+                  ${props.rate_per_hour}/hour, {props.city}
                 </Typography>
-                <Typography variant="subtitle1" paragraph>
-                  An experienced tutor with over 5 years of experience ipsum
-                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                  minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut aliquip ex ea commodo consequat. Duis aute...
-                </Typography>
-                <Typography variant="subtitle1" color="primary">
-                  Rating: ⭐⭐⭐⭐⭐
-                </Typography>
-                <Typography variant="subtitle1" color="primary">
-                  10 reviews
-                </Typography>
+                <p className="teacherBioSearch">{props.bio}</p>
+                <p className="teacherRateSearch">
+                  Rating:
+                  {[...Array(parseInt(rate))].map((star, i) => {
+                    return (
+                      <StarRateIcon style={{ color: "#f79f07" }} key={i} />
+                    );
+                  })}
+                </p>
+                <p className="teacherRateSearch">
+                  {props.count} {props.count <= 1 ? "review" : "reviews"}
+                </p>
               </CardContent>
             </div>
             <CardMedia
               className={classes.cardMedia}
-              image="https://images.unsplash.com/photo-1551989745-347c28b620e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
-              title="has 10 reviews"
+              image={props.profile_picture_url}
             />
-          </Card>
-        </CardActionArea>
+          </CardActionArea>
+        </Card>
       </Grid>
-    </Container>
+    </div>
   );
 }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -8,8 +10,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: 'Roboto Mono', monospace;
+
 }
 
 /* TutorCards component  */
@@ -24,6 +26,7 @@ code {
 
 .msg {
   flex: 1;
+
   .msg-list {
     position: static !important; // f the framework
     margin-left: 0 !important; // f the framework
@@ -34,6 +37,10 @@ code {
 
 .makeStyles-chatHeader-19 {
   margin-left: 0 !important; // f the framework
+}
+
+.main-container {
+  height: 100vh;
 }
 
 /*
