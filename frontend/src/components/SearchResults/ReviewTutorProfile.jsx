@@ -156,6 +156,7 @@ export default function ReviewTutorProfile(props) {
       <Grid className={classes.shiftRight} item lg={12}>
         <Grid className={classes.root}>
           <Paper elevation={0}>
+            {/* //TODO: FIX THIS NASTY HACK */}
             <Fab
               className={classes.marginBackBtn}
               variant="extended"
@@ -164,8 +165,6 @@ export default function ReviewTutorProfile(props) {
                 history.goBack();
               }}
             >
-              {" "}
-              //TODO: FIX THIS NASTY HACK
               <ArrowBackOutlinedIcon className={classes.extendedIcon} />
               Back to search
             </Fab>
@@ -215,7 +214,12 @@ export default function ReviewTutorProfile(props) {
                     Send a message
                   </Fab>
                 </Link>
-                <RateDialog setReviews={props.setReviews} APIGetReviews={props.APIGetReviews} userId={props.userId} tutor={props.tutor} />
+                <RateDialog
+                  setReviews={props.setReviews}
+                  APIGetReviews={props.APIGetReviews}
+                  userId={props.userId}
+                  tutor={props.tutor}
+                />
               </Grid>
               <Grid item lg={3}></Grid>
               <Grid item lg={3}></Grid>
