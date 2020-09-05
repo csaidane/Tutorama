@@ -3,6 +3,7 @@ import clsx from "clsx";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Grid } from "@material-ui/core";
+import axios from "axios";
 
 import {
   BrowserRouter as Router,
@@ -95,16 +96,30 @@ function App() {
     setState((prev) => ({ ...prev, searchResult }));
   };
 
-  return (
-    <Grid item lg={12} md={12} id='main' >
-      <Router>
+  const [reviews, setReviews] = useState([]);
+  const [interlocutor, setInterlocutor] = useState({})
+  const [messageConversation, setMessageConversation] = useState([])
 
+
+
+  const APIGetReviews = function (id) {
+    axios({ url: `/api/tutors/profile/${id}`, method: "GET" }).then(
+      (result) => {
+        setReviews(result.data.reviews);
+      }
+    );
+  };
+
+  return (
+    <Grid item lg={12} md={12} id="main">
+      <Router>
         <NavBar
           open={open}
           setOpen={setOpen}
           state={state}
           updateUser={updateUser}
           updateTutor={updateTutor}
+          setInterlocutor={setInterlocutor}
         />
         <main
           className={clsx(classes.content, {
@@ -136,8 +151,8 @@ function App() {
                 )}
               />
             ) : (
-                <Route path="/" exact component={IndexPage} />
-              )}
+              <Route path="/" exact component={IndexPage} />
+            )}
 
             <Route
               path="/signup/student"
@@ -161,7 +176,7 @@ function App() {
               path="/messages"
               exact
               render={(props) => (
-                <MessagePage {...props} userId={state.user && state.user.id} />
+                <MessagePage setMessageConversation={setMessageConversation} messageConversation={messageConversation} interlocutor={interlocutor} setInterlocutor={setInterlocutor} {...props} userId={state.user && state.user.id} />
               )}
             />
             {state.tutor ? (
@@ -171,19 +186,24 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
-                <Route
-                  path="/profile"
-                  exact
-                  render={(props) => (
-                    <StudentProfilePage {...props} user={state} />
-                  )}
-                />
-              )}
+              <Route
+                path="/profile"
+                exact
+                render={(props) => (
+                  <StudentProfilePage {...props} user={state} />
+                )}
+              />
+            )}
             <Route
               path="/searchresult"
               exact
               render={(props) => (
-                <SearchResultPage searchResult={state.searchResult} />
+                <SearchResultPage
+                  reviews={reviews}
+                  APIGetReviews={APIGetReviews}
+                  setReviews={setReviews}
+                  searchResult={state.searchResult}
+                />
               )}
             />
             <Route
@@ -192,8 +212,7 @@ function App() {
               render={(props) => {
                 const { id } = props.match.params;
                 const tutor = state.searchResult.find((r) => r.tutor_id == id);
-
-                return <ReviewTutorProfile tutor={tutor} />;
+                return <ReviewTutorProfile setMessageConversation={setMessageConversation} setInterlocutor={setInterlocutor} APIGetReviews={APIGetReviews} setReviews={setReviews} userId={state.user && state.user.id} reviews={reviews} tutor={tutor} />;
               }}
             />
             {state.tutor ? (
@@ -203,14 +222,14 @@ function App() {
                 render={(props) => <EditProfileTutor {...props} user={state} />}
               />
             ) : (
-                <Route
-                  path="/editprofile"
-                  exact
-                  render={(props) => (
-                    <EditProfileStudent {...props} user={state} />
-                  )}
-                />
-              )}
+              <Route
+                path="/editprofile"
+                exact
+                render={(props) => (
+                  <EditProfileStudent {...props} user={state} />
+                )}
+              />
+            )}
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
@@ -234,7 +253,6 @@ function App() {
           {/* <BottomLayerProfileStudent /> */}
         </main>
         {/* <RateDialog /> */}
-
       </Router>
     </Grid>
   );

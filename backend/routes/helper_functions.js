@@ -169,16 +169,18 @@ const getMessagesBetweenUsers = function (sender_id, receiver_id) {
   return pool
     .query(
       `
-  SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
-  FROM messages as m
-  JOIN users as u on sender_id = u.id
-  WHERE sender_id = $1 AND receiver_id = $2
-  UNION
-  SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
-  FROM messages as m
-  JOIN users as u on sender_id = u.id
-  WHERE sender_id = $2 AND receiver_id = $1;
-
+      SELECT * FROM (
+        SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
+        FROM messages as m
+        JOIN users as u on sender_id = u.id
+        WHERE sender_id = $1 AND receiver_id = $2
+        UNION
+        SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
+        FROM messages as m
+        JOIN users as u on sender_id = u.id
+        WHERE sender_id = $2 AND receiver_id = $1
+      ) as all_msg
+      ORDER BY sent_date ASC;
   `,
       [sender_id, receiver_id]
     )
@@ -193,9 +195,21 @@ const addMessage =  function(message) {
   VALUES ($1, $2, $3, $4)
   RETURNING *
   `, [message.sender_id , message.receiver_id, message.content, getFormattedDate(Date.now())])
-  .then(res => res.rows[0]);S
+  .then(res => res.rows[0]);
 }
 exports.addMessage = addMessage;
+
+const getReviewsForTutor = function(id){
+  return pool.query(`
+  SELECT r.reviewer_id, r.comment, r.rating, r.date, u.name, u.profile_picture_url, u.city
+  FROM reviews as r
+  JOIN users as u on u.id = r.reviewer_id
+  WHERE reviewed_id = $1;
+  `,[id])
+  .then(res => res.rows);
+}
+exports.getReviewsForTutor = getReviewsForTutor;
+
 
 const addReview =  function(review) {
   return pool.query(`

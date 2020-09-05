@@ -38,7 +38,6 @@ export default function HomePage(props) {
         <HowWorks />
         <FindSubjects />
       </Grid>
-
       <Grid item xs={12} container id="bottomImg">
         <ScrollToTop />
       </Grid>

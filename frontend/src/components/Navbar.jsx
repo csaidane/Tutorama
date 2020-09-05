@@ -117,23 +117,14 @@ export default function NavBar(props) {
     }
   };
 
-  const linkPath = (index) => {
-    if (index === 0) {
-      return "/profile";
-    } else if (index === 1) {
-      return "/messages";
-    } else {
-      return "/mytutor";
-    }
-  };
-
   let isLoggedIn = props.state.user || props.state.tutor;
 
   const APILogout = function (event) {
     event.preventDefault();
     axios({ url: "/api/users/logout", method: "POST" }).then((result) => {
-      props.updateTutor(null, null);
       history.push("/");
+      props.updateTutor(null, null);
+      props.setInterlocutor({})
     });
   };
 
@@ -232,8 +223,13 @@ export default function NavBar(props) {
         </div>
         <Divider />
         <List>
-          {["Profile", "Messages", "My Tutors"].map((text, index) => (
-            <ListItem button key={text} component={Link} to={linkPath(index)}>
+          {["Profile", "Messages"].map((text, index) => (
+            <ListItem
+              button
+              key={text}
+              component={Link}
+              to={index === 0 ? "/profile" : "/messages"}
+            >
               <ListItemIcon>{iconDisplay(index)}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
