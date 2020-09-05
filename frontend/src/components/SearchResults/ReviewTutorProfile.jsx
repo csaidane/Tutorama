@@ -146,6 +146,7 @@ export default function ReviewTutorProfile(props) {
       });
   };
 
+  console.log(props.reviews, "HOWDY");
   const reviews = props.reviews.map((review) => {
     return (
       <Fragment>
@@ -165,7 +166,7 @@ export default function ReviewTutorProfile(props) {
               <p className="descinReview">{review.comment}</p>
               <Typography variant="subtitle1" color="primary">
                 Rating:{" "}
-                {[...Array(parseInt(rate))].map((star, i) => {
+                {[...Array(parseInt(review.rating))].map((star, i) => {
                   return <StarRateIcon style={{ color: "#f99f02" }} key={i} />;
                 })}
               </Typography>
@@ -181,7 +182,6 @@ export default function ReviewTutorProfile(props) {
       <Grid className={classes.shiftRight} item lg={12}>
         <Grid className={classes.root}>
           <Paper elevation={0}>
-            {/* //TODO: FIX THIS NASTY HACK */}
             <Fab
               className={classes.marginBackBtn}
               variant="extended"

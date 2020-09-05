@@ -36,9 +36,9 @@ const useStyles = makeStyles({
 export default function RateDialog(props) {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(3);
-  const [hover, setHover] = React.useState(-1);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState();
+  const [hover, setHover] = useState();
   const [comment, setComment] = useState();
 
   const handleClickOpen = () => {
