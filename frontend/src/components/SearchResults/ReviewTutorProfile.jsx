@@ -139,7 +139,10 @@ export default function ReviewTutorProfile(props) {
               </Typography>
               <p className="descinReview">{review.comment}</p>
               <Typography variant="subtitle1" color="primary">
-                Rating: <span role="img"> ⭐⭐⭐⭐⭐ </span>
+                Rating:{" "}
+                {[...Array(parseInt(rate))].map((star, i) => {
+                  return <StarRateIcon style={{ color: "#f99f02" }} key={i} />;
+                })}
               </Typography>
             </CardContent>
           </Grid>
