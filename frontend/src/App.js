@@ -32,6 +32,7 @@ import FilterBar from "./components/SearchResults/FilterBar.jsx";
 import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
 import EditProfileStudent from "./components/EditProfile/EditProfileStudent";
 import SearchResultPage from "./components/SearchResults/SearchResultPage";
+import NoResultsFound from "./components/SearchResults/NoResultsFound";
 
 const drawerWidth = 260;
 
@@ -151,8 +152,8 @@ function App() {
                 )}
               />
             ) : (
-              <Route path="/" exact component={IndexPage} />
-            )}
+                <Route path="/" exact component={IndexPage} />
+              )}
 
             <Route
               path="/signup/student"
@@ -186,14 +187,14 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
-              <Route
-                path="/profile"
-                exact
-                render={(props) => (
-                  <StudentProfilePage {...props} user={state} />
-                )}
-              />
-            )}
+                <Route
+                  path="/profile"
+                  exact
+                  render={(props) => (
+                    <StudentProfilePage {...props} user={state} />
+                  )}
+                />
+              )}
             <Route
               path="/searchresult"
               exact
@@ -222,14 +223,14 @@ function App() {
                 render={(props) => <EditProfileTutor {...props} user={state} />}
               />
             ) : (
-              <Route
-                path="/editprofile"
-                exact
-                render={(props) => (
-                  <EditProfileStudent {...props} user={state} />
-                )}
-              />
-            )}
+                <Route
+                  path="/editprofile"
+                  exact
+                  render={(props) => (
+                    <EditProfileStudent {...props} user={state} />
+                  )}
+                />
+              )}
           </Switch>
           {/* <WrongEmailPassword /> */}
           {/* <Signin /> */}
@@ -243,6 +244,7 @@ function App() {
           {/* <SearchField />
           <HowWorks />
           <FindSubjects /> */}
+          {/* <NoResultsFound /> */}
           {/* <SignUpPage /> */}
           {/* <SignUpTutor /> */}
           {/* <StarRating /> */}

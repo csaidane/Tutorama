@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px",
     boxSizing: "border-box",
     wordWrap: "break-word",
-    marginTop: "10px",
+    marginTop: "25px",
     backgroundColor: "blue",
     color: "white",
     width: "300px",
@@ -33,7 +33,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px",
     boxSizing: "border-box",
     wordWrap: "break-word",
-    marginTop: "10px",
+    marginTop: "3%",
+    marginRight: "3%",
+
     backgroundColor: "green",
     color: "white",
     width: "300px",
@@ -41,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   chatHeader: {
+    marginTop: "1.5%",
     width: "calc(100% - 293px)",
     transition: "none",
     height: "50px",
@@ -58,25 +61,32 @@ const useStyles = makeStyles((theme) => ({
 export default function MessageView(props) {
   const classes = useStyles();
 
-
   let messageConversation = props.messageConversation.map((result) => {
     //Let's note that result also contains the sent date and the profile picture.
     //We may be able to use this to increase the look of the UI
-    return <div>
-            <li className={result.sender_id===props.interlocutor.their_id ? classes.userSent : classes.tutorSent }>{result.content}</li>
-          </div>
-  })
-
+    return (
+      <div>
+        <li
+          className={
+            result.sender_id === props.interlocutor.their_id
+              ? classes.userSent
+              : classes.tutorSent
+          }
+        >
+          {result.content}
+        </li>
+      </div>
+    );
+  });
 
   return (
     <div>
       <div className={classes.chatHeader}>
-        {props.interlocutor.their_name && "Your conversation with"} {props.interlocutor.their_name}
+        {props.interlocutor.their_name && "Your conversation with"}{" "}
+        {props.interlocutor.their_name}
       </div>
       <article className={"msg-list-container"}>
-        <ul className="msg-list">
-        {messageConversation}
-        </ul>
+        <ul className="msg-list">{messageConversation}</ul>
       </article>
     </div>
   );

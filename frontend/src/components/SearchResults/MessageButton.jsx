@@ -1,13 +1,26 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import {
+  Dialog,
+  Fab,
+  DialogContentText,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  makeStyles,
+} from "@material-ui/core/";
+import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
+
+const useStyles = makeStyles((theme) => ({
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+}));
 
 export default function MessageButton(props) {
+  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -25,9 +38,13 @@ export default function MessageButton(props) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Fab variant="extended" color="primary" onClick={handleClickOpen}>
+        <SendOutlinedIcon className={classes.extendedIcon} />
+        Send a message
+      </Fab>
+      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         SEND A MESSAGE
-      </Button>
+      </Button> */}
       <Dialog
         open={open}
         onClose={messageSendAndHandleClose}
@@ -36,7 +53,8 @@ export default function MessageButton(props) {
         <DialogTitle id="form-dialog-title">Send Message</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            This will be the beginning of your conversation with {props.tutor.name}
+            This will be the beginning of your conversation with{" "}
+            {props.tutor.name}
           </DialogContentText>
           <TextField
             autoFocus
