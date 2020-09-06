@@ -51,7 +51,7 @@ export default function ProfileBoxItem(props) {
   return (
     <div>
       <Grid item xs={10}>
-        <CardActionArea component="a" href="#" onClick={selectId}>
+        <CardActionArea component="a" onClick={selectId}>
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>
@@ -61,19 +61,6 @@ export default function ProfileBoxItem(props) {
                 <Typography variant="h6">{props.subject} tutor </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
                   ${props.rate_per_hour}/hour, {props.city}
-                </Typography>
-                <Typography variant="subtitle1" paragraph>
-                  {props.bio}
-                </Typography>
-                <Typography variant="subtitle1" color="primary">
-                  Rating:
-                  {[...Array(parseInt(rate))].map((star, i) => {
-                    return <StarRateIcon key={i} />;
-                  })}
-                </Typography>
-                <Typography variant="subtitle1" color="primary">
-                  {props.count} {props.count <= 1 ? "review" : "reviews"}
-
                 </Typography>
                 <p className="teacherBioSearch">{props.bio}</p>
                 <p className="teacherRateSearch">
@@ -93,8 +80,8 @@ export default function ProfileBoxItem(props) {
               className={classes.cardMedia}
               image={props.profile_picture_url}
             />
-          </CardActionArea>
-        </Card>
+          </Card>
+        </CardActionArea>
       </Grid>
     </div>
   );

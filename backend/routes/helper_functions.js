@@ -7,15 +7,27 @@ const pool = new Pool({
   database: "final",
 });
 
-
-function getFormattedDate(input){
+function getFormattedDate(input) {
   var d = new Date(input);
-  d = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2) + " " + ('0' + d.getHours()).slice(-2) + ":" + ('0' + d.getMinutes()).slice(-2) + ":" + ('0' + d.getSeconds()).slice(-2);
+  d =
+    d.getFullYear() +
+    "-" +
+    ("0" + (d.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + d.getDate()).slice(-2) +
+    " " +
+    ("0" + d.getHours()).slice(-2) +
+    ":" +
+    ("0" + d.getMinutes()).slice(-2) +
+    ":" +
+    ("0" + d.getSeconds()).slice(-2);
   return d;
 }
 
-const addUser =  function(user) {
-  return pool.query(`
+const addUser = function (user) {
+  return pool
+    .query(
+      `
   INSERT INTO users (
     name, email, password, street, city, province, post_code
   ) VALUES ($1, $2, $3 , $4, $5, $6, $7)
@@ -116,17 +128,17 @@ const getTutorWithId = function (id) {
 exports.getTutorWithId = getTutorWithId;
 
 const searchTutors = function (params) {
-  console.log(params);
   let city = null;
   temp = params.query.toLowerCase();
+  let values = [`%${temp}%`];
   if (params.city) {
-    city = params.city.toLowerCase();
+    city = params.city;
   }
   let query = `SELECT tutor_id, u.name, t.education, s.name as subject, t.bio, u.profile_picture_url, u.city, t.rate_per_hour, avg(r.rating), count(r.rating) FROM subjects as s
     JOIN tutors as t on t.id = s.tutor_id
     JOIN users as u on u.id = t.id
     JOIN reviews as r on u.id = r.reviewed_id
-    WHERE subject LIKE $1`;
+    WHERE s.name LIKE $1`;
   if (params.rate === "1") {
     query += ` and t.rate_per_hour BETWEEN 10 AND 20`;
   } else if (params.rate === "2") {
@@ -143,7 +155,8 @@ const searchTutors = function (params) {
     query += ` and t.rate_per_hour BETWEEN 70 AND 80`;
   }
   if (city) {
-    query += ` and u.city LIKE %${city}%`;
+    values.push(`%${city}%`);
+    query += ` and u.city LIKE $2`;
   }
   query += ` GROUP BY tutor_id, u.name, t.education, s.name, t.rate_per_hour, t.bio, u.profile_picture_url, u.city`;
   if (params.sortBy === "lowest") {
@@ -157,13 +170,12 @@ const searchTutors = function (params) {
   }
   query += ` LIMIT 25;`;
 
+  console.log(query);
   return pool
-    .query(query, [`%${temp}%`]) //this ???
+    .query(query, values) //this ???
     .then((res) => {
-      console.log(res.rows, "HIII");
       return res.rows;
     });
-
 };
 exports.searchTutors = searchTutors;
 
@@ -224,60 +236,96 @@ const getMessagesBetweenUsers = function (sender_id, receiver_id) {
 };
 exports.getMessagesBetweenUsers = getMessagesBetweenUsers;
 
-
-const addMessage =  function(message) {
-  return pool.query(`
+const addMessage = function (message) {
+  return pool
+    .query(
+      `
   INSERT INTO messages (sender_id,receiver_id,content,sent_date)
   VALUES ($1, $2, $3, $4)
   RETURNING *
-  `, [message.sender_id , message.receiver_id, message.content, getFormattedDate(Date.now())])
-  .then(res => res.rows[0]);
-}
+  `,
+      [
+        message.sender_id,
+        message.receiver_id,
+        message.content,
+        getFormattedDate(Date.now()),
+      ]
+    )
+    .then((res) => res.rows[0]);
+};
 exports.addMessage = addMessage;
 
-const getReviewsForTutor = function(id){
-  return pool.query(`
+const getReviewsForTutor = function (id) {
+  return pool
+    .query(
+      `
   SELECT r.reviewer_id, r.comment, r.rating, r.date, u.name, u.profile_picture_url, u.city
   FROM reviews as r
   JOIN users as u on u.id = r.reviewer_id
   WHERE reviewed_id = $1;
-  `,[id])
-  .then(res => res.rows);
-}
+  `,
+      [id]
+    )
+    .then((res) => res.rows);
+};
 exports.getReviewsForTutor = getReviewsForTutor;
 
-
-const addReview =  function(review) {
-  return pool.query(`
+const addReview = function (review) {
+  return pool
+    .query(
+      `
   INSERT INTO "reviews" (reviewer_id,reviewed_id,comment,rating,date)
   VALUES ($1, $2, $3, $4, $5)
   RETURNING *
-  `, [review.reviewer_id , review.reviewed_id, review.comment,review.rating, getFormattedDate(Date.now())])
-  .then(res => res.rows[0]);S
-}
+  `,
+      [
+        review.reviewer_id,
+        review.reviewed_id,
+        review.comment,
+        review.rating,
+        getFormattedDate(Date.now()),
+      ]
+    )
+    .then((res) => res.rows[0]);
+  S;
+};
 exports.addReview = addReview;
 
-
-const updateUser =  function(user) {
-  return pool.query(`
+const updateUser = function (user) {
+  return pool
+    .query(
+      `
   UPDATE users
   SET name = $1, email = $2, password = $3, street= $4, city = $5, province = $6, post_code = $7
   WHERE id = $8
   RETURNING *
-  `, [user.name, user.email, user.password, user.street, user.city, user.province, user.post_code, user.id ])
-  .then(res => res.rows[0]);
-}
+  `,
+      [
+        user.name,
+        user.email,
+        user.password,
+        user.street,
+        user.city,
+        user.province,
+        user.post_code,
+        user.id,
+      ]
+    )
+    .then((res) => res.rows[0]);
+};
 exports.updateUser = updateUser;
 
-const updateTutor =  function(user) {
-  return pool.query(`
+const updateTutor = function (user) {
+  return pool
+    .query(
+      `
   UPDATE tutors
   SET education = $1, bio = $2, rate_per_hour = $3
   WHERE id = $4
   RETURNING *
-  `, [user.education, user.bio, user.rate, user.id ])
-  .then(res => res.rows[0]);
-}
+  `,
+      [user.education, user.bio, user.rate, user.id]
+    )
+    .then((res) => res.rows[0]);
+};
 exports.updateTutor = updateTutor;
-
-
