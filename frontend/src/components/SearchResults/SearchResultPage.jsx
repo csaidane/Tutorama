@@ -17,25 +17,23 @@ export default function SearchResultPage(props) {
   const classes = useStyles();
   const [searchResult, setSearchResult] = useState(props.searchResult);
 
-  const searchResults = searchResult.map((result) => {
-    return <ProfileBoxItem reviews={props.reviews} APIGetReviews={props.APIGetReviews} setReviews={props.setReviews} key={result.tutor_id} {...result} />;
-  });
-
-  // const onSearch = useCallback(
-  //   function (searchCriteria) {
-  //     console.log(searchCriteria, "HELLLLLO");
-  //     let searchResult;
-  //     if (searchCriteria.sortBy === "10") {
-  //       searchResult = props.searchResult.sort(
-  //         (a, b) => b.rate_per_hour - a.rate_per_hour
-  //       );
-  //       searchResults = searchResult.map((result) => {
-  //         return <ProfileBoxItem key={result.tutor_id} {...result} />;
-  //       });
-  //     }
-  //   },
-  //   [props]
-  // );
+  console.log(searchResult, "TAG");
+  const searchResults =
+    searchResult.length === 0 ? (
+      <Typography> hello </Typography>
+    ) : (
+      searchResult.map((result) => {
+        return (
+          <ProfileBoxItem
+            reviews={props.reviews}
+            APIGetReviews={props.APIGetReviews}
+            setReviews={props.setReviews}
+            key={result.tutor_id}
+            {...result}
+          />
+        );
+      })
+    );
 
   return (
     <div className="searchResultsMain">

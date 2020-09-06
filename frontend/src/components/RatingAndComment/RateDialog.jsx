@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-
 import {
   Button,
   Grid,
@@ -37,11 +36,10 @@ const useStyles = makeStyles({
 export default function RateDialog(props) {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState(3);
-  const [hover, setHover] = React.useState(-1);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState();
+  const [hover, setHover] = useState();
   const [comment, setComment] = useState();
-
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -51,20 +49,24 @@ export default function RateDialog(props) {
     setOpen(false);
   };
 
-  const submitClose = function() {
-    let review = {comment:comment, reviewed_id: props.tutor.tutor_id, reviewer_id:props.userId, rating:value}
-    axios({ url: "/api/tutors/reviews/add", data: review, method: "POST" })
-    .then(
-      (results) => {
-        setComment("");
-        setValue(3);
-        setOpen(false);
-        props.APIGetReviews(props.tutor.tutor_id)
-      }
-    );
-  }
-
-
+  const submitClose = function () {
+    let review = {
+      comment: comment,
+      reviewed_id: props.tutor.tutor_id,
+      reviewer_id: props.userId,
+      rating: value,
+    };
+    axios({
+      url: "/api/tutors/reviews/add",
+      data: review,
+      method: "POST",
+    }).then((results) => {
+      setComment("");
+      setValue(3);
+      setOpen(false);
+      props.APIGetReviews(props.tutor.tutor_id);
+    });
+  };
 
   return (
     <div>
@@ -81,7 +83,12 @@ export default function RateDialog(props) {
       >
         <Grid container direction="column" justify="center" alignItems="center">
           <DialogTitle id="form-dialog-title">Ratings</DialogTitle>
-          <StarRating setValue={setValue} setHover={setHover} value={value} hover={hover} />
+          <StarRating
+            setValue={setValue}
+            setHover={setHover}
+            value={value}
+            hover={hover}
+          />
 
           <DialogContent className={classes.window}>
             <TextField

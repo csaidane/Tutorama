@@ -25,6 +25,8 @@ const useStyles = makeStyles({
       opacity: "0.8",
       borderTop: "solid 1px #cccccc",
       color: "white",
+      boxShadow: "0px 20px 40px rgba(0,0,0,0.4)",
+      transform: "scale(1.05,1.05)",
     },
   },
 

@@ -47,6 +47,9 @@ export default function SearchField(props) {
               <div style={{ width: 300 }}>
                 <Autocomplete
                   freeSolo
+                  onChange={(e, option) => {
+                    setSearchKeywords(option);
+                  }}
                   id="subjectList"
                   disableClearable
                   options={subjectList.map((option, index) => option.title)}
@@ -58,7 +61,9 @@ export default function SearchField(props) {
                       variant="outlined"
                       InputProps={{ ...params.InputProps, type: "search" }}
                       value={searchKeywords}
-                      onChange={(e) => setSearchKeywords(e.target.value)}
+                      onChange={(e, option) => {
+                        setSearchKeywords(e.target.value);
+                      }}
                     />
                   )}
                 />

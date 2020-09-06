@@ -4,16 +4,11 @@ import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 
 const labels = {
-  0.5: "Useless",
-  1: "Useless+",
-  1.5: "Poor",
-  2: "Poor+",
-  2.5: "Ok",
-  3: "Ok+",
-  3.5: "Good",
-  4: "Good+",
-  4.5: "Excellent",
-  5: "Excellent+",
+  1: "Useless",
+  2: "Poor",
+  3: "Ok",
+  4: "Good",
+  5: "Excellent",
 };
 
 const useStyles = makeStyles({
@@ -25,7 +20,6 @@ const useStyles = makeStyles({
 });
 
 export default function StarRating(props) {
-  
   const classes = useStyles();
 
   return (
@@ -33,7 +27,7 @@ export default function StarRating(props) {
       <Rating
         name="hover-feedback"
         value={props.value}
-        precision={0.5}
+        precision={1}
         onChange={(event, newValue) => {
           props.setValue(newValue);
         }}
@@ -42,7 +36,9 @@ export default function StarRating(props) {
         }}
       />
       {props.value !== null && (
-        <Box ml={2}>{labels[props.hover !== -1 ? props.hover : props.value]}</Box>
+        <Box ml={2}>
+          {labels[props.hover !== -1 ? props.hover : props.value]}
+        </Box>
       )}
     </div>
   );
