@@ -16,7 +16,6 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Hidden,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";

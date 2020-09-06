@@ -1,15 +1,10 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Drawer, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/Navbar.jsx";
 import HomePage from "./components/HomePage/HomePage";
 import StudentProfilePage from "./components/ProfilePage/StudentProfilePage";
@@ -20,18 +15,11 @@ import SignUpStudent from "./components/SignUp/SignUpStudent";
 import SignUpTutor from "./components/SignUp/SignUpTutor";
 import MessagePage from "./components/DirectMessages/MessagePage";
 import SignUpPage from "./components/SignUp/SignUpPage";
-import SearchField from "./components/HomePage/SearchField";
-import WrongEmailPassword from "./components/SignIn/WrongEmailPassword";
-import HowWorks from "./components/HomePage/HowWorks";
-import FindSubjects from "./components/HomePage/FindSubjects";
-import RateDialog from "./components/RatingAndComment/RateDialog";
-import ProfileBoxItem from "./components/SearchResults/ProfileBoxItem.jsx";
+
 import ReviewTutorProfile from "./components/SearchResults/ReviewTutorProfile.jsx";
-import FilterBar from "./components/SearchResults/FilterBar.jsx";
 import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
 import EditProfileStudent from "./components/EditProfile/EditProfileStudent";
 import SearchResultPage from "./components/SearchResults/SearchResultPage";
-import NoResultsFound from "./components/SearchResults/NoResultsFound";
 
 const drawerWidth = 260;
 
@@ -92,16 +80,12 @@ function App() {
   };
 
   const updateSearchResult = function (searchResult) {
-    console.log("UPDATE SEARCH RESULT", searchResult);
     setState((prev) => ({ ...prev, searchResult }));
   };
 
-
   const [reviews, setReviews] = useState([]);
-  const [interlocutor, setInterlocutor] = useState({})
-  const [messageConversation, setMessageConversation] = useState([])
-
-
+  const [interlocutor, setInterlocutor] = useState({});
+  const [messageConversation, setMessageConversation] = useState([]);
 
   const APIGetReviews = function (id) {
     axios({ url: `/api/tutors/profile/${id}`, method: "GET" }).then(
@@ -112,9 +96,8 @@ function App() {
   };
 
   return (
-    <Grid item lg={12} md={12} id='main' >
+    <Grid item lg={12} md={12} id="main">
       <Router>
-
         <NavBar
           open={open}
           setOpen={setOpen}
@@ -125,7 +108,6 @@ function App() {
           updateSearchResult={updateSearchResult}
           setReviews={setReviews}
           setMessageConversation={setMessageConversation}
-
         />
         <main
           className={clsx(classes.content, {
@@ -157,8 +139,8 @@ function App() {
                 )}
               />
             ) : (
-                <Route path="/" exact component={IndexPage} />
-              )}
+              <Route path="/" exact component={IndexPage} />
+            )}
 
             <Route
               path="/signup/student"
@@ -182,8 +164,14 @@ function App() {
               path="/messages"
               exact
               render={(props) => (
-
-                <MessagePage setMessageConversation={setMessageConversation} messageConversation={messageConversation} interlocutor={interlocutor} setInterlocutor={setInterlocutor} {...props} userId={state.user && state.user.id} />
+                <MessagePage
+                  setMessageConversation={setMessageConversation}
+                  messageConversation={messageConversation}
+                  interlocutor={interlocutor}
+                  setInterlocutor={setInterlocutor}
+                  {...props}
+                  userId={state.user && state.user.id}
+                />
               )}
             />
             {state.tutor ? (
@@ -193,19 +181,24 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
-                <Route
-                  path="/profile"
-                  exact
-                  render={(props) => (
-                    <StudentProfilePage {...props} user={state} />
-                  )}
-                />
-              )}
+              <Route
+                path="/profile"
+                exact
+                render={(props) => (
+                  <StudentProfilePage {...props} user={state} />
+                )}
+              />
+            )}
             <Route
               path="/searchresult"
               exact
               render={(props) => (
-                <SearchResultPage reviews={reviews} APIGetReviews={APIGetReviews} setReviews={setReviews} searchResult={state.searchResult} />
+                <SearchResultPage
+                  reviews={reviews}
+                  APIGetReviews={APIGetReviews}
+                  setReviews={setReviews}
+                  searchResult={state.searchResult}
+                />
               )}
             />
             <Route
@@ -213,50 +206,49 @@ function App() {
               exact
               render={(props) => {
                 const { id } = props.match.params;
-                const tutor = state.searchResult.find((r) => r.tutor_id == id);
-                return <ReviewTutorProfile setMessageConversation={setMessageConversation} setInterlocutor={setInterlocutor} APIGetReviews={APIGetReviews} setReviews={setReviews} userId={state.user && state.user.id} reviews={reviews} tutor={tutor} />;
+                const tutor = state.searchResult.find(
+                  (r) => r.tutor_id === Number(id)
+                );
+                return (
+                  <ReviewTutorProfile
+                    setMessageConversation={setMessageConversation}
+                    setInterlocutor={setInterlocutor}
+                    APIGetReviews={APIGetReviews}
+                    setReviews={setReviews}
+                    userId={state.user && state.user.id}
+                    reviews={reviews}
+                    tutor={tutor}
+                  />
+                );
               }}
             />
             {state.tutor ? (
               <Route
                 path="/editprofile"
                 exact
-                render={(props) => <EditProfileTutor updateTutor={updateTutor} {...props} user={state} />}
+                render={(props) => (
+                  <EditProfileTutor
+                    updateTutor={updateTutor}
+                    {...props}
+                    user={state}
+                  />
+                )}
               />
             ) : (
-                <Route
-                  path="/editprofile"
-                  exact
-                  render={(props) => (
-                    <EditProfileStudent updateUser={updateUser} {...props} user={state} />
-                  )}
-                />
-              )}
+              <Route
+                path="/editprofile"
+                exact
+                render={(props) => (
+                  <EditProfileStudent
+                    updateUser={updateUser}
+                    {...props}
+                    user={state}
+                  />
+                )}
+              />
+            )}
           </Switch>
-          {/* <WrongEmailPassword /> */}
-          {/* <Signin /> */}
-          {/* <EditProfileStudent /> */}
-          {/* <EditProfileTutor /> */}
-          {/* <ProfileBoxItem /> */}
-          {/* <ReviewTutorProfile /> */}
-          {/* <FilterBar /> */}
-          {/* <ProfileBoxItem /> */}
-          {/* <MessagePage /> */}
-          {/* <SearchField />
-          <HowWorks />
-          <FindSubjects /> */}
-          {/* <NoResultsFound /> */}
-          {/* <SignUpPage /> */}
-          {/* <SignUpTutor /> */}
-          {/* <StarRating /> */}
-          {/* <SignUpStudent /> */}
-          {/* <IndexPage /> */}
-          {/* <TopLayerProfile /> */}
-          {/* <BottomLayerProfileTutor /> */}
-          {/* <BottomLayerProfileStudent /> */}
         </main>
-        {/* <RateDialog /> */}
-
       </Router>
     </Grid>
   );

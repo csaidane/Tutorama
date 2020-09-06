@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar, Box, Typography } from "@material-ui/core/";
+import { Avatar, Box } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +40,6 @@ function ImageAvatars() {
 }
 
 export default function TopLayerProfile(props) {
-  console.log("HELLO", props);
   const { name } = props.user.user;
 
   const classes = useStyles();

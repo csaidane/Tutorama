@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Grid, Fab } from "@material-ui/core";
+import { AppBar, Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import EditIcon from "@material-ui/icons/Edit";
 
 import "./BottomLayerProfileTutor.scss";
 

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import { useHistory } from "react-router-dom";
 
@@ -11,7 +10,6 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  Container,
 } from "@material-ui/core/";
 
 const useStyles = makeStyles({

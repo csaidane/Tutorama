@@ -170,7 +170,6 @@ const searchTutors = function (params) {
   }
   query += ` LIMIT 25;`;
 
-  console.log(query);
   return pool
     .query(query, values) //this ???
     .then((res) => {

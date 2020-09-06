@@ -3,18 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-
-import {
-  Paper,
-  Avatar,
-  Box,
-  Typography,
-  Fab,
-  Grid,
-  Button,
-  TextField,
-  Container,
-} from "@material-ui/core/";
+import { Fab, Grid, Button, TextField } from "@material-ui/core/";
 import EditIcon from "@material-ui/icons/Edit";
 import TopLayerProfile from "../ProfilePage/TopLayerProfile.jsx";
 
@@ -43,13 +32,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EditProfileStudent(props) {
-  // const [value, setValue] = useState("");
-  console.log("STUDENT", props);
-  // const { name, email, province, city, post_code, street } = props.user.user;
-
   const classes = useStyles();
   let history = useHistory();
-
 
   const [name, setName] = useState(props.user.user.name);
   const [email, setEmail] = useState(props.user.user.email);
@@ -62,7 +46,7 @@ export default function EditProfileStudent(props) {
   const APISubmit = function (event) {
     event.preventDefault();
     let user = {
-      id:props.user.user.id,
+      id: props.user.user.id,
       name,
       email,
       password,
@@ -71,13 +55,14 @@ export default function EditProfileStudent(props) {
       province,
       post_code: zip,
     };
-    axios({ url: "/api/users/profile/update", data: user, method: "POST" })
-    .then(
-      (result) => {
-        props.updateUser(result.data.user);
-        history.push("/");
-      }
-    );
+    axios({
+      url: "/api/users/profile/update",
+      data: user,
+      method: "POST",
+    }).then((result) => {
+      props.updateUser(result.data.user);
+      history.push("/");
+    });
   };
 
   return (
@@ -87,7 +72,7 @@ export default function EditProfileStudent(props) {
         <EditIcon />
       </Fab>
 
-      <form className={classes.form} onSubmit={APISubmit} >
+      <form className={classes.form} onSubmit={APISubmit}>
         <Grid container spacing={2}>
           {/* //Full name */}
           <Grid item xs={12}>

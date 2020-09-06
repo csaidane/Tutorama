@@ -9,7 +9,6 @@ export default function ScrollToTop() {
   const [visible, setVisiblity] = useState(false);
 
   useEffect(() => {
-    console.log(pageYOffset, "HELLO");
     if (pageYOffset > 55) {
       setVisiblity(true);
     } else {
@@ -27,7 +26,7 @@ export default function ScrollToTop() {
     <Fab
       onClick={scrollToTop}
       color="secondary"
-      size="big"
+      size="large"
       aria-label="scroll back to top"
       className="scroll-to-top"
     >

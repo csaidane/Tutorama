@@ -1,7 +1,7 @@
 import React from "react";
 import "./FindSubjects.scss";
 
-import { makeStyles, Box, Grid, Typography } from "@material-ui/core/";
+import { makeStyles, Grid } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
   image: {

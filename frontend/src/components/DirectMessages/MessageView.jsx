@@ -61,11 +61,11 @@ const useStyles = makeStyles((theme) => ({
 export default function MessageView(props) {
   const classes = useStyles();
 
-  let messageConversation = props.messageConversation.map((result) => {
+  let messageConversation = props.messageConversation.map((result, i) => {
     //Let's note that result also contains the sent date and the profile picture.
     //We may be able to use this to increase the look of the UI
     return (
-      <div>
+      <div key={i}>
         <li
           className={
             result.sender_id === props.interlocutor.their_id

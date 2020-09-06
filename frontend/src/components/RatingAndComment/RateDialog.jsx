@@ -9,7 +9,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Fab,
 } from "@material-ui/core";
@@ -70,12 +69,10 @@ export default function RateDialog(props) {
 
   return (
     <div>
-      <Button color="primary" onClick={handleClickOpen}>
-        <Fab variant="extended">
-          <RateReviewOutlinedIcon />
-          Leave a feedback
-        </Fab>
-      </Button>
+      <Fab color="secondary" variant="extended" onClick={handleClickOpen}>
+        <RateReviewOutlinedIcon />
+        Leave a feedback
+      </Fab>
       <Dialog
         open={open}
         onClose={handleClose}

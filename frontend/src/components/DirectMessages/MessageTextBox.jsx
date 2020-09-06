@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Send from "@material-ui/icons/Send";
 import "./MessageTextBox.scss";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   sendBtn: {
@@ -35,13 +33,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MessageTextBox(props) {
   const classes = useStyles();
-  let history = useHistory();
 
   const [newMessage, setNewMessage] = useState("");
 
   const sendAPI = function (event) {
     event.preventDefault();
-    console.log("was clicked");
     let message = {
       content: newMessage,
       receiver_id: props.interlocutor.their_id,

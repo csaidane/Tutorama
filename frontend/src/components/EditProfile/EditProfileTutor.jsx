@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Fab, Grid, Button, TextField, Container } from "@material-ui/core/";
+import { Fab, Grid, Button, TextField } from "@material-ui/core/";
 import EditIcon from "@material-ui/icons/Edit";
 import TopLayerProfile from "../ProfilePage/TopLayerProfile.jsx";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,10 +31,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EditProfileTutor(props) {
-  console.log("TUTOR", props);
   const classes = useStyles();
   let history = useHistory();
-
 
   const [name, setName] = useState(props.user.user.name);
   const [email, setEmail] = useState(props.user.user.email);
@@ -53,7 +49,7 @@ export default function EditProfileTutor(props) {
   const APISubmit = function (event) {
     event.preventDefault();
     let user = {
-      id:props.user.user.id,
+      id: props.user.user.id,
       name,
       email,
       password,
@@ -66,15 +62,14 @@ export default function EditProfileTutor(props) {
       bio,
       subject,
     };
-    console.log(user)
-     axios({ url: "/api/tutors/profile/update", data: user, method: "POST" })
-     .then(
-      (result) => {
-        console.log(result.data)
-        props.updateTutor(result.data.user, result.data.tutor);
-        history.push("/");
-       }
-     );
+    axios({
+      url: "/api/tutors/profile/update",
+      data: user,
+      method: "POST",
+    }).then((result) => {
+      props.updateTutor(result.data.user, result.data.tutor);
+      history.push("/");
+    });
   };
 
   return (
@@ -83,7 +78,7 @@ export default function EditProfileTutor(props) {
       <Fab color="secondary" aria-label="edit" className={classes.spacingBtns}>
         <EditIcon />
       </Fab>
-      <form className={classes.form} onSubmit={APISubmit} >
+      <form className={classes.form} onSubmit={APISubmit}>
         <Grid container spacing={2}>
           {/* //Full name */}
           <Grid item xs={12}>

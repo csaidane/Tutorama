@@ -1,4 +1,3 @@
-
 import React, { Fragment, useState } from "react";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import "./SearchResultsPage.scss";
@@ -12,7 +11,6 @@ import {
   Avatar,
   Typography,
   Container,
-  Link,
   Fab,
   Divider,
   Grid,
@@ -20,7 +18,6 @@ import {
   CardContent,
   Card,
 } from "@material-ui/core/";
-import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 import RateDialog from "../RatingAndComment/RateDialog.jsx";
 import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
 import MessageButton from "./MessageButton";
@@ -109,8 +106,6 @@ export default function ReviewTutorProfile(props) {
   let history = useHistory();
   const classes = useStyles();
 
-  // console.log(props, history, "FROM THE PROFILE OF THE TUTOR");
-
   function ImageAvatars() {
     const classes = useStyles();
 
@@ -134,21 +129,25 @@ export default function ReviewTutorProfile(props) {
       sender_id: props.userId,
     };
     axios({ url: "/api/users/messages/add", data: message, method: "POST" })
-    .then((results)=>{
-      props.setInterlocutor({their_id:props.tutor.tutor_id, their_name:props.tutor.name})
-      return axios({baseURL:'/', url:`api/users/${props.userId}/messages/${props.tutor.tutor_id}`, method:"GET"})
-    })
-    .then((results)=>{
-      props.setMessageConversation(results.data.messages)
-    })
-    
-  }
+      .then((results) => {
+        props.setInterlocutor({
+          their_id: props.tutor.tutor_id,
+          their_name: props.tutor.name,
+        });
+        return axios({
+          baseURL: "/",
+          url: `api/users/${props.userId}/messages/${props.tutor.tutor_id}`,
+          method: "GET",
+        });
+      })
+      .then((results) => {
+        props.setMessageConversation(results.data.messages);
+      });
+  };
 
-
-  console.log(props.reviews, "HOWDY");
-  const reviews = props.reviews.map((review) => {
+  const reviews = props.reviews.map((review, i) => {
     return (
-      <Fragment>
+      <Fragment key={i}>
         <Card className={classes.card}>
           <CardMedia
             className={classes.cardMedia}

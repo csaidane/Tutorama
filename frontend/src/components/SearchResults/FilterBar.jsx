@@ -1,5 +1,4 @@
-import React, { useState, Fragment, useCallback } from "react";
-import PropTypes from "prop-types";
+import React, { useState, Fragment } from "react";
 import axios from "axios";
 import {
   makeStyles,

@@ -8,7 +8,6 @@ import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   Drawer,
-  Grid,
   Button,
   CssBaseline,
   AppBar,
@@ -146,10 +145,10 @@ export default function NavBar(props) {
     axios({ url: "/api/users/logout", method: "POST" }).then((result) => {
       history.push("/");
       props.updateTutor(undefined, undefined);
-      props.setInterlocutor({})
-      props.updateSearchResult(null)
-      props.setMessageConversation([])
-      props.setReviews([])
+      props.setInterlocutor({});
+      props.updateSearchResult(null);
+      props.setMessageConversation([]);
+      props.setReviews([]);
     });
   };
 
@@ -194,6 +193,7 @@ export default function NavBar(props) {
             className={classes.title}
           >
             <img
+              alt=""
               className={classes.logo}
               src="https://image.flaticon.com/icons/svg/2466/2466682.svg"
             ></img>

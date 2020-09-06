@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-import { makeStyles, Grid, Typography, Link, Box } from "@material-ui/core";
+import { makeStyles, Grid, Typography, Link } from "@material-ui/core";
 import HowWorks from "./HowWorks";
 import SearchField from "./SearchField";
 import FindSubjects from "./FindSubjects";
@@ -40,6 +40,7 @@ export default function HomePage(props) {
       </Grid>
       <Grid item xs={12} container id="bottomImg">
         <ScrollToTop />
+        <Copyright />
       </Grid>
     </Grid>
   );

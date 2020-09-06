@@ -22,10 +22,9 @@ export default function MessagePage(props) {
       method: "GET",
     }).then((result) => {
       let threads = result.data.threads;
-      console.log(threads);
       setMessageThreads(threads);
     });
-  }, []);
+  }, [props.userId]);
 
   return (
     <div className="main">

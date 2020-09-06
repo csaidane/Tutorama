@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import { makeStyles, Box, Grid, Typography } from "@material-ui/core/";
+import { makeStyles } from "@material-ui/core/";
 
 const settings = {
   dots: true,
@@ -102,6 +102,7 @@ export default function HowWorks() {
             return (
               <div key={index}>
                 <img
+                  alt=""
                   id="sliderPic"
                   // width="300px"
                   // height="300px"

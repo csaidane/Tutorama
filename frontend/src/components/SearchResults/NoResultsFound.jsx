@@ -6,10 +6,7 @@ import {
   makeStyles,
   Grid,
   Card,
-  CardActionArea,
   CardContent,
-  CardMedia,
-  Container,
 } from "@material-ui/core/";
 
 const useStyles = makeStyles({
