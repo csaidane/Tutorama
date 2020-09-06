@@ -15,9 +15,7 @@ import MessageView from "./MessageView";
 
 export default function MessagePage(props) {
   // const classes = useStyles();
-
   const [messageThreads, setMessageThreads] = useState([]);
-
   useEffect(() => {
     axios({
       url: `/api/users/${props.userId}/messages/threads`,

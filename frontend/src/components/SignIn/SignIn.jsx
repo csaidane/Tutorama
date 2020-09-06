@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "10%",
     // backgroundSize: "cover",
   },
+
   backForInputFields: {
     backgroundColor: "#f6f6f6",
     opacity: "0.8",

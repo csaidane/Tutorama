@@ -50,19 +50,30 @@ export default function ProfileBoxItem(props) {
 
   return (
     <div>
-      <Grid item lg={12} md={12} xs={12}>
-        <Card className={classes.card}>
-          <CardActionArea
-            style={{ display: "flex" }}
-            component="a"
-            onClick={selectId}
-          >
+      <Grid item xs={10}>
+        <CardActionArea component="a" href="#" onClick={selectId}>
+          <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>
-                <h3 className="teacherNameSearch">{props.name}</h3>
-                <p className="teacherTitleSearch">{props.subject} tutor </p>
+                <Typography component="h2" variant="h6">
+                  {props.name}
+                </Typography>
+                <Typography variant="h6">{props.subject} tutor </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
                   ${props.rate_per_hour}/hour, {props.city}
+                </Typography>
+                <Typography variant="subtitle1" paragraph>
+                  {props.bio}
+                </Typography>
+                <Typography variant="subtitle1" color="primary">
+                  Rating:
+                  {[...Array(parseInt(rate))].map((star, i) => {
+                    return <StarRateIcon key={i} />;
+                  })}
+                </Typography>
+                <Typography variant="subtitle1" color="primary">
+                  {props.count} {props.count <= 1 ? "review" : "reviews"}
+
                 </Typography>
                 <p className="teacherBioSearch">{props.bio}</p>
                 <p className="teacherRateSearch">

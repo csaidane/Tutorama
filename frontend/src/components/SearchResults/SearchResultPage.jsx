@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
+
 import FilterBar from "./FilterBar";
 import ProfileBoxItem from "./ProfileBoxItem";
 import ReviewTutorProfile from "./ReviewTutorProfile";
@@ -8,6 +9,7 @@ import "./SearchResultsPage.scss";
 const useStyles = makeStyles((theme) => ({
   shiftRight: {
     marginLeft: "15%",
+
     backgroundColor: "#FFFFFF",
   },
   image: {},

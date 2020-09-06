@@ -4,8 +4,6 @@ import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Grid } from "@material-ui/core";
 import axios from "axios";
-
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -98,6 +96,7 @@ function App() {
     setState((prev) => ({ ...prev, searchResult }));
   };
 
+
   const [reviews, setReviews] = useState([]);
   const [interlocutor, setInterlocutor] = useState({})
   const [messageConversation, setMessageConversation] = useState([])
@@ -183,6 +182,7 @@ function App() {
               path="/messages"
               exact
               render={(props) => (
+
                 <MessagePage setMessageConversation={setMessageConversation} messageConversation={messageConversation} interlocutor={interlocutor} setInterlocutor={setInterlocutor} {...props} userId={state.user && state.user.id} />
               )}
             />
@@ -214,7 +214,6 @@ function App() {
               render={(props) => {
                 const { id } = props.match.params;
                 const tutor = state.searchResult.find((r) => r.tutor_id == id);
-
                 return <ReviewTutorProfile setMessageConversation={setMessageConversation} setInterlocutor={setInterlocutor} APIGetReviews={APIGetReviews} setReviews={setReviews} userId={state.user && state.user.id} reviews={reviews} tutor={tutor} />;
               }}
             />

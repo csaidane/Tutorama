@@ -9,13 +9,10 @@ import {
   CssBaseline,
   Button,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Box,
   Typography,
-  Container,
 } from "@material-ui/core/";
 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";

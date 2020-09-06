@@ -1,3 +1,4 @@
+
 import React, { Fragment, useState } from "react";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import "./SearchResultsPage.scss";
@@ -174,7 +175,6 @@ export default function ReviewTutorProfile(props) {
       </Fragment>
     );
   });
-
   return (
     <Container>
       <Grid className={classes.shiftRight} item lg={12}>
