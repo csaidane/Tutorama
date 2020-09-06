@@ -2,6 +2,13 @@
 
 So, you want to learn Calculus, Accounting, or Biology? Or maybe improve existing knowledge in French, Poetry or even Web Design? If yes, then Tutorama is here to help you reach your fullest potential. Tutorama App is a platform that makes it easy for students to search for a best-fit tutor in the area, view their subjects, qualifications, rates, and real reviews. With this app, a student can easily connect with a preferred tutor for extra support through real-time messages and set up a private session at a convenient time and place. So go on - get searching, there’s a tutor for everyone!
 
+## Project Stack
+
+**Front-End**
+React, Material-UI, CSS + Javascript
+**Back-End**
+Express.js, Node.js, PostgreSQL
+
 ## Getting Started
 
 This project has two main folders:
@@ -131,9 +138,10 @@ Response
 - Location on Google maps (leaflets)
 - Show an in-depth curriculum of topics of each tutor.
 - Appointment Schedule made with tutors.
+- Payment Structure.
 
 ## Contributors
 
-[Oluwatobi A. Bello](https://github.com/Oluwatobii)
-[Kate Batrakova](https://github.com/katebatrakova)
-[Cyril Saidane](https://github.com/csaidane)
+[Oluwatobi A. Bello](https://github.com/Oluwatobii).<br />
+[Kate Batrakova](https://github.com/katebatrakova).<br />
+[Cyril Saidane](https://github.com/csaidane).
