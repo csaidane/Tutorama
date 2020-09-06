@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "3%",
     width: 150,
     height: 150,
-    borderRadius: "70%",
+    borderRadius: "60%",
   },
   shiftRight: {
     marginLeft: "10%",
@@ -88,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
   },
   marginEdu: {
     marginTop: "10%",
+  },
+  borderReview: {
+    borderLeft: "4.5px dashed #303F9F",
   },
 }));
 
@@ -130,21 +133,16 @@ export default function ReviewTutorProfile(props) {
       sender_id: props.userId,
     };
     axios({ url: "/api/users/messages/add", data: message, method: "POST" })
-      .then((results) => {
-        props.setInterlocutor({
-          their_id: props.tutor.tutor_id,
-          their_name: props.tutor.name,
-        });
-        return axios({
-          baseURL: "/",
-          url: `api/users/${props.userId}/messages/${props.tutor.tutor_id}`,
-          method: "GET",
-        });
-      })
-      .then((results) => {
-        props.setMessageConversation(results.data.messages);
-      });
-  };
+    .then((results)=>{
+      props.setInterlocutor({their_id:props.tutor.tutor_id, their_name:props.tutor.name})
+      return axios({baseURL:'/', url:`api/users/${props.userId}/messages/${props.tutor.tutor_id}`, method:"GET"})
+    })
+    .then((results)=>{
+      props.setMessageConversation(results.data.messages)
+    })
+    
+  }
+
 
   console.log(props.reviews, "HOWDY");
   const reviews = props.reviews.map((review) => {
@@ -228,17 +226,6 @@ export default function ReviewTutorProfile(props) {
                 {" "}
               </Grid>
               <Grid className={classes.alignButtons}>
-                {/* <Link component="button" onClick={sendAPI} style={{ textDecoration: "none" }}>
-                  <Fab
-                    className={classes.marginBackBtn}
-                    variant="extended"
-                    color="primary"
-                  >
-                    <SendOutlinedIcon className={classes.extendedIcon} />
-                    
-                    Send a message
-                  </Fab>
-                </Link> */}
                 <MessageButton
                   sendAPI={sendAPI}
                   firstMessage={firstMessage}
@@ -304,9 +291,18 @@ export default function ReviewTutorProfile(props) {
           >
             <h4 className="eduInReview">Reviews</h4>
             {/* Container for a review */}
-            <Grid item lg={12} md={12} xs={12}>
-              {reviews}
-            </Grid>
+            <div
+              id="scrollableContainer"
+              style={{
+                overflow: "scroll",
+                height: "407px",
+                border: "0.5px solid",
+              }}
+            >
+              <Grid item lg={12} md={12} xs={12}>
+                {reviews}
+              </Grid>
+            </div>
           </Grid>
         </Grid>
       </Grid>

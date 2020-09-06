@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { createMuiTheme } from "@material-ui/core/styles";
+import "./IndexPage.scss";
 
 import { Link } from "react-router-dom";
 import clsx from "clsx";
@@ -31,6 +31,7 @@ import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import SchoolIcon from "@material-ui/icons/School";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
 const drawerWidth = 240;
 
@@ -40,6 +41,19 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    color: "black",
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  //appbaronscroll
+  appBarScroll: {
+    backgroundColor: "white",
+    // boxShadow: "none",
+    color: "black",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -54,7 +68,9 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    color: "black",
+    marginLeft: "1%",
+    // marginRight: theme.spacing(2),
   },
   hide: {
     display: "none",
@@ -90,6 +106,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NavBar(props) {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    // target: props.window ? window() : undefined,
+  });
+
   const classes = useStyles();
   const theme = useTheme();
 
@@ -123,8 +145,11 @@ export default function NavBar(props) {
     event.preventDefault();
     axios({ url: "/api/users/logout", method: "POST" }).then((result) => {
       history.push("/");
-      props.updateTutor(null, null);
+      props.updateTutor(undefined, undefined);
       props.setInterlocutor({})
+      props.updateSearchResult(null)
+      props.setMessageConversation([])
+      props.setReviews([])
     });
   };
 
@@ -132,16 +157,23 @@ export default function NavBar(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        color="transparent"
+        // color="transparent"
         position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
+        className={
+          trigger
+            ? clsx(classes.appBarScroll, {
+                [classes.appBarShift]: open,
+              })
+            : clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+              })
+        }
       >
         <Toolbar>
           {isLoggedIn ? (
             <Fragment>
               <IconButton
+                style={{ border: "1px solid rgba(0, 0, 0, 0.12)" }}
                 color="inherit"
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
@@ -170,7 +202,7 @@ export default function NavBar(props) {
 
           {isLoggedIn ? (
             <Fragment>
-              <Typography variant="overline">
+              <Typography variant="h6" style={{ fontFamily: "Lora" }}>
                 Hello {props.state.user.name}!
               </Typography>
               <Link

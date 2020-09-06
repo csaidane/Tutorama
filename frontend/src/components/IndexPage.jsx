@@ -14,13 +14,15 @@ import {
 
 const useStyles = makeStyles({
   card: {
-    margin: "1%",
-    marginTop: "3%",
+    // margin: "1%",
+    marginTop: "2%",
+    marginLeft: "3%",
     display: "flex",
     width: "250px",
     height: "450px",
     "&:hover": {
-      background: "#D98488",
+      background: "#303F9F",
+      opacity: "0.8",
       borderTop: "solid 1px #cccccc",
       color: "white",
       boxShadow: "0px 20px 40px rgba(0,0,0,0.4)",
@@ -34,18 +36,28 @@ const useStyles = makeStyles({
     borderRadius: "2%",
   },
   box: { display: "flex", flexDirection: "row" },
-  heading: { paddingTop: "5%", marginBottom: "0" },
+  heading: { paddingTop: "2%", marginBottom: "0" },
   img: {
     width: "400px",
-    height: "600px",
+    height: "550px",
   },
   shiftRight: {
     marginLeft: "15%",
     // margin: "auto",
     backgroundImage:
       "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 90%)",
-    height: "100%",
-    // backgroundSize: "cover",
+    // height: "100vh",
+    backgroundSize: "cover",
+  },
+  nameHeading: {
+    fontFamily: "Lora",
+    fontSize: "1.5rem",
+  },
+  title: {
+    fontFamily: "Montserrat",
+  },
+  descr: {
+    fontFamily: "Lora",
   },
 });
 
@@ -86,15 +98,25 @@ export default function IndexPage() {
                     justify="center"
                     alignItems="center"
                   >
-                    <Typography component="h2" variant="h6">
+                    <Typography
+                      className={classes.nameHeading}
+                      component="h2"
+                      variant="h6"
+                    >
                       Martha Bosnian
                     </Typography>
-                    <Typography variant="h6">History tutor</Typography>
+                    <Typography className={classes.title} variant="h6">
+                      History tutor
+                    </Typography>
                   </Grid>
                   <Grid>
                     <Divider variant="middle" />
 
-                    <Typography variant="subtitle1" paragraph>
+                    <Typography
+                      className={classes.descr}
+                      variant="subtitle1"
+                      paragraph
+                    >
                       An experienced tutor with over 5 years of experience ipsum
                       sdkjd jdhsdn h dhnsj aute...
                     </Typography>
@@ -134,15 +156,25 @@ export default function IndexPage() {
                     justify="center"
                     alignItems="center"
                   >
-                    <Typography component="h2" variant="h6">
-                      Martha Bosnia
+                    <Typography
+                      className={classes.nameHeading}
+                      component="h2"
+                      variant="h6"
+                    >
+                      Vin Freesto
                     </Typography>
-                    <Typography variant="h6">History tutor</Typography>
+                    <Typography className={classes.title} variant="h6">
+                      Literature tutor
+                    </Typography>
                   </Grid>
                   <Grid>
                     <Divider variant="middle" />
 
-                    <Typography variant="subtitle1" paragraph>
+                    <Typography
+                      className={classes.descr}
+                      variant="subtitle1"
+                      paragraph
+                    >
                       An experienced tutor with over 5 years of experience ipsum
                       sdkjd jdhsdn h dhnsj aute...
                     </Typography>
@@ -183,15 +215,25 @@ export default function IndexPage() {
                     justify="center"
                     alignItems="center"
                   >
-                    <Typography component="h2" variant="h6">
-                      Martha Bosnia
+                    <Typography
+                      className={classes.nameHeading}
+                      component="h2"
+                      variant="h6"
+                    >
+                      Garret Richotto
                     </Typography>
-                    <Typography variant="h6">History tutor</Typography>
+                    <Typography className={classes.title} variant="h6">
+                      Chemistry tutor
+                    </Typography>
                   </Grid>
                   <Grid>
                     <Divider variant="middle" />
 
-                    <Typography variant="subtitle1" paragraph>
+                    <Typography
+                      variant="subtitle1"
+                      paragraph
+                      className={classes.descr}
+                    >
                       An experienced tutor with over 5 years of experience ipsum
                       sdkjd jdhsdn h dhnsj aute...
                     </Typography>

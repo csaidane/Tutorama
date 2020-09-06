@@ -59,11 +59,15 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage:
       // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
       "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
-    height: "100%",
+    height: "100vh",
     width: "100%",
     backgroundPosition: "center",
     marginLeft: "10%",
     // backgroundSize: "cover",
+  },
+  backForInputFields: {
+    backgroundColor: "#f6f6f6",
+    opacity: "0.8",
   },
 }));
 
@@ -100,6 +104,7 @@ export default function SignIn(props) {
               </Typography>
               <form className={classes.form} noValidate onSubmit={APILogin}>
                 <TextField
+                  className={classes.backForInputFields}
                   variant="outlined"
                   margin="normal"
                   required
@@ -113,6 +118,7 @@ export default function SignIn(props) {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
+                  className={classes.backForInputFields}
                   variant="outlined"
                   margin="normal"
                   required

@@ -40,7 +40,7 @@ export default function SearchField(props) {
         justify="space-between"
         // alignItems="center"
       >
-        <Grid xs={6} className={classes.marginTop}>
+        <Grid lg={6} md={6} xs={6} className={classes.marginTop}>
           <h1 id="heading">Let's start learning today! </h1>
           <form onSubmit={APISearch}>
             <Box display="flex" justifyContent="center" alignItems="center">
@@ -81,11 +81,11 @@ export default function SearchField(props) {
             </Box>
           </form>
         </Grid>
-        <Grid xs={6} className={classes.marginTop}>
+        <Grid lg={6} md={6} xs={6} className={classes.marginTop}>
           {" "}
           <img
             style={{ width: "500px", height: "500px" }}
-            src="https://github.com/katebatrakova/scheduler/blob/master/docs/girl2.jpg?raw=true"
+            src="https://github.com/csaidane/Tutorama/blob/feature/selectedTutor/frontend/src/img/girl2.jpg?raw=true"
           ></img>
         </Grid>
       </Grid>

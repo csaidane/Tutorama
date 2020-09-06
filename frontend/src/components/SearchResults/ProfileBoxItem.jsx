@@ -19,6 +19,10 @@ const useStyles = makeStyles({
     marginTop: "10%",
     marginLeft: "20%",
     display: "flex",
+    borderTop: "0.5px dashed #303F9F",
+    borderBottom: "0.5px dashed #303F9F",
+    // borderLeft: "0.5px dashed #303F9F",
+    // borderRight: "0.5px dashed #303F9F",
   },
   cardDetails: {
     paddingLeft: "5%",
