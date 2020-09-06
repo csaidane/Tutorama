@@ -104,7 +104,8 @@ export default function SignUpStudent(props) {
       province,
       post_code: zip,
     };
-    axios({ url: "/api/users/register", data: user, method: "POST" }).then(
+    axios({ url: "/api/users/register", data: user, method: "POST" })
+    .then(
       (result) => {
         props.updateUser(result.data.user);
         history.push("/");

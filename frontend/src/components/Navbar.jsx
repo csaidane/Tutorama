@@ -145,8 +145,11 @@ export default function NavBar(props) {
     event.preventDefault();
     axios({ url: "/api/users/logout", method: "POST" }).then((result) => {
       history.push("/");
-      props.updateTutor(null, null);
-      props.setInterlocutor({});
+      props.updateTutor(undefined, undefined);
+      props.setInterlocutor({})
+      props.updateSearchResult(null)
+      props.setMessageConversation([])
+      props.setReviews([])
     });
   };
 

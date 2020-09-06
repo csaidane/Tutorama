@@ -5,6 +5,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Drawer, Grid } from "@material-ui/core";
 import axios from "axios";
 
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -112,8 +113,9 @@ function App() {
   };
 
   return (
-    <Grid item lg={12} md={12} id="main">
+    <Grid item lg={12} md={12} id='main' >
       <Router>
+
         <NavBar
           open={open}
           setOpen={setOpen}
@@ -121,6 +123,10 @@ function App() {
           updateUser={updateUser}
           updateTutor={updateTutor}
           setInterlocutor={setInterlocutor}
+          updateSearchResult={updateSearchResult}
+          setReviews={setReviews}
+          setMessageConversation={setMessageConversation}
+
         />
         <main
           className={clsx(classes.content, {
@@ -199,12 +205,7 @@ function App() {
               path="/searchresult"
               exact
               render={(props) => (
-                <SearchResultPage
-                  reviews={reviews}
-                  APIGetReviews={APIGetReviews}
-                  setReviews={setReviews}
-                  searchResult={state.searchResult}
-                />
+                <SearchResultPage reviews={reviews} APIGetReviews={APIGetReviews} setReviews={setReviews} searchResult={state.searchResult} />
               )}
             />
             <Route
@@ -213,6 +214,7 @@ function App() {
               render={(props) => {
                 const { id } = props.match.params;
                 const tutor = state.searchResult.find((r) => r.tutor_id == id);
+
                 return <ReviewTutorProfile setMessageConversation={setMessageConversation} setInterlocutor={setInterlocutor} APIGetReviews={APIGetReviews} setReviews={setReviews} userId={state.user && state.user.id} reviews={reviews} tutor={tutor} />;
               }}
             />
@@ -220,14 +222,14 @@ function App() {
               <Route
                 path="/editprofile"
                 exact
-                render={(props) => <EditProfileTutor {...props} user={state} />}
+                render={(props) => <EditProfileTutor updateTutor={updateTutor} {...props} user={state} />}
               />
             ) : (
                 <Route
                   path="/editprofile"
                   exact
                   render={(props) => (
-                    <EditProfileStudent {...props} user={state} />
+                    <EditProfileStudent updateUser={updateUser} {...props} user={state} />
                   )}
                 />
               )}
@@ -255,6 +257,7 @@ function App() {
           {/* <BottomLayerProfileStudent /> */}
         </main>
         {/* <RateDialog /> */}
+
       </Router>
     </Grid>
   );

@@ -131,21 +131,17 @@ export default function ReviewTutorProfile(props) {
       sender_id: props.userId,
     };
     axios({ url: "/api/users/messages/add", data: message, method: "POST" })
-      .then((results) => {
-        props.setInterlocutor({
-          their_id: props.tutor.tutor_id,
-          their_name: props.tutor.name,
-        });
-        return axios({
-          baseURL: "/",
-          url: `api/users/${props.userId}/messages/${props.tutor.tutor_id}`,
-          method: "GET",
-        });
-      })
-      .then((results) => {
-        props.setMessageConversation(results.data.messages);
-      });
-  };
+
+    .then((results)=>{
+      props.setInterlocutor({their_id:props.tutor.tutor_id, their_name:props.tutor.name})
+      return axios({baseURL:'/', url:`api/users/${props.userId}/messages/${props.tutor.tutor_id}`, method:"GET"})
+    })
+    .then((results)=>{
+      props.setMessageConversation(results.data.messages)
+    })
+    
+  }
+
 
   const reviews = props.reviews.map((review) => {
     return (
