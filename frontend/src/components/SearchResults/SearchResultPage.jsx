@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import FilterBar from "./FilterBar";
 import ProfileBoxItem from "./ProfileBoxItem";
-import { Typography } from "@material-ui/core/";
 import "./SearchResultsPage.scss";
+import NoResultsFound from "./NoResultsFound";
 
 /*
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +21,7 @@ export default function SearchResultPage(props) {
 
   const searchResults =
     searchResult.length === 0 ? (
-      <Typography> hello </Typography>
+      <NoResultsFound />
     ) : (
       searchResult.map((result) => {
         return (
