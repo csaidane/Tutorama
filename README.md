@@ -7,7 +7,7 @@ So, you want to learn Calculus, Accounting, or Biology? Or maybe improve existin
 This project has two main folders:
 
 - Install dependencies with `npm install` in both the clent-side(frontend) and server-side(backend).
-- On the [https://github.com/csaidane/Tutorama/tree/master/backend](server) side, Copy the `.env.example` file to `.env` and fill in the necessary PostgreSQL configuration. The `node-postgres` library uses these environment variables by default.
+- On the [server](https://github.com/csaidane/Tutorama/tree/master/backend) side, Copy the `.env.example` file to `.env` and fill in the necessary PostgreSQL configuration. The `node-postgres` library uses these environment variables by default.
 
 ```
 DB_HOST=localhost
@@ -19,13 +19,13 @@ DB_NAME=YOUR_DATABASE_NAME_HERE
 DB_PORT=5432
 ```
 
-- Run the [https://github.com/csaidane/Tutorama/tree/master/backend](server) from the root folder using `npm run local`
-- Reset the database by running the command `npm run db:reset` from the [https://github.com/csaidane/Tutorama/tree/master/backend](server) side.
-- On a separate terminal, run the [https://github.com/csaidane/Tutorama/tree/master/frontend](client-server) from project root folder using `npm start`
+- Run the [server](https://github.com/csaidane/Tutorama/tree/master/backend) from the root folder using `npm run local`
+- Reset the database by running the command `npm run db:reset` from the [server](https://github.com/csaidane/Tutorama/tree/master/backend) side.
+- On a separate terminal, run the [client-side server](https://github.com/csaidane/Tutorama/tree/master/frontend) from project root folder using `npm start`
 
 ## Api
 
-Example of data gotten from the [https://github.com/csaidane/Tutorama/tree/master/backend](back-end server)
+Example of data gotten from the [back-end server](https://github.com/csaidane/Tutorama/tree/master/backend)
 
 ### Tutor info
 
@@ -134,6 +134,6 @@ Response
 
 ## Contributors
 
-[https://github.com/Oluwatobii](Oluwatobi A. Bello)
-[https://github.com/katebatrakova](Kate Batrakova)
-[https://github.com/csaidane](Cyril Saidane)
+[Oluwatobi A. Bello](https://github.com/Oluwatobii)
+[Kate Batrakova](https://github.com/katebatrakova)
+[Cyril Saidane](https://github.com/csaidane)
