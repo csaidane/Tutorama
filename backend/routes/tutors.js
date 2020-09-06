@@ -9,8 +9,10 @@ const {
   addTutorSubject,
   addReview,
   getTutorWithId,
+  getUserWithId,
   updateUser,
-  updateTutor
+  updateTutor,
+  getReviewsForTutor
 } = require("./helper_functions");
 
 module.exports = (db) => {
@@ -44,7 +46,6 @@ module.exports = (db) => {
           res.send({ error: "error: tutor" });
           return;
         }
-        outputVars["tutor"] = returned_tutor;
         return addTutorSubject(user);
       })
       .then((subject) => {
@@ -52,6 +53,16 @@ module.exports = (db) => {
           res.send({ error: "error: subject" });
           return;
         } else {
+          return getTutorWithId(user.id)
+        }
+      })
+      .then((tutor)=>{
+        if (!tutor) {
+          res.send({ error: "error: tutor not retrived" });
+          return;
+        } else{
+          console.log(tutor)
+          outputVars["tutor"] = tutor[0];
           req.session.user_id = user.id;
           req.session.user_name = user.name;
           outputVars["registration"] = "success";
@@ -59,16 +70,17 @@ module.exports = (db) => {
         }
       })
       .catch((e) => {
-        console.log("login error: ", e);
+        console.log("registration error: ", e);
         res.status(500);
         res.send(e);
       });
   });
 
   router.get("/search", (req, res) => {
-    searchTutors(req.query)
+
+    const search_keywords = req.query.query;
+    searchTutors(search_keywords)
       .then((tutors) => {
-        // console.log("tutors", tutors);
         if (!tutors) {
           res.json("no tutors found for these keywords");
         } else {
@@ -103,16 +115,36 @@ module.exports = (db) => {
   router.get('/profile/:id', (req,res) => {
     const tutor_id = req.params.id
     let outputVars = {};
-    getTutorWithId(tutor_id)
+    getUserWithId(tutor_id)
+    .then((user)=>{
+      if(!user){
+        res.json("error: no user found")
+        return;
+      } else{
+        outputVars['user_info'] = user
+        return getTutorWithId(tutor_id);
+      }
+    })
     .then((tutor)=>{
       if(!tutor){
-        res.json("no tutor found")
+        res.json("error: no tutor found")
       } else{
         outputVars['tutor'] = tutor;
+        return getReviewsForTutor(tutor_id)
+      }
+    })
+    .then((reviews)=>{
+      if(!reviews){
+        res.json("error: no reviews found")
+        return;
+      } else{
+        outputVars['reviews'] = reviews
         res.json(outputVars)
       }
     })
   });
+
+
 
   router.post("/profile/update", (req, res) => {
     const user = {
@@ -126,29 +158,36 @@ module.exports = (db) => {
       post_code: req.body.post_code,
       education: req.body.education,
       bio: req.body.bio,
-      rate_per_hour:req.body.rate_per_hour
+      rate:req.body.rate
     }
     let outputVars = {}
     updateUser(user)
-      .then((user) => {
-        if (!user) {
+      .then((returned_user) => {
+        if (!returned_user) {
           res.send({ error: "Could not update user" });
           return;
         }
-        outputVars['user'] = user;
+        outputVars['user'] = returned_user;
         outputVars['update_user'] = 'success'
         return updateTutor(user)
       })
-      .then((tutor=>{
+      .then((tutor)=>{
         if(!tutor){
           res.send({error:"Could not update tutor"})
           return;
         } else{
-          outputVars['tutor'] = tutor;
+          return getTutorWithId(tutor.id)
+        }
+      })
+      .then((tutor)=>{
+        if(!tutor){
+          res.send("error: couldnt retrive tutor")
+        } else{
+          outputVars['tutor'] = tutor[0];
           outputVars['update_tutor'] = 'success'
           res.json(outputVars);
         }
-      }))
+      })
       .catch((e) => res.send(e));
   });
 

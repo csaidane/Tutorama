@@ -7,15 +7,32 @@ const pool = new Pool({
   database: "final",
 });
 
+
+function getFormattedDate(input){
+  var d = new Date(input);
+  d = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2) + " " + ('0' + d.getHours()).slice(-2) + ":" + ('0' + d.getMinutes()).slice(-2) + ":" + ('0' + d.getSeconds()).slice(-2);
+  return d;
+}
+
 const addUser =  function(user) {
   return pool.query(`
   INSERT INTO users (
     name, email, password, street, city, province, post_code
   ) VALUES ($1, $2, $3 , $4, $5, $6, $7)
   RETURNING *
-  `, [user.name, user.email, user.password, user.street, user.city, user.province, user.post_code])
-  .then(res => res.rows[0]);
-}
+  `,
+      [
+        user.name,
+        user.email,
+        user.password,
+        user.street,
+        user.city,
+        user.province,
+        user.post_code,
+      ]
+    )
+    .then((res) => res.rows[0]);
+};
 exports.addUser = addUser;
 
 const getUserWithEmail = function (email) {
@@ -88,8 +105,9 @@ const getTutorWithId = function (id) {
   return pool
     .query(
       `
-  SELECT * FROM tutors
-  WHERE id = $1;
+  SELECT t.*, s.name FROM tutors as t
+  JOIN subjects as s on t.id = s.tutor_id
+  WHERE t.id = $1;
   `,
       [id]
     )
@@ -145,6 +163,7 @@ const searchTutors = function (params) {
       console.log(res.rows, "HIII");
       return res.rows;
     });
+
 };
 exports.searchTutors = searchTutors;
 
@@ -186,16 +205,18 @@ const getMessagesBetweenUsers = function (sender_id, receiver_id) {
   return pool
     .query(
       `
-  SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
-  FROM messages as m
-  JOIN users as u on sender_id = u.id
-  WHERE sender_id = $1 AND receiver_id = $2
-  UNION
-  SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
-  FROM messages as m
-  JOIN users as u on sender_id = u.id
-  WHERE sender_id = $2 AND receiver_id = $1;
-
+      SELECT * FROM (
+        SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
+        FROM messages as m
+        JOIN users as u on sender_id = u.id
+        WHERE sender_id = $1 AND receiver_id = $2
+        UNION
+        SELECT sender_id, u.name, u.profile_picture_url, content, sent_date
+        FROM messages as m
+        JOIN users as u on sender_id = u.id
+        WHERE sender_id = $2 AND receiver_id = $1
+      ) as all_msg
+      ORDER BY sent_date ASC;
   `,
       [sender_id, receiver_id]
     )
@@ -210,9 +231,21 @@ const addMessage =  function(message) {
   VALUES ($1, $2, $3, $4)
   RETURNING *
   `, [message.sender_id , message.receiver_id, message.content, getFormattedDate(Date.now())])
-  .then(res => res.rows[0]);S
+  .then(res => res.rows[0]);
 }
 exports.addMessage = addMessage;
+
+const getReviewsForTutor = function(id){
+  return pool.query(`
+  SELECT r.reviewer_id, r.comment, r.rating, r.date, u.name, u.profile_picture_url, u.city
+  FROM reviews as r
+  JOIN users as u on u.id = r.reviewer_id
+  WHERE reviewed_id = $1;
+  `,[id])
+  .then(res => res.rows);
+}
+exports.getReviewsForTutor = getReviewsForTutor;
+
 
 const addReview =  function(review) {
   return pool.query(`
@@ -238,11 +271,11 @@ exports.updateUser = updateUser;
 
 const updateTutor =  function(user) {
   return pool.query(`
-  UPDATE users
+  UPDATE tutors
   SET education = $1, bio = $2, rate_per_hour = $3
   WHERE id = $4
   RETURNING *
-  `, [user.education, user.bio, user.rate_per_hour, user.id ])
+  `, [user.education, user.bio, user.rate, user.id ])
   .then(res => res.rows[0]);
 }
 exports.updateTutor = updateTutor;

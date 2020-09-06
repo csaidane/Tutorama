@@ -32,16 +32,15 @@ export default function HomePage(props) {
   const classes = useStyles();
 
   return (
-    <Fragment>
-      <Grid className={classes.shiftRight}>
+    <Grid>
+      <Grid item lg={12} md={12} sm={12} xs={12} className={classes.shiftRight}>
         <SearchField {...props} updateSearchResult={props.updateSearchResult} />
         <HowWorks />
         <FindSubjects />
       </Grid>
-
       <Grid item xs={12} container id="bottomImg">
         <ScrollToTop />
       </Grid>
-    </Fragment>
+    </Grid>
   );
 }

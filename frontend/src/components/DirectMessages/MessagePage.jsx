@@ -15,15 +15,7 @@ import MessageView from "./MessageView";
 
 export default function MessagePage(props) {
   // const classes = useStyles();
-
-  
-  const [messageThreads, setMessageThreads] = useState([])
-  const [messageConversation, setMessageConversation] = useState([])
-  const [interlocutor, setInterlocutor] = useState({})
-
-
   const [messageThreads, setMessageThreads] = useState([]);
-
   useEffect(() => {
     axios({
       url: `/api/users/${props.userId}/messages/threads`,
@@ -38,12 +30,26 @@ export default function MessagePage(props) {
   return (
     <div className="main">
       <div className="list">
-        <MessageList setInterlocutor={setInterlocutor} userId={props.userId} setMessageConversation={setMessageConversation} messageThreads={messageThreads} />
+        <MessageList
+          setInterlocutor={props.setInterlocutor}
+          userId={props.userId}
+          setMessageConversation={props.setMessageConversation}
+          messageThreads={messageThreads}
+        />
       </div>
       <div className="msg">
-        <MessageView interlocutor={interlocutor} messageConversation={messageConversation}/>
+        <MessageView
+          interlocutor={props.interlocutor}
+          messageConversation={props.messageConversation}
+        />
         <div className="text-message-box">
-          {interlocutor.their_name&& <MessageTextBox />}
+          {props.interlocutor.their_name && (
+            <MessageTextBox
+              setMessageConversation={props.setMessageConversation}
+              userId={props.userId}
+              interlocutor={props.interlocutor}
+            />
+          )}
         </div>
       </div>
     </div>

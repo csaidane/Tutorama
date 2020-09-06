@@ -24,7 +24,13 @@ const useStyles = makeStyles((theme) => ({
     // position: "absolute",
     // left: "0",
     width: "300px",
-    boxShadow: "0px 0px 2px black",
+    borderRight: "1px solid rgba(0, 0, 0, 0.12)",
+    position: "fixed",
+    // boxShadow: "0.5px 0.5px 0.5px 0px black",
+    // boxShadow: "0px 0px 2px black",
+    //styles to shift the box to the right
+    // marginLeft: "3.5%",
+    // marginTop: "1.5%",
   },
   listItem: {
     cursor: "pointer",
@@ -48,27 +54,33 @@ export default function MessageList(props) {
 
   let messageThreads = props.messageThreads;
 
-  const conversationAPI = function(my_id,their_id,their_name){
-    axios({url:`api/users/${my_id}/messages/${their_id}`, method:"GET"})
-    .then((results)=>{
-      props.setMessageConversation(results.data.messages)
-      props.setInterlocutor({their_id, their_name})
-      console.log(results.data.messages)
-    })
-  }
+  const conversationAPI = function (my_id, their_id, their_name) {
+    axios({
+      url: `api/users/${my_id}/messages/${their_id}`,
+      method: "GET",
+    }).then((results) => {
+      props.setMessageConversation(results.data.messages);
+      props.setInterlocutor({ their_id, their_name });
+    });
+  };
 
   const msgList = messageThreads.map((thread) => {
     return (
       <Fragment key={thread.name}>
-        <ListItem onClick={() => conversationAPI(props.userId,thread.id,thread.name)} id={thread.id} className={classes.listItem} alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar src={thread.profile_picture_url} />
-            </ListItemAvatar>
-            <ListItemText
-              primary={<Typography variant="h6">{thread.name}</Typography>}
-            />
-          </ListItem>
-          <Divider />
+        <ListItem
+          onClick={() => conversationAPI(props.userId, thread.id, thread.name)}
+          id={thread.id}
+          className={classes.listItem}
+          alignItems="flex-start"
+        >
+          <ListItemAvatar>
+            <Avatar src={thread.profile_picture_url} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={<Typography variant="h6">{thread.name}</Typography>}
+          />
+        </ListItem>
+        <Divider />
       </Fragment>
     );
   });
