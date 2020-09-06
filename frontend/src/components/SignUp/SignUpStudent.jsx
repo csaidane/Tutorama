@@ -9,10 +9,13 @@ import {
   CssBaseline,
   Button,
   TextField,
+  FormControlLabel,
+  Checkbox,
   Link,
   Grid,
   Box,
   Typography,
+  Container,
 } from "@material-ui/core/";
 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -71,6 +74,10 @@ const useStyles = makeStyles((theme) => ({
   shiftRight: {
     marginLeft: "10%",
   },
+  backForInputFields: {
+    backgroundColor: "#f6f6f6",
+    opacity: "0.8",
+  },
 }));
 
 export default function SignUpStudent(props) {
@@ -97,7 +104,8 @@ export default function SignUpStudent(props) {
       province,
       post_code: zip,
     };
-    axios({ url: "/api/users/register", data: user, method: "POST" }).then(
+    axios({ url: "/api/users/register", data: user, method: "POST" })
+    .then(
       (result) => {
         props.updateUser(result.data.user);
         history.push("/");
@@ -121,6 +129,7 @@ export default function SignUpStudent(props) {
                 <Grid container spacing={5}>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -135,6 +144,7 @@ export default function SignUpStudent(props) {
 
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -148,6 +158,7 @@ export default function SignUpStudent(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -179,6 +190,7 @@ export default function SignUpStudent(props) {
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -193,6 +205,7 @@ export default function SignUpStudent(props) {
 
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -206,6 +219,7 @@ export default function SignUpStudent(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth
@@ -219,6 +233,7 @@ export default function SignUpStudent(props) {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      className={classes.backForInputFields}
                       variant="outlined"
                       required
                       fullWidth

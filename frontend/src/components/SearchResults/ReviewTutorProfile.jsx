@@ -90,6 +90,9 @@ const useStyles = makeStyles((theme) => ({
   marginEdu: {
     marginTop: "10%",
   },
+  borderReview: {
+    borderLeft: "4.5px dashed #303F9F",
+  },
 }));
 
 export default function ReviewTutorProfile(props) {
@@ -135,7 +138,6 @@ export default function ReviewTutorProfile(props) {
     })
     
   }
-
 
   const reviews = props.reviews.map((review) => {
     return (
