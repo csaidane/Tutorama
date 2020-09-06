@@ -33,6 +33,7 @@ import FilterBar from "./components/SearchResults/FilterBar.jsx";
 import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
 import EditProfileStudent from "./components/EditProfile/EditProfileStudent";
 import SearchResultPage from "./components/SearchResults/SearchResultPage";
+import NoResultsFound from "./components/SearchResults/NoResultsFound";
 
 const drawerWidth = 260;
 
@@ -245,6 +246,7 @@ function App() {
           {/* <SearchField />
           <HowWorks />
           <FindSubjects /> */}
+          {/* <NoResultsFound /> */}
           {/* <SignUpPage /> */}
           {/* <SignUpTutor /> */}
           {/* <StarRating /> */}
