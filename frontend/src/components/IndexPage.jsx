@@ -35,8 +35,8 @@ const useStyles = makeStyles({
     height: "150px",
     borderRadius: "2%",
   },
-  box: { display: "flex", flexDirection: "row" },
-  heading: { paddingTop: "2%", marginBottom: "0" },
+  box: { display: "flex", flexDirection: "row", marginLeft: "5%" },
+  heading: { paddingTop: "3%", marginBottom: "0", paddingRight: "25%" },
   img: {
     width: "400px",
     height: "550px",
@@ -45,7 +45,9 @@ const useStyles = makeStyles({
     marginLeft: "15%",
     // margin: "auto",
     backgroundImage:
-      "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 90%)",
+      // "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 50%)",
+      "linear-gradient(rgb(252, 197, 195) 0%, rgba(72,209,204,1) 70%)",
+
     // height: "100vh",
     backgroundSize: "cover",
   },
@@ -65,7 +67,7 @@ export default function IndexPage() {
   const classes = useStyles();
 
   return (
-    <Grid item sm={12} className={classes.shiftRight}>
+    <Grid item lg={12} className={classes.shiftRight}>
       <Grid component="main">
         <Grid
           container
@@ -73,7 +75,7 @@ export default function IndexPage() {
           alignItems="center"
           className={classes.heading}
         >
-          <h1 id="heading">Hire the right tutor today!</h1>
+          <h1 id="headingIndexPage">Hire the right tutor today!</h1>
         </Grid>
 
         <Box className={classes.box}>
@@ -117,8 +119,8 @@ export default function IndexPage() {
                       variant="subtitle1"
                       paragraph
                     >
-                      An experienced tutor with over 5 years of experience ipsum
-                      sdkjd jdhsdn h dhnsj aute...
+                      My greatest passion in life is teaching. I was born and
+                      raised in Sydney, and experienced great success ...
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">
@@ -175,8 +177,8 @@ export default function IndexPage() {
                       variant="subtitle1"
                       paragraph
                     >
-                      An experienced tutor with over 5 years of experience ipsum
-                      sdkjd jdhsdn h dhnsj aute...
+                      I really enjoy engaging with fellow students to empower
+                      and enrich their experiences with various subjects...
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">
@@ -234,8 +236,8 @@ export default function IndexPage() {
                       paragraph
                       className={classes.descr}
                     >
-                      An experienced tutor with over 5 years of experience ipsum
-                      sdkjd jdhsdn h dhnsj aute...
+                      Being once an Arts Student, my perspectives that I will
+                      provide in our lesson content are largely from ...
                     </Typography>
                   </Grid>
                   <Typography variant="subtitle1" color="primary">

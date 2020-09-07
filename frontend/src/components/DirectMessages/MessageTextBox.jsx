@@ -57,7 +57,7 @@ export default function MessageTextBox(props) {
   };
 
   return (
-    <div style={{ marginTop: "2%", marginBottom: "2%" }}>
+    <div style={{ marginTop: "2%", marginBottom: "7%" }}>
       <TextField
         placeholder="Type your message.."
         fullWidth={false}
