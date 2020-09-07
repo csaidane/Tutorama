@@ -12,7 +12,7 @@ import {
 const useStyles = makeStyles({
   card: {
     marginTop: "10%",
-    marginLeft: "20%",
+    marginLeft: "30%",
 
     // borderTop: "0.5px dashed #303F9F",
     // borderBottom: "0.5px dashed #303F9F",
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   imgSize: {
     marginLeft: "10%",
     width: "350px",
-    height: "25s0px",
+    height: "250px",
   },
 });
 

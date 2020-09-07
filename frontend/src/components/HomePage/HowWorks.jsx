@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
       "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 90%)",
     boxShadow: "12px 12px 10px 19px white  ",
     height: "800px",
+    width: "100%",
   },
   root: {
     maxWidth: 45,

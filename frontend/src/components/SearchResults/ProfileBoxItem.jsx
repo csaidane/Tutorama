@@ -49,15 +49,17 @@ export default function ProfileBoxItem(props) {
 
   return (
     <div>
-      <Grid item xs={10}>
-        <CardActionArea component="a" onClick={selectId}>
-          <Card className={classes.card}>
+      <Grid item lg={12} md={12} xs={12}>
+        <Card className={classes.card}>
+          <CardActionArea
+            style={{ display: "flex" }}
+            component="a"
+            onClick={selectId}
+          >
             <div className={classes.cardDetails}>
               <CardContent>
-                <Typography component="h2" variant="h6">
-                  {props.name}
-                </Typography>
-                <Typography variant="h6">{props.subject} tutor </Typography>
+                <h3 className="teacherNameSearch">{props.name}</h3>
+                <p className="teacherTitleSearch">{props.subject} tutor </p>
                 <Typography variant="subtitle1" color="textSecondary">
                   ${props.rate_per_hour}/hour, {props.city}
                 </Typography>
@@ -79,8 +81,8 @@ export default function ProfileBoxItem(props) {
               className={classes.cardMedia}
               image={props.profile_picture_url}
             />
-          </Card>
-        </CardActionArea>
+          </CardActionArea>
+        </Card>
       </Grid>
     </div>
   );

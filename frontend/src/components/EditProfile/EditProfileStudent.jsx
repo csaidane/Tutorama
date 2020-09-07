@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   shiftRight: {
-    marginLeft: "15%",
+    marginLeft: "10%",
     display: "flex",
     flexDirection: "column",
     placeItems: "center",

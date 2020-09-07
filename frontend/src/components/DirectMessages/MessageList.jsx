@@ -67,6 +67,7 @@ export default function MessageList(props) {
   const msgList = messageThreads.map((thread) => {
     return (
       <Fragment key={thread.name}>
+        <Divider />
         <ListItem
           onClick={() => conversationAPI(props.userId, thread.id, thread.name)}
           id={thread.id}

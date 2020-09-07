@@ -25,22 +25,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ImageAvatars() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.img}>
-      <Avatar
-        alt="Remy Sharp"
-        src="https://image.flaticon.com/icons/svg/1053/1053244.svg"
-        className={classes.large}
-      />
-    </div>
-  );
-}
-
 export default function TopLayerProfile(props) {
-  const { name } = props.user.user;
+  const { name, profile_picture_url } = props.user.user;
+
+  function ImageAvatars() {
+    const classes = useStyles();
+
+    return (
+      <div className={classes.img}>
+        <Avatar
+          alt="Remy Sharp"
+          src={profile_picture_url}
+          className={classes.large}
+        />
+      </div>
+    );
+  }
 
   const classes = useStyles();
 
