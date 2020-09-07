@@ -42,13 +42,13 @@ const useStyles = makeStyles({
     height: "550px",
   },
   shiftRight: {
-    marginLeft: "15%",
+    marginLeft: "10%",
     // margin: "auto",
     backgroundImage:
       // "linear-gradient(rgba(238,174,202,1) 0%, rgba(72,209,204,1) 50%)",
       "linear-gradient(rgb(252, 197, 195) 0%, rgba(72,209,204,1) 70%)",
 
-    // height: "100vh",
+    height: "100vh",
     backgroundSize: "cover",
   },
   nameHeading: {
