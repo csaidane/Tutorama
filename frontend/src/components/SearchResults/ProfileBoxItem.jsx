@@ -23,6 +23,10 @@ const useStyles = makeStyles({
     borderBottom: "0.5px dashed #303F9F",
     // borderLeft: "0.5px dashed #303F9F",
     // borderRight: "0.5px dashed #303F9F",
+    "&:hover": {
+      boxShadow: "0px 20px 40px",
+      transform: "scale(1.05, 1.05)",
+    },
   },
   cardDetails: {
     paddingLeft: "5%",

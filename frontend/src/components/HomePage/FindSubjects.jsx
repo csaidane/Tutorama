@@ -49,6 +49,7 @@ export default function HowWorks() {
       <h2 id="heading" align="center">
         What subject you need help with?
       </h2>
+
       <Grid
         container
         direction="row"

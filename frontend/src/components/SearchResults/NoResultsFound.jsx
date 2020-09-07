@@ -26,18 +26,14 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     placeItems: "center",
-    paddingLeft: "5%",
+    paddingLeft: "13%",
+    paddingRight: "13%",
     // flex: 4,
   },
   imgSize: {
-    marginLeft: "19%",
-    width: "250px",
+    marginLeft: "10%",
+    width: "350px",
     height: "25s0px",
-  },
-  headerSorry: {
-    fontFamily: "Lora",
-    textAlignLast: "center",
-    margin: "auto",
   },
 });
 
@@ -48,12 +44,10 @@ export default function ProfileBoxItem() {
     <div>
       <Grid item lg={12}>
         <Card className={classes.card}>
-          <h2 className="headerSorry">Sorry,</h2>
           <CardContent className={classes.cardDetails}>
             <Typography variant="subtitle1" color="textSecondary">
               {" "}
-              Currently there's no tutor teaching the subject you are trying to
-              find
+              Currently there's no tutors available for this subject.
             </Typography>
             <img
               className={classes.imgSize}
