@@ -69,7 +69,12 @@ export default function RateDialog(props) {
 
   return (
     <div>
-      <Fab color="secondary" variant="extended" onClick={handleClickOpen}>
+      <Fab
+        color="secondary"
+        variant="extended"
+        onClick={handleClickOpen}
+        style={{ marginTop: "2%" }}
+      >
         <RateReviewOutlinedIcon />
         Leave a feedback
       </Fab>

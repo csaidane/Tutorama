@@ -202,7 +202,7 @@ export default function NavBar(props) {
 
           {isLoggedIn ? (
             <Fragment>
-              <Typography variant="h6" style={{ fontFamily: "Lora" }}>
+              <Typography variant="h6" style={{ fontFamily: "Montserrat" }}>
                 Hello {props.state.user.name}!
               </Typography>
               <Link

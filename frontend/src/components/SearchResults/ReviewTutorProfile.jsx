@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "60%",
   },
   shiftRight: {
-    marginLeft: "10%",
+    marginLeft: "13%",
     // margin: "auto",
   },
   shiftRightPrice: {
@@ -89,6 +89,11 @@ const useStyles = makeStyles((theme) => ({
   },
   borderReview: {
     borderLeft: "4.5px dashed #303F9F",
+  },
+  backgroundReview: {
+    borderTop: "25px solid #F50157",
+    borderBottom: "25px solid #F50157",
+    borderRadius: "3%",
   },
 }));
 
@@ -291,11 +296,11 @@ export default function ReviewTutorProfile(props) {
             <h4 className="eduInReview">Reviews</h4>
             {/* Container for a review */}
             <div
+              className={classes.backgroundReview}
               id="scrollableContainer"
               style={{
                 overflow: "scroll",
                 height: "407px",
-                border: "0.5px solid",
               }}
             >
               <Grid item lg={12} md={12} xs={12}>

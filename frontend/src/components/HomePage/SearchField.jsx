@@ -12,7 +12,9 @@ const useStyles = makeStyles((theme) => ({
   },
   marginTop: {
     marginTop: "5%",
+    paddingRight: "4%",
   },
+  paddingLeft: { paddingLeft: "10%" },
 }));
 
 export default function SearchField(props) {
@@ -35,9 +37,11 @@ export default function SearchField(props) {
     <div id="searchField">
       <Grid
         container
+        item
+        lg={12}
         direction="row"
         justify="space-between"
-        // alignItems="center"
+        className={classes.paddingLeft}
       >
         <Grid item lg={6} md={6} xs={6} className={classes.marginTop}>
           <h1 id="heading">Let's start learning today! </h1>

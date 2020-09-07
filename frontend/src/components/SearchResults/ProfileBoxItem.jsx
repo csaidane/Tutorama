@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import { useHistory } from "react-router-dom";
 
@@ -10,6 +11,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Container,
 } from "@material-ui/core/";
 
 const useStyles = makeStyles({
@@ -17,10 +19,7 @@ const useStyles = makeStyles({
     marginTop: "10%",
     marginLeft: "20%",
     display: "flex",
-    borderTop: "0.5px dashed #303F9F",
-    borderBottom: "0.5px dashed #303F9F",
-    // borderLeft: "0.5px dashed #303F9F",
-    // borderRight: "0.5px dashed #303F9F",
+    border: "0.5px solid #303F9F",
     "&:hover": {
       boxShadow: "0px 20px 40px",
       transform: "scale(1.05, 1.05)",
@@ -52,15 +51,17 @@ export default function ProfileBoxItem(props) {
 
   return (
     <div>
-      <Grid item xs={10}>
-        <CardActionArea component="a" onClick={selectId}>
-          <Card className={classes.card}>
+      <Grid item lg={12} md={12} xs={12}>
+        <Card className={classes.card}>
+          <CardActionArea
+            style={{ display: "flex" }}
+            component="a"
+            onClick={selectId}
+          >
             <div className={classes.cardDetails}>
               <CardContent>
-                <Typography component="h2" variant="h6">
-                  {props.name}
-                </Typography>
-                <Typography variant="h6">{props.subject} tutor </Typography>
+                <h3 className="teacherNameSearch">{props.name}</h3>
+                <p className="teacherTitleSearch">{props.subject} tutor </p>
                 <Typography variant="subtitle1" color="textSecondary">
                   ${props.rate_per_hour}/hour, {props.city}
                 </Typography>
@@ -82,8 +83,8 @@ export default function ProfileBoxItem(props) {
               className={classes.cardMedia}
               image={props.profile_picture_url}
             />
-          </Card>
-        </CardActionArea>
+          </CardActionArea>
+        </Card>
       </Grid>
     </div>
   );

@@ -21,7 +21,7 @@ import EditProfileTutor from "./components/EditProfile/EditProfileTutor";
 import EditProfileStudent from "./components/EditProfile/EditProfileStudent";
 import SearchResultPage from "./components/SearchResults/SearchResultPage";
 
-const drawerWidth = 260;
+const drawerWidth = 290;
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -139,8 +139,8 @@ function App() {
                 )}
               />
             ) : (
-              <Route path="/" exact component={IndexPage} />
-            )}
+                <Route path="/" exact component={IndexPage} />
+              )}
 
             <Route
               path="/signup/student"
@@ -181,14 +181,14 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
-              <Route
-                path="/profile"
-                exact
-                render={(props) => (
-                  <StudentProfilePage {...props} user={state} />
-                )}
-              />
-            )}
+                <Route
+                  path="/profile"
+                  exact
+                  render={(props) => (
+                    <StudentProfilePage {...props} user={state} />
+                  )}
+                />
+              )}
             <Route
               path="/searchresult"
               exact
@@ -235,18 +235,18 @@ function App() {
                 )}
               />
             ) : (
-              <Route
-                path="/editprofile"
-                exact
-                render={(props) => (
-                  <EditProfileStudent
-                    updateUser={updateUser}
-                    {...props}
-                    user={state}
-                  />
-                )}
-              />
-            )}
+                <Route
+                  path="/editprofile"
+                  exact
+                  render={(props) => (
+                    <EditProfileStudent
+                      updateUser={updateUser}
+                      {...props}
+                      user={state}
+                    />
+                  )}
+                />
+              )}
           </Switch>
         </main>
       </Router>

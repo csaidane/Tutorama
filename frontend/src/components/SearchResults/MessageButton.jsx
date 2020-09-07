@@ -13,9 +13,7 @@ import {
 import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 
 const useStyles = makeStyles((theme) => ({
-  extendedIcon: {
-    marginRight: theme.spacing(1),
-  },
+  extendedIcon: {},
 }));
 
 export default function MessageButton(props) {
@@ -42,9 +40,7 @@ export default function MessageButton(props) {
         <SendOutlinedIcon className={classes.extendedIcon} />
         Send a message
       </Fab>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        SEND A MESSAGE
-      </Button> */}
+
       <Dialog
         open={open}
         onClose={messageSendAndHandleClose}
