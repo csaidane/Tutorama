@@ -17,10 +17,7 @@ const useStyles = makeStyles({
     marginTop: "10%",
     marginLeft: "20%",
     display: "flex",
-    borderTop: "0.5px dashed #303F9F",
-    borderBottom: "0.5px dashed #303F9F",
-    // borderLeft: "0.5px dashed #303F9F",
-    // borderRight: "0.5px dashed #303F9F",
+    border: "0.5px solid #303F9F",
     "&:hover": {
       boxShadow: "0px 20px 40px",
       transform: "scale(1.05, 1.05)",
