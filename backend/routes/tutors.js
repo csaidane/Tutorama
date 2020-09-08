@@ -77,8 +77,7 @@ module.exports = (db) => {
 
   router.get("/search", (req, res) => {
     searchTutors(req.query)
-    .then((tutors) => {
-      console.log(tutors)
+      .then((tutors) => {
         if (!tutors) {
           res.json("no tutors found for these keywords");
         } else {

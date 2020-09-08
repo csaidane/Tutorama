@@ -169,7 +169,6 @@ const searchTutors = function (params) {
     query += ` ORDER BY count(r.rating) DESC `;
   }
   query += ` LIMIT 25;`;
-  console.log(query)
   return pool
     .query(query, values) //this ???
     .then((res) => {

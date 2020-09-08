@@ -18,11 +18,9 @@ import {
 } from "@testing-library/react";
 
 describe("Application", () => {
-  it("able to go from the indexpage to the login page and then the homepage", async () => {
+  xit("able to go from the indexpage to the login page and then the homepage", async () => {
     // 1. Render the Application.
     const { container } = render(<App />);
-
-    console.log(prettyDOM(container));
 
     // 2. Shows the index Page
     expect(
@@ -44,7 +42,5 @@ describe("Application", () => {
     // Now in the home page.
     await waitForElement(() => getByAltText(container, "Log out"));
     expect(getByText(container, "Log out")).toBeInTheDocument();
-
-    // console.log(prettyDOM(container));
   });
 });
