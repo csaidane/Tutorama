@@ -21,16 +21,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     height: "calc(100% - 35px)",
-    // position: "absolute",
-    // left: "0",
     width: "300px",
     borderRight: "1px solid rgba(0, 0, 0, 0.12)",
     position: "fixed",
-    // boxShadow: "0.5px 0.5px 0.5px 0px black",
-    // boxShadow: "0px 0px 2px black",
-    //styles to shift the box to the right
-    // marginLeft: "3.5%",
-    // marginTop: "1.5%",
   },
   listItem: {
     cursor: "pointer",
@@ -87,14 +80,6 @@ export default function MessageList(props) {
   });
   return (
     <div className={classes.root}>
-      {/* <Button
-        variant="contained"
-        fullwidth
-        color="primary"
-        className={classes.newChatBtn}
-      >
-        New Message
-      </Button> */}
       <List>
         <div key="1">{msgList}</div>
       </List>

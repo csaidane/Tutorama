@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "90%", // Fix IE 11 issue.
+    width: "90%",
     marginTop: theme.spacing(7),
   },
   submit: {
@@ -52,21 +52,16 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     backgroundImage:
-      // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
       "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
-    // height: "690px",
-    // marginLeft: "14%",
+
     backgroundPosition: "center",
     height: "100%",
     width: "100%",
-    // marginLeft: "5%",
-    // marginTop: "4%",
+
     backgroundSize: "cover",
     position: "fixed",
     top: "0",
     left: "0",
-
-    // marginTop: "4%",
   },
   shiftRight: {
     marginLeft: "10%",
@@ -101,8 +96,7 @@ export default function SignUpStudent(props) {
       province,
       post_code: zip,
     };
-    axios({ url: "/api/users/register", data: user, method: "POST" })
-    .then(
+    axios({ url: "/api/users/register", data: user, method: "POST" }).then(
       (result) => {
         props.updateUser(result.data.user);
         history.push("/");
@@ -169,8 +163,6 @@ export default function SignUpStudent(props) {
                     />
                   </Grid>
                 </Grid>
-
-                {/* </form> */}
               </div>
             </Grid>
 

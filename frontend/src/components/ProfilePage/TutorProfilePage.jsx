@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   shiftRight: {
     marginLeft: "10%",
-    // margin: "auto",
   },
 }));
 

@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   chatTextBox: {
     width: "85%",
     marginLeft: "25px",
-    // marginRight: "-30px",
     marginRight: "2%",
   },
 }));

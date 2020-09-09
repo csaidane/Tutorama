@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-// import WrongEmailPassword from "./WrongEmailPassword";
 
 import {
   Avatar,
@@ -34,7 +33,6 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    // margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -51,16 +49,11 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  shiftRight: {
-    // marginLeft: "",
-    // margin: "auto",
-  },
+
   image: {
     backgroundImage:
-      // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
       "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
     height: "100vh",
-    // width: "100%",
     backgroundPosition: "center",
     marginLeft: "10%",
     backgroundSize: "cover",
@@ -92,7 +85,7 @@ export default function SignIn(props) {
 
   return (
     <div className={classes.image}>
-      <div className={classes.shiftRight}>
+      <div>
         <Grid>
           <CssBaseline />
           <Grid item xs={12}>

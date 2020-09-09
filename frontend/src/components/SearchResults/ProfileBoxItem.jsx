@@ -28,7 +28,6 @@ const useStyles = makeStyles({
     flex: 4,
   },
   cardMedia: {
-    // marginTop: "6%",
     marginRight: "2%",
     width: 170,
     height: 170,

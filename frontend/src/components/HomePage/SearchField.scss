@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&display=swap");
 
 #heading {
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   font-size: 60px;
   text-align: -webkit-center;
 }
@@ -11,7 +11,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  // border: solid 1px red;
   margin-top: 2%;
   width: 100%;
   height: 600px;
@@ -22,7 +21,6 @@
   background-position: center;
   background-size: cover;
   box-shadow: 0 0 8px 8px white inset;
-  // filter: blur(1px);
 }
 
 #searchInput {

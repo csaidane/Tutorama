@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
     height: "50px",
     backgroundColor: "#344195",
     position: "fixed",
-    // marginLeft: "301px",
     fontSize: "18px",
     textAlign: "center",
     color: "white",

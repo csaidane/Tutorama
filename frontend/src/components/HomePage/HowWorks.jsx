@@ -102,13 +102,7 @@ export default function HowWorks() {
           {steps.map((step, index) => {
             return (
               <div key={index}>
-                <img
-                  alt=""
-                  id="sliderPic"
-                  // width="300px"
-                  // height="300px"
-                  src={step.url}
-                ></img>
+                <img alt="" id="sliderPic" src={step.url}></img>
                 <p className="stepText">{step.description}</p>
               </div>
             );

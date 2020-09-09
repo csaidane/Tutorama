@@ -68,14 +68,12 @@ const useStyles = makeStyles((theme) => ({
   },
   shiftRight: {
     marginLeft: "13%",
-    // margin: "auto",
   },
   shiftRightPrice: {
     fontFamily: "Roboto Mono",
     fontSize: "25px",
     marginTop: "3%",
     marginLeft: "20%",
-    // margin: "auto",
   },
 
   alignButtons: {

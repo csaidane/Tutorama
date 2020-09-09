@@ -8,10 +8,7 @@ const useStyles = makeStyles((theme) => ({
     height: "250px",
     width: "150px",
     backgroundSize: "cover",
-    // borderRadius: "1%",
     opacity: 5,
-
-    // boxShadow: "25px 25px 50px 50px white inset"
   },
   root: {
     marginLeft: "10%",

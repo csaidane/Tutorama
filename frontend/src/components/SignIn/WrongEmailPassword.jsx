@@ -15,8 +15,6 @@ const useStyles = makeStyles((theme) => ({
   alert: {
     marginTop: "5%",
     width: "100%",
-
-    // margin: "auto",
   },
 }));
 

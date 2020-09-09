@@ -5,16 +5,8 @@ import axios from "axios";
 import MessageList from "./MessageList";
 import MessageTextBox from "./MessageTextBox";
 import MessageView from "./MessageView";
-// import { makeStyles } from "@material-ui/core";
-
-// const useStyles = makeStyles((theme) => ({
-//   container: {
-//     display: "flex",
-//   },
-// }));
 
 export default function MessagePage(props) {
-  // const classes = useStyles();
   const [messageThreads, setMessageThreads] = useState([]);
   useEffect(() => {
     axios({

@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "20%",
     marginTop: "7%",
     padding: theme.spacing(2),
-    // textAlign: "center",
     color: theme.palette.text.primary,
   },
   form: {
@@ -133,7 +132,6 @@ export default function FilterBar(props) {
                 native
                 value={conditionState.sortBy}
                 onChange={handleChange}
-                // label="Sort By"
                 inputProps={{
                   name: "sortBy",
                 }}
@@ -155,7 +153,6 @@ export default function FilterBar(props) {
                 native
                 value={rateState.rate}
                 onChange={handleRateChange}
-                // label="Sort By"
                 inputProps={{
                   name: "rate",
                 }}
@@ -192,7 +189,6 @@ export default function FilterBar(props) {
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   label="Choose a city"
-                  // variant="outlined"
                   inputProps={{
                     ...params.inputProps,
                     autoComplete: "new-password", // disable autocomplete and autofill
@@ -207,7 +203,6 @@ export default function FilterBar(props) {
               size="large"
               type="submit"
               className={classes.margin}
-              // onClick={props.onSearch(conditionState)}
             >
               Search
             </Button>

@@ -48,10 +48,8 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  //appbaronscroll
   appBarScroll: {
     backgroundColor: "white",
-    // boxShadow: "none",
     color: "black",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
@@ -69,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     color: "black",
     marginLeft: "1%",
-    // marginRight: theme.spacing(2),
   },
   hide: {
     display: "none",
@@ -108,7 +105,6 @@ export default function NavBar(props) {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-    // target: props.window ? window() : undefined,
   });
 
   const classes = useStyles();
@@ -156,7 +152,6 @@ export default function NavBar(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        // color="transparent"
         position="fixed"
         className={
           trigger

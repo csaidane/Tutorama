@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: -drawerWidth,
     height: "100vh",
-    // padding: "24px 24px 0 24px",
     padding: "0px 0px 0 0px",
     backgroundColor: "#FFFFFF",
   },
@@ -40,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
   },
@@ -139,8 +137,8 @@ function App() {
                 )}
               />
             ) : (
-                <Route path="/" exact component={IndexPage} />
-              )}
+              <Route path="/" exact component={IndexPage} />
+            )}
 
             <Route
               path="/signup/student"
@@ -181,14 +179,14 @@ function App() {
                 render={(props) => <TutorProfilePage {...props} user={state} />}
               />
             ) : (
-                <Route
-                  path="/profile"
-                  exact
-                  render={(props) => (
-                    <StudentProfilePage {...props} user={state} />
-                  )}
-                />
-              )}
+              <Route
+                path="/profile"
+                exact
+                render={(props) => (
+                  <StudentProfilePage {...props} user={state} />
+                )}
+              />
+            )}
             <Route
               path="/searchresult"
               exact
@@ -235,18 +233,18 @@ function App() {
                 )}
               />
             ) : (
-                <Route
-                  path="/editprofile"
-                  exact
-                  render={(props) => (
-                    <EditProfileStudent
-                      updateUser={updateUser}
-                      {...props}
-                      user={state}
-                    />
-                  )}
-                />
-              )}
+              <Route
+                path="/editprofile"
+                exact
+                render={(props) => (
+                  <EditProfileStudent
+                    updateUser={updateUser}
+                    {...props}
+                    user={state}
+                  />
+                )}
+              />
+            )}
           </Switch>
         </main>
       </Router>

@@ -14,8 +14,6 @@ const useStyles = makeStyles({
     marginTop: "10%",
     marginLeft: "30%",
 
-    // borderTop: "0.5px dashed #303F9F",
-    // borderBottom: "0.5px dashed #303F9F",
     width: "60%",
     height: "50%",
   },
@@ -25,7 +23,6 @@ const useStyles = makeStyles({
     placeItems: "center",
     paddingLeft: "13%",
     paddingRight: "13%",
-    // flex: 4,
   },
   imgSize: {
     marginLeft: "10%",

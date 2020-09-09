@@ -33,16 +33,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
   },
 
   image: {
     backgroundImage:
-      // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
       "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
     height: "100%",
-    // marginLeft: "5%",
-    // marginTop: "4%",
     backgroundSize: "cover",
     position: "fixed",
     top: "0",
@@ -65,8 +62,6 @@ export default function SignUpPage() {
     <Grid
       item
       lg={12}
-      // md={12}
-      // sm={12}
       container
       className={classes.image}
       direction="row"

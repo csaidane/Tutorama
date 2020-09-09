@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "81%", // Fix IE 11 issue.
+    width: "81%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -59,13 +59,9 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     backgroundImage:
-      // "url(https://github.com/katebatrakova/scheduler/blob/master/docs/background.png?raw=true)",
       "url(https://images.unsplash.com/photo-1524678714210-9917a6c619c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)",
-    // height: "100%",
     marginLeft: "10%",
     backgroundPosition: "center",
-    // width: "100%",
-    // marginTop: "4%",
     backgroundSize: "cover",
   },
   backForInputFields: {
@@ -127,7 +123,6 @@ export default function SignUpTutor(props) {
                   <AccountBoxOutlinedIcon />
                 </Avatar>
                 <p className="studentSignUpHeadings">Tutor Sign Up</p>
-                {/* <form className={classes.form} noValidate> */}
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
@@ -314,15 +309,6 @@ export default function SignUpTutor(props) {
                 </Grid>
               </div>
               <Box mt={5}>
-                {/* <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign Up
-              </Button> */}
                 <Grid container justify="flex-end">
                   <Grid item>
                     <Link href="#" variant="body2">
