@@ -9,6 +9,12 @@ React, Material-UI, CSS + Javascript
 **Back-End**
 Express.js, Node.js, PostgreSQL
 
+## Contributors
+
+[Oluwatobi A. Bello](https://github.com/Oluwatobii).<br />
+[Kate Batrakova](https://github.com/katebatrakova).<br />
+[Cyril Saidane](https://github.com/csaidane).
+
 ## Getting Started
 
 This project has two main folders:
@@ -108,19 +114,37 @@ Response
 - node-sass: 4.14.1,
 - sass: 1.26.10,
 
-<!-- ## Final Product
+## Final Product
 
-- No Appointments Made
-  !["No Appointments Made"](public/images/empty.png)
+- Sign Up Page
+  !["Sign Up Page"](public/images/signup.png)
 
-- Creating an Appointment
-  !["Creating an Appointment"](public/images/create.png)
+- Home Page
+  !["Home Page"](public/images/homepage.png)
 
-- Scheduler App
-  !["UI"](public/images/UI.png)
+- Search Result
+  !["Search Result"](public/images/searchresult.png)
 
-- Deleting an Appointment
-  !["Deleting an Appointment"](public/images/confirm.png) -->
+- Tutor Profile
+  !["Tutor Profile"](public/images/tutorprofile.png)
+
+- Sending Messages
+  !["Sending Messages"](public/images/sendmssgs.png)
+
+- Leaving Feedback
+  !["Leaving Feedback"](public/images/feedback.png)
+
+- Reviews
+  !["Reviews"](public/images/reviews.png)
+
+- Messages
+  !["Messages"](public/images/messageui.png)
+
+- Student Profile
+  !["Student Profile"](public/images/profile.png)
+
+- Edit Profile
+  !["Edit Profile"](public/images/editprofile.png)
 
 ## Current Functionalities
 
@@ -139,9 +163,3 @@ Response
 - Show an in-depth curriculum of topics of each tutor.
 - Appointment Schedule made with tutors.
 - Payment Structure.
-
-## Contributors
-
-[Oluwatobi A. Bello](https://github.com/Oluwatobii).<br />
-[Kate Batrakova](https://github.com/katebatrakova).<br />
-[Cyril Saidane](https://github.com/csaidane).
