@@ -105,7 +105,8 @@ export default function ReviewTutorProfile(props) {
     rate_per_hour,
     subject,
   } = props.tutor;
-  const rate = avg.charAt(0);
+  let rate;
+  avg ? (rate = avg.charAt(0)) : (rate = 1);
   let history = useHistory();
   const classes = useStyles();
 

@@ -59,6 +59,7 @@ function App() {
   // For passing in props
   const storedUsers = window.localStorage.getItem("user");
   const storedTutors = window.localStorage.getItem("tutor");
+  const storedSearchResults = window.localStorage.getItem("searchResult");
 
   const [state, setState] = useState({
     user: storedUsers && JSON.parse(storedUsers),
@@ -78,6 +79,8 @@ function App() {
   };
 
   const updateSearchResult = function (searchResult) {
+    searchResult &&
+      window.localStorage.setItem("searchResult", JSON.stringify(searchResult));
     setState((prev) => ({ ...prev, searchResult }));
   };
 
